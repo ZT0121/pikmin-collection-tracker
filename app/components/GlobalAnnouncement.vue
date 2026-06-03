@@ -127,7 +127,7 @@
 </template>
 
 <script setup lang="ts">
-const isVisible = ref(true);
+const isVisible = ref(false);
 const startProgress = ref(false);
 const currentTab = ref<'update' | 'event'>('update'); // 預設先顯示更新
 const copied = ref(false);

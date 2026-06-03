@@ -72,6 +72,9 @@ export interface DecorItem {
   available: boolean;            // Whether this combination exists in game
 }
 
+export type CollectionItemStatus = 'none' | 'seedling' | 'plucked' | 'decor';
+export type StoredCollectionItemStatus = Exclude<CollectionItemStatus, 'none'>;
+
 // Full decor definition including all variants
 export interface DecorDefinition {
   category: DecorCategory;
@@ -81,7 +84,7 @@ export interface DecorDefinition {
 
 // Collection state stored in localStorage
 export interface CollectionState {
-  collected: Record<string, boolean>;  // Key: DecorItem.id, Value: collected or not
+  collected: Record<string, StoredCollectionItemStatus | boolean>;  // Legacy booleans are migrated at runtime
   lastUpdated: string;                 // ISO date string
   version: number;                     // For migration purposes
 }

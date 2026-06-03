@@ -101,7 +101,14 @@ export default defineNuxtConfig({
     '/**': withSecurityHeaders({ 'cache-control': 'no-cache' }),
     // HTML should revalidate frequently so users pick up new hashed bundles.
     '/': withSecurityHeaders({ 'cache-control': 'no-cache' }),
-    '/map': withSecurityHeaders({ 'cache-control': 'no-cache' }),
+    '/map': {
+      ...withSecurityHeaders({ 'cache-control': 'no-cache' }),
+      redirect: '/collection',
+    },
+    '/friends': {
+      ...withSecurityHeaders({ 'cache-control': 'no-cache' }),
+      redirect: '/collection',
+    },
     '/collection': withSecurityHeaders({ 'cache-control': 'no-cache' }),
     // Large static data files are content-like assets. Avoid revalidating the
     // multi-MB map JSON on every map visit.
@@ -131,7 +138,7 @@ export default defineNuxtConfig({
         // PWA iOS Support
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
-        { name: 'apple-mobile-web-app-title', content: 'Pikmin圖鑑' },
+        { name: 'apple-mobile-web-app-title', content: 'Pikmin Collection Tracker' },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -144,7 +151,7 @@ export default defineNuxtConfig({
       script: [
         {
           type: 'application/ld+json',
-          innerHTML: `{"@context":"https://schema.org","@type":"WebSite","name":"Pikmin Bloom 飾品圖鑑","alternateName":"Pikmin圖鑑","url":"https://pik-tool.onrender.com/"}`
+          innerHTML: `{"@context":"https://schema.org","@type":"WebSite","name":"Pikmin Collection Tracker","alternateName":"Pikmin Bloom Collection Tracker","url":"https://pik-tool.onrender.com/"}`
         }
       ],
     },

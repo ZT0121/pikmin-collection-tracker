@@ -32,11 +32,12 @@ CREATE POLICY "Users can insert own profile"
   WITH CHECK (auth.uid() = id);
 
 -- 2. User Collections Table
--- Stores collection progress as JSONB array
+-- Stores personal collection progress as a JSONB object:
+-- { decor_item_id: "seedling" | "plucked" | "decor" }
 CREATE TABLE IF NOT EXISTS user_collections (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID UNIQUE REFERENCES auth.users(id) ON DELETE CASCADE,
-  collected_items JSONB DEFAULT '[]'::jsonb,
+  collected_items JSONB DEFAULT '{}'::jsonb,
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -91,7 +92,7 @@ BEGIN
   VALUES (NEW.id, NEW.raw_user_meta_data->>'username');
   
   INSERT INTO public.user_collections (user_id, collected_items)
-  VALUES (NEW.id, '[]'::jsonb);
+  VALUES (NEW.id, '{}'::jsonb);
   
   RETURN NEW;
 END;

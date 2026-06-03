@@ -12,17 +12,17 @@ export interface Database {
       user_collections: {
         Row: {
           user_id: string
-          collected_items: string[] | null
+          collected_items: Json | null
           updated_at: string | null
         }
         Insert: {
           user_id: string
-          collected_items?: string[] | null
+          collected_items?: Json | null
           updated_at?: string | null
         }
         Update: {
           user_id?: string
-          collected_items?: string[] | null
+          collected_items?: Json | null
           updated_at?: string | null
         }
         Relationships: [

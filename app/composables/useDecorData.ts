@@ -2,10 +2,60 @@ import type { DecorDefinition, DecorItem, PikminType, DecorCategoryType } from '
 import { PIKMIN_TYPES } from '~/types/decor';
 import decorData from '~/data/decor.json';
 
+type DecorDataFile = {
+  definitions?: DecorDefinition[];
+};
+
+const eventDecorModules = import.meta.glob<DecorDataFile>('../data/events/*.json', {
+  eager: true,
+  import: 'default',
+});
+
+const mergeDecorDefinitions = (dataFiles: DecorDataFile[]): DecorDefinition[] => {
+  const definitionMap = new Map<string, DecorDefinition>();
+
+  dataFiles.forEach((dataFile) => {
+    (dataFile.definitions || []).forEach((definition) => {
+      const existing = definitionMap.get(definition.category.id);
+      if (!existing) {
+        definitionMap.set(definition.category.id, {
+          ...definition,
+          variants: [...definition.variants],
+          availablePikminTypes: [...definition.availablePikminTypes],
+        });
+        return;
+      }
+
+      const variantMap = new Map(existing.variants.map((variant) => [variant.id, variant]));
+      definition.variants.forEach((variant) => {
+        variantMap.set(variant.id, variant);
+      });
+
+      definitionMap.set(definition.category.id, {
+        ...existing,
+        category: definition.category,
+        variants: Array.from(variantMap.values()),
+        availablePikminTypes: definition.availablePikminTypes || existing.availablePikminTypes,
+      });
+    });
+  });
+
+  return Array.from(definitionMap.values());
+};
+
+const eventDecorData = Object.entries(eventDecorModules)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([, data]) => data);
+
+const mergedDecorDefinitions = mergeDecorDefinitions([
+  decorData as DecorDataFile,
+  ...eventDecorData,
+]);
+
 export function useDecorData() {
   // Get all decor definitions from JSON
   const getDecorDefinitions = (): DecorDefinition[] => {
-    return decorData.definitions as DecorDefinition[];
+    return mergedDecorDefinitions;
   };
 
   // Get all possible decor items (category + variant + pikmin type combinations)

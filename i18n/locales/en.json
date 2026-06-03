@@ -1,11 +1,11 @@
 {
     "app": {
-        "title": "Pikmin Bloom Decor Tracker & Map",
-        "subtitle": "Decor Collector",
-        "description": "Pikmin Bloom Decor Tracker, Interactive Map, and Global Friend Exchange. Track your Pikmin decor collection progress, find missing decor locations, and exchange postcards with friends globally.",
-        "keywords": "Pikmin Bloom, Pikmin Tracker, Decor Pikmin, Pikmin Map, Friend Code, Postcards, Pikmin Bloom Friends, Niantic, Nintendo",
-        "og_title": "Pikmin Bloom Tracker & Map | Find Friends Globally",
-        "og_desc": "The ultimate tool for Pikmin Bloom players. Track decor collections, explore the interactive map, and exchange friend codes globally."
+        "title": "Pikmin Collection Tracker",
+        "subtitle": "Personal Pikmin Bloom progress",
+        "description": "A personal Pikmin Bloom decor collection tracker. Sign in with Google to sync seedling, plucked, and decor completed progress for each Decor Pikmin.",
+        "keywords": "Pikmin Bloom, Pikmin Tracker, Decor Pikmin, collection tracker, Niantic, Nintendo",
+        "og_title": "Pikmin Collection Tracker",
+        "og_desc": "Track your personal Pikmin Bloom Decor Pikmin progress with four collection states."
     },
     "nav": {
         "home": "Home",
@@ -44,7 +44,8 @@
         },
         "actions": {
             "browse_collection": "Browse Collection",
-            "open_map": "Open Decor Map"
+            "open_map": "Open Decor Map",
+            "review_missing": "Review Missing"
         },
         "near_complete": {
             "title": "Near Complete",
@@ -55,7 +56,7 @@
         "tips": {
             "title": "Tips & Tricks",
             "subtitle": "Complete your collection faster",
-            "tip1": "Click on a decor card to mark it as 'Collected'. Click again to unmark.",
+            "tip1": "Click a decor card to cycle through: none, seedling, plucked, decor completed.",
             "tip2": "Supports search by keywords and colors (Red/Yellow/Blue). Use filters for precision.",
             "tip3": "Login to sync your collection to the cloud and never lose progress."
         }
@@ -89,7 +90,7 @@
     },
     "collection": {
         "title": "Decor Collection",
-        "subtitle": "Click items to mark as collected",
+        "subtitle": "Click items to cycle: none, seedling, plucked, decor completed",
         "stats": {
             "showing": "Showing",
             "items": "items",
@@ -110,6 +111,18 @@
             "title": "Filters",
             "expand": "Expand Filters",
             "collapse": "Collapse"
+        },
+        "status": {
+            "none": "No progress",
+            "seedling": "Seedling",
+            "plucked": "Plucked",
+            "decor": "Decor completed"
+        },
+        "status_short": {
+            "none": "None",
+            "seedling": "Seed",
+            "plucked": "Pull",
+            "decor": "Done"
         },
         "sections": {
             "regular": {

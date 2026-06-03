@@ -13,33 +13,43 @@
       class="decor-card-shell liquid-glass-soft liquid-glass-dynamic relative rounded-2xl overflow-hidden transition-all duration-300 z-10 border"
       :class="[
         isRareVariant
-          ? (isCollected
+          ? (isDecorCompleted
               ? 'border-yellow-300/90 shadow-[0_14px_34px_rgba(146,64,14,0.28)] rare-golden-glow'
-              : 'border-slate-300/50 shadow-[0_6px_16px_rgba(15,23,42,0.1)]')
-          : (isCollected
+              : hasProgress
+                ? 'border-amber-300/80 shadow-[0_10px_24px_rgba(245,158,11,0.18)]'
+                : 'border-slate-300/50 shadow-[0_6px_16px_rgba(15,23,42,0.1)]')
+          : (isDecorCompleted
               ? 'border-emerald-300/90 shadow-[0_12px_30px_rgba(5,150,105,0.24)]'
-              : 'border-slate-300/50 shadow-[0_6px_16px_rgba(15,23,42,0.1)]')
+              : hasProgress
+                ? 'border-amber-300/80 shadow-[0_10px_24px_rgba(245,158,11,0.18)]'
+                : 'border-slate-300/50 shadow-[0_6px_16px_rgba(15,23,42,0.1)]')
       ]"
     >
       <!-- Image Container -->
       <div
         class="decor-image-stage relative aspect-square p-3 overflow-hidden"
         :class="isRareVariant
-          ? (isCollected
+          ? (isDecorCompleted
               ? 'bg-gradient-to-br from-amber-50/92 via-yellow-50/86 to-orange-50/84'
+              : hasProgress
+                ? 'bg-gradient-to-br from-amber-50/90 via-orange-50/82 to-yellow-50/78'
               : 'bg-gradient-to-br from-slate-100/88 via-gray-50/82 to-slate-50/78')
-          : (isCollected
+          : (isDecorCompleted
               ? 'bg-gradient-to-br from-white/92 via-emerald-50/84 to-teal-50/80'
+              : hasProgress
+                ? 'bg-gradient-to-br from-white/92 via-amber-50/84 to-lime-50/78'
               : 'bg-gradient-to-br from-slate-100/88 via-gray-50/82 to-slate-50/78')"
       >
         <!-- Background pattern -->
-        <div class="absolute inset-0" :class="isRareVariant ? (isCollected ? 'opacity-10' : 'opacity-[0.04]') : (isCollected ? 'opacity-5' : 'opacity-[0.03]')">
+        <div class="absolute inset-0" :class="isRareVariant ? (isDecorCompleted ? 'opacity-10' : 'opacity-[0.04]') : (isDecorCompleted ? 'opacity-5' : 'opacity-[0.03]')">
           <div
             class="absolute inset-0"
-            :style="isCollected
+            :style="isDecorCompleted
               ? (isRareVariant
                   ? 'background-image: radial-gradient(circle, #fbbf24 1px, transparent 1px); background-size: 16px 16px;'
                   : 'background-image: radial-gradient(circle, #00b92f 1px, transparent 1px); background-size: 20px 20px;')
+              : hasProgress
+                ? 'background-image: radial-gradient(circle, #f59e0b 1px, transparent 1px); background-size: 18px 18px;'
               : 'background-image: radial-gradient(circle, #94a3b8 1px, transparent 1px); background-size: 20px 20px;'"
           ></div>
         </div>
@@ -67,7 +77,7 @@
           :src="imageUrl"
           :alt="`${locale === 'en' ? variant?.nameEn : variant?.name} ${t('pikmin_types.' + pikminType)}`"
           class="decor-image relative w-full h-full object-contain transform group-hover:scale-110 transition-all duration-300"
-          :class="isCollected ? 'opacity-100 saturate-[1.02]' : 'opacity-[0.45] grayscale-[70%] saturate-[0.3]'"
+          :class="isDecorCompleted ? 'opacity-100 saturate-[1.02]' : hasProgress ? 'opacity-[0.72] grayscale-[24%] saturate-[0.72]' : 'opacity-[0.45] grayscale-[70%] saturate-[0.3]'"
           loading="lazy"
           referrerpolicy="no-referrer"
           @error="handleImageError"
@@ -88,7 +98,7 @@
           leave-to-class="opacity-0 scale-0 rotate-12"
         >
           <div
-            v-if="!isCollected"
+            v-if="!hasProgress"
             class="absolute inset-0 bg-slate-400/18 backdrop-blur-[1px] pointer-events-none flex items-center justify-center"
           >
             <!-- Lock Icon (SVG) -->
@@ -104,7 +114,7 @@
         <!-- Pikmin Type Badge -->
         <div
           class="absolute top-2 right-2 w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold shadow-lg ring-1 ring-white/70 transform group-hover:scale-110 transition-transform"
-          :class="[pikminBadgeClass, !isCollected && 'opacity-50 saturate-50']"
+          :class="[pikminBadgeClass, !hasProgress && 'opacity-50 saturate-50']"
         >
           {{ pikminTypeShort }}
         </div>
@@ -117,7 +127,17 @@
           <Icon name="lucide:sparkles" class="w-5 h-5 drop-shadow-sm" />
         </div>
 
-        <!-- Collected Checkmark -->
+        <!-- Collection Status Badge -->
+        <div
+          class="absolute bottom-2 left-2 min-w-8 h-8 px-2 rounded-xl flex items-center justify-center gap-1 text-xs font-extrabold shadow-lg ring-2 ring-white/80"
+          :class="statusMeta.class"
+          :title="statusMeta.label"
+        >
+          <Icon :name="statusMeta.icon" class="w-4 h-4" />
+          <span class="hidden sm:inline">{{ statusMeta.short }}</span>
+        </div>
+
+        <!-- Decor Completed Checkmark -->
         <Transition
           enter-active-class="checkmark-pop-transition"
           enter-from-class="scale-0 rotate-180 opacity-0"
@@ -127,7 +147,7 @@
           leave-to-class="scale-0 rotate-180 opacity-0"
         >
           <div
-            v-if="isCollected"
+            v-if="isDecorCompleted"
             class="absolute bottom-2 right-2 w-8 h-8 bg-emerald-500 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white/80"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
@@ -139,20 +159,22 @@
         <!-- Hover overlay -->
         <div
           class="absolute inset-0 transition-colors duration-300 rounded-lg pointer-events-none"
-          :class="isCollected ? 'bg-emerald-500/0 group-hover:bg-emerald-500/8' : 'bg-slate-900/0 group-hover:bg-slate-900/6'"
+          :class="isDecorCompleted ? 'bg-emerald-500/0 group-hover:bg-emerald-500/8' : hasProgress ? 'bg-amber-500/0 group-hover:bg-amber-500/8' : 'bg-slate-900/0 group-hover:bg-slate-900/6'"
         ></div>
       </div>
 
       <!-- Info Section -->
       <div
         class="p-3 text-center border-t backdrop-blur-sm"
-        :class="isCollected
+        :class="isDecorCompleted
           ? 'bg-white/93 border-white/70'
+          : hasProgress
+            ? 'bg-amber-50/90 border-amber-100/70'
           : 'bg-slate-50/90 border-slate-200/50'"
       >
         <p
           class="text-sm font-extrabold truncate"
-          :class="isCollected ? 'text-slate-900' : 'text-slate-400'"
+          :class="isDecorCompleted ? 'text-slate-900' : hasProgress ? 'text-slate-700' : 'text-slate-400'"
           :style="{ textShadow: '0 1px 2px rgba(255,255,255,0.5)' }"
           :title="locale === 'en' ? variant?.nameEn : variant?.name"
         >
@@ -160,7 +182,7 @@
         </p>
         <p
           class="text-xs truncate mt-0.5 font-semibold"
-          :class="isCollected ? 'text-slate-700' : 'text-slate-400'"
+          :class="isDecorCompleted ? 'text-slate-700' : hasProgress ? 'text-amber-700' : 'text-slate-400'"
           :style="{ textShadow: '0 1px 2px rgba(255,255,255,0.5)' }"
           :title="locale === 'en' ? variant?.name : variant?.nameEn"
         >
@@ -179,14 +201,14 @@
       <div
         v-if="showRipple"
         class="absolute inset-0 rounded-2xl pointer-events-none"
-        :class="isRemoving ? 'bg-slate-400/24' : 'bg-emerald-400/30'"
+        :class="isRemoving ? 'bg-slate-400/24' : isDecorCompleted ? 'bg-emerald-400/30' : 'bg-amber-400/28'"
       ></div>
     </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { PikminType } from '~/types/decor';
+import type { CollectionItemStatus, PikminType } from '~/types/decor';
 import { PIKMIN_TYPE_COLORS } from '~/types/decor';
 
 const props = withDefaults(defineProps<{
@@ -203,14 +225,16 @@ const emit = defineEmits<{
   toggle: [itemId: string];
 }>();
 
-const { isCollected: checkCollected, toggleCollected } = useCollection();
+const { getItemStatus, cycleItemStatus } = useCollection();
 const { getVariant, getCategory, getImageUrl } = useDecorData();
 const toast = useToast();
 const { t, locale } = useI18n();
 
 const variant = computed(() => getVariant(props.categoryId, props.variantId));
 const category = computed(() => getCategory(props.categoryId));
-const isCollected = computed(() => checkCollected(props.itemId));
+const itemStatus = computed(() => getItemStatus(props.itemId));
+const isDecorCompleted = computed(() => itemStatus.value === 'decor');
+const hasProgress = computed(() => itemStatus.value !== 'none');
 const imageUrl = computed(() => getImageUrl(props.categoryId, props.variantId, props.pikminType));
 const isRareVariant = computed(() => props.variantId.toLowerCase().includes('rare'));
 const hasError = ref(false);
@@ -240,6 +264,37 @@ const pikminBadgeClass = computed(() => {
   const baseClass = PIKMIN_TYPE_COLORS[props.pikminType];
   const textClass = props.pikminType === 'white' || props.pikminType === 'yellow' ? 'text-gray-800' : 'text-white';
   return `${baseClass} ${textClass}`;
+});
+
+const statusMeta = computed(() => {
+  const meta: Record<CollectionItemStatus, { label: string; short: string; icon: string; class: string }> = {
+    none: {
+      label: t('collection.status.none'),
+      short: t('collection.status_short.none'),
+      icon: 'lucide:minus',
+      class: 'bg-slate-500 text-white',
+    },
+    seedling: {
+      label: t('collection.status.seedling'),
+      short: t('collection.status_short.seedling'),
+      icon: 'lucide:sprout',
+      class: 'bg-lime-500 text-white',
+    },
+    plucked: {
+      label: t('collection.status.plucked'),
+      short: t('collection.status_short.plucked'),
+      icon: 'lucide:leaf',
+      class: 'bg-amber-500 text-white',
+    },
+    decor: {
+      label: t('collection.status.decor'),
+      short: t('collection.status_short.decor'),
+      icon: 'lucide:check',
+      class: 'bg-emerald-500 text-white',
+    },
+  };
+
+  return meta[itemStatus.value];
 });
 
 const clearFeedbackTimers = () => {
@@ -275,13 +330,13 @@ const handleClick = () => {
     showRipple.value = false;
   }, 500);
 
-  const wasCollected = isCollected.value;
-  const isNowCollected = toggleCollected(props.itemId);
+  const previousStatus = itemStatus.value;
+  const nextStatus = cycleItemStatus(props.itemId);
 
-  if (!wasCollected && isNowCollected) {
+  if (previousStatus !== 'decor' && nextStatus === 'decor') {
     triggerUnlockMoment();
     toast.success(t('components.toast.saved'), 1200);
-  } else {
+  } else if (nextStatus === 'none') {
     triggerRemoveMoment();
     toast.info(t('components.toast.removed'), 1200);
   }

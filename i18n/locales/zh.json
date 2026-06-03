@@ -1,11 +1,11 @@
 {
     "app": {
-        "title": "Pikmin Bloom 飾品圖鑑與地圖",
-        "subtitle": "尋找你的每一隻皮克敏",
-        "description": "最完整的 Pikmin Bloom 飾品圖鑑、雷達地圖與國際好友交換平台。輕鬆追蹤飾品進度、搜尋探測器地圖區域，並與全球玩家交換明信片。",
-        "keywords": "皮克敏, Pikmin Bloom, 飾品圖鑑, 皮克敏地圖, 探測器, 皮克敏好友, 交換明信片, Nintendo, Niantic",
-        "og_title": "Pikmin Bloom 飾品圖鑑、尋寶地圖與好友交換所",
-        "og_desc": "皮克敏玩家必備工具：一鍵追蹤飾品圖鑑進度、精準預測探測器地點，並與全球玩家交換好友碼與明信片。"
+        "title": "Pikmin Collection Tracker",
+        "subtitle": "個人 Pikmin Bloom 收藏進度",
+        "description": "個人 Pikmin Bloom 飾品收藏追蹤器。使用 Google 登入後即可同步每隻 Decor Pikmin 的花苗、已拔起與飾品完成狀態。",
+        "keywords": "皮克敏, Pikmin Bloom, 飾品圖鑑, 收藏追蹤, Decor Pikmin, Nintendo, Niantic",
+        "og_title": "Pikmin Collection Tracker",
+        "og_desc": "用四階段狀態追蹤你的 Pikmin Bloom Decor Pikmin 個人收藏進度。"
     },
     "nav": {
         "home": "首頁",
@@ -44,7 +44,8 @@
         },
         "actions": {
             "browse_collection": "瀏覽完整圖鑑",
-            "open_map": "飾品地點地圖"
+            "open_map": "飾品地點地圖",
+            "review_missing": "查看尚未完成"
         },
         "near_complete": {
             "title": "培育清單",
@@ -55,7 +56,7 @@
         "tips": {
             "title": "使用小提示",
             "subtitle": "讓你更快完成收藏",
-            "tip1": "點擊飾品卡片即可標記「已蒐集」，再次點擊可取消。",
+            "tip1": "點擊飾品卡片會依序切換：無、花苗、已拔起、飾品完成。",
             "tip2": "支援中文搜尋與顏色關鍵字（紅／黃／藍），也可搭配篩選更精準。",
             "tip3": "登入即可雲端同步收藏，換裝置也不會遺失進度。"
         }
@@ -89,7 +90,7 @@
     },
     "collection": {
         "title": "飾品圖鑑",
-        "subtitle": "點擊飾品即可標記「已蒐集」",
+        "subtitle": "點擊飾品循環切換：無、花苗、已拔起、飾品完成",
         "stats": {
             "showing": "顯示中",
             "items": "個飾品",
@@ -110,6 +111,18 @@
             "title": "篩選條件",
             "expand": "展開篩選器",
             "collapse": "收合"
+        },
+        "status": {
+            "none": "無進度",
+            "seedling": "花苗",
+            "plucked": "已拔起",
+            "decor": "飾品完成"
+        },
+        "status_short": {
+            "none": "無",
+            "seedling": "苗",
+            "plucked": "拔",
+            "decor": "完成"
         },
         "sections": {
             "regular": {

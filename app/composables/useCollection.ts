@@ -1,10 +1,18 @@
-import type { CollectionState, CollectionStats, PikminType, DecorCategoryType } from '~/types/decor';
+import type {
+  CollectionItemStatus,
+  CollectionState,
+  CollectionStats,
+  DecorCategoryType,
+  PikminType,
+  StoredCollectionItemStatus,
+} from '~/types/decor';
 import { useDecorData } from './useDecorData';
 
 const STORAGE_KEY = 'pikmin-bloom-collection';
-const CURRENT_VERSION = 1;
+const CURRENT_VERSION = 2;
 const CLOUD_SYNC_DEBOUNCE_MS = 15000;
 const CLOUD_SYNC_DEBOUNCE_SECONDS = CLOUD_SYNC_DEBOUNCE_MS / 1000;
+const COLLECTION_STATUS_ORDER: CollectionItemStatus[] = ['none', 'seedling', 'plucked', 'decor'];
 
 // Global timeout registry for debouncing cloud syncs across all component callers
 let globalSyncTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -48,7 +56,11 @@ export function useCollection() {
         const saved = localStorage.getItem(STORAGE_KEY);
         if (saved) {
           const parsed = JSON.parse(saved) as CollectionState;
-          collectionState.value = parsed;
+          collectionState.value = {
+            ...parsed,
+            collected: normalizeProgressRecord(parsed.collected),
+            version: CURRENT_VERSION,
+          };
         }
       } catch (e) {
         console.error('Failed to load collection:', e);
@@ -66,6 +78,52 @@ export function useCollection() {
         console.error('Failed to save collection:', e);
       }
     }
+  };
+
+  const normalizeStatus = (value: unknown): CollectionItemStatus => {
+    if (value === true) return 'decor';
+    if (value === 'seedling' || value === 'plucked' || value === 'decor') return value;
+    return 'none';
+  };
+
+  const normalizeProgressRecord = (
+    value: unknown,
+    validIds = getValidItemIds(),
+  ): Record<string, StoredCollectionItemStatus> => {
+    const normalized: Record<string, StoredCollectionItemStatus> = {};
+
+    if (Array.isArray(value)) {
+      value.forEach((id) => {
+        if (typeof id === 'string' && validIds.has(id)) {
+          normalized[id] = 'decor';
+        }
+      });
+      return normalized;
+    }
+
+    if (!value || typeof value !== 'object') {
+      return normalized;
+    }
+
+    Object.entries(value as Record<string, unknown>).forEach(([id, rawStatus]) => {
+      if (!validIds.has(id)) return;
+      const status = normalizeStatus(rawStatus);
+      if (status !== 'none') {
+        normalized[id] = status;
+      }
+    });
+
+    return normalized;
+  };
+
+  const getProgressRecordForSave = (): Record<string, StoredCollectionItemStatus> => {
+    return normalizeProgressRecord(collectionState.value.collected);
+  };
+
+  const getStoredProgressCount = (value: unknown): number => {
+    if (Array.isArray(value)) return value.length;
+    if (value && typeof value === 'object') return Object.keys(value).length;
+    return 0;
   };
 
   // Get valid DecorItem IDs from current decor.json
@@ -135,14 +193,14 @@ export function useCollection() {
   const MAX_SAVE_RETRIES = 3;
 
   // Core upsert logic (single attempt)
-  const attemptSaveToCloud = async (userId: string, collectedItems: string[]): Promise<void> => {
+  const attemptSaveToCloud = async (userId: string, collectionProgress: Record<string, StoredCollectionItemStatus>): Promise<void> => {
     // Try upsert first
     const upsertResult = await withTimeout(
       supabase
         .from('user_collections')
         .upsert({
           user_id: userId,
-          collected_items: collectedItems,
+          collected_items: collectionProgress,
           updated_at: new Date().toISOString(),
         }, {
           onConflict: 'user_id',
@@ -160,7 +218,7 @@ export function useCollection() {
           .from('user_collections')
           .insert({
             user_id: userId,
-            collected_items: collectedItems,
+            collected_items: collectionProgress,
             updated_at: new Date().toISOString(),
           }),
         SAVE_TIMEOUT_MS,
@@ -184,28 +242,30 @@ export function useCollection() {
     }
 
     try {
-      // 過濾掉無效的幽靈 ID，只保存 decor.json 中存在的 ID
-      const validIds = getValidItemIds();
-      const collectedItems = Object.keys(collectionState.value.collected)
-        .filter(id => collectionState.value.collected[id] && validIds.has(id));
-      const signature = collectedItems.slice().sort().join('|');
+      const collectionProgress = getProgressRecordForSave();
+      const signature = Object.entries(collectionProgress)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([id, status]) => `${id}:${status}`)
+        .join('|');
 
       if (!force && lastSyncedSignature.value === signature) {
         return true;
       }
 
-      const rawCount = Object.keys(collectionState.value.collected).filter(id => collectionState.value.collected[id]).length;
-      if (rawCount !== collectedItems.length) {
-        console.log(`[Collection] Filtered out ${rawCount - collectedItems.length} invalid/phantom IDs before saving`);
+      const rawCount = Object.values(collectionState.value.collected)
+        .filter(status => normalizeStatus(status) !== 'none').length;
+      const progressCount = Object.keys(collectionProgress).length;
+      if (rawCount !== progressCount) {
+        console.log(`[Collection] Filtered out ${rawCount - progressCount} invalid/phantom IDs before saving`);
       }
 
       // Retry loop with timeout
       let lastError: unknown = null;
       for (let attempt = 1; attempt <= MAX_SAVE_RETRIES; attempt++) {
         try {
-          console.log(`[Collection] Saving to cloud (attempt ${attempt}/${MAX_SAVE_RETRIES}) for user: ${userId} - ${collectedItems.length} items`);
+          console.log(`[Collection] Saving to cloud (attempt ${attempt}/${MAX_SAVE_RETRIES}) for user: ${userId} - ${progressCount} items`);
           syncRetryAttempt.value = attempt;
-          await attemptSaveToCloud(userId, collectedItems);
+          await attemptSaveToCloud(userId, collectionProgress);
 
           // Success
           syncRetryAttempt.value = 0;
@@ -267,18 +327,12 @@ export function useCollection() {
       
       if (data?.collected_items) {
         // ☁️ 雲端優先：直接使用雲端資料取代本地
-        const cloudCollected: Record<string, boolean> = {};
         const validIds = getValidItemIds();
-        (data.collected_items as string[]).forEach(id => {
-          // 只導入 decor.json 中存在的有效 ID
-          if (validIds.has(id)) {
-            cloudCollected[id] = true;
-          }
-        });
+        const cloudCollected = normalizeProgressRecord(data.collected_items, validIds);
         
         const localCount = Object.keys(collectionState.value.collected)
-          .filter(id => collectionState.value.collected[id]).length;
-        const cloudCount = (data.collected_items as string[]).length;
+          .filter(id => normalizeStatus(collectionState.value.collected[id]) !== 'none').length;
+        const cloudCount = getStoredProgressCount(data.collected_items);
         const validCloudCount = Object.keys(cloudCollected).length;
         
         if (cloudCount !== validCloudCount) {
@@ -304,7 +358,7 @@ export function useCollection() {
       } else {
         // 雲端沒資料：如果本地有資料，推送到雲端作為初始資料
         const localCount = Object.keys(collectionState.value.collected)
-          .filter(id => collectionState.value.collected[id]).length;
+          .filter(id => normalizeStatus(collectionState.value.collected[id]) !== 'none').length;
         if (localCount > 0) {
           console.log('[Collection] No cloud data found, pushing local data to cloud:', localCount, 'items');
           await saveToCloud(true);
@@ -338,18 +392,39 @@ export function useCollection() {
     }
   };
 
-  // Toggle collected status for an item
+  const getItemStatus = (itemId: string): CollectionItemStatus => {
+    return normalizeStatus(collectionState.value.collected[itemId]);
+  };
+
+  const setItemStatus = (itemId: string, status: CollectionItemStatus) => {
+    if (status === 'none') {
+      delete collectionState.value.collected[itemId];
+    } else {
+      collectionState.value.collected[itemId] = status;
+    }
+    saveCollection();
+  };
+
+  const cycleItemStatus = (itemId: string): CollectionItemStatus => {
+    const current = getItemStatus(itemId);
+    const nextIndex = (COLLECTION_STATUS_ORDER.indexOf(current) + 1) % COLLECTION_STATUS_ORDER.length;
+    const nextStatus = COLLECTION_STATUS_ORDER[nextIndex] ?? 'none';
+    setItemStatus(itemId, nextStatus);
+    return nextStatus;
+  };
+
+  // Toggle collected status for legacy callers
   const toggleCollected = (itemId: string): boolean => {
-    const current = collectionState.value.collected[itemId] ?? false;
+    const current = isCollected(itemId);
     const newValue = !current;
-    collectionState.value.collected[itemId] = newValue;
+    collectionState.value.collected[itemId] = newValue ? 'decor' : false;
     saveCollection();
     return newValue; // Return true if now collected, false if uncollected
   };
 
   // Check if an item is collected
   const isCollected = (itemId: string): boolean => {
-    return collectionState.value.collected[itemId] ?? false;
+    return getItemStatus(itemId) === 'decor';
   };
 
   // Set collected status for an item
@@ -374,7 +449,7 @@ export function useCollection() {
   const collectAllInCategory = async (categoryId: string) => {
     const items = getAllDecorItems().filter(item => item.categoryId === categoryId);
     items.forEach(item => {
-      collectionState.value.collected[item.id] = true;
+      collectionState.value.collected[item.id] = 'decor';
     });
     saveToLocal();
     // 取消任何待執行的 debounce，避免重複存
@@ -479,6 +554,7 @@ export function useCollection() {
       if (parsed.collected && typeof parsed.collected === 'object') {
         collectionState.value = {
           ...parsed,
+          collected: normalizeProgressRecord(parsed.collected),
           version: CURRENT_VERSION,
           lastUpdated: new Date().toISOString(),
         };
@@ -540,6 +616,9 @@ export function useCollection() {
     syncRetryAttempt: readonly(syncRetryAttempt),
     loadCollection,
     loadFromCloud,
+    getItemStatus,
+    setItemStatus,
+    cycleItemStatus,
     toggleCollected,
     isCollected,
     setCollected,
@@ -554,4 +633,3 @@ export function useCollection() {
     cleanupSyncTimers,
   };
 }
-

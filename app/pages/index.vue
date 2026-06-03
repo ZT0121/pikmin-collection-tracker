@@ -68,25 +68,6 @@
               </div>
           </template>
 
-           <!-- 5. Map Action -->
-            <template #action-map>
-              <div @click="router.push('/map')" class="glass-surface-readable group h-full w-full min-h-[220px] p-6 flex flex-col justify-between relative overflow-hidden rounded-[2.5rem] transition-all duration-500 hover:-translate-y-2 cursor-pointer">
-                   <!-- Soft Aurora Background -->
-                   <div class="absolute top-[-20%] right-[-20%] w-64 h-64 bg-emerald-200/20 rounded-full blur-2xl pointer-events-none group-hover:bg-emerald-300/25 transition-colors duration-700"></div>
-                   <div class="absolute bottom-[-20%] left-[-20%] w-64 h-64 bg-teal-100/18 rounded-full blur-2xl pointer-events-none group-hover:bg-teal-200/25 transition-colors duration-700"></div>
-                   
-                  <div class="flex items-start justify-between relative z-10">
-                       <div class="glass-control w-14 h-14 rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300">
-                           <Icon name="lucide:map-pin" class="text-emerald-500 drop-shadow-sm" />
-                       </div>
-                  </div>
-
-                  <div class="mt-4 relative z-10 group-hover:translate-x-1 transition-transform duration-300">
-                       <h3 class="text-on-glass text-2xl font-black tracking-tight">{{ $t('home.map.title') }}</h3>
-                       <p class="text-on-glass text-sm font-medium opacity-90 group-hover:text-emerald-600 transition-colors">{{ $t('home.map.desc') }}</p>
-                  </div>
-              </div>
-          </template>
       </HomeBentoGrid>
 
       <div class="mt-6 md:mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -99,11 +80,11 @@
             <span>{{ $t('home.actions.browse_collection') }}</span>
           </button>
           <button
-            @click="router.push('/map')"
+            @click="showMissingItems"
             class="glass-control text-on-glass w-full flex items-center justify-center gap-3 px-6 py-4 rounded-2xl"
           >
-            <span class="text-xl">🗺️</span>
-            <span>{{ $t('home.actions.open_map') }}</span>
+            <span class="text-xl">🌱</span>
+            <span>{{ $t('home.actions.review_missing') }}</span>
           </button>
         </div>
 
@@ -302,4 +283,3 @@ const goToCategory = (categoryId: string) => {
   router.push({ path: '/collection', query: { category: categoryId } });
 };
 </script>
-```

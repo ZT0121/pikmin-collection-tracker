@@ -21,11 +21,6 @@
         <slot name="action-limited" />
     </div>
 
-     <!-- 5. Map -->
-    <div class="md:col-span-1 lg:col-span-1 transition-all duration-300 cursor-pointer group hover:-translate-y-1">
-        <slot name="action-map" />
-    </div>
-
   </div>
 </template>
 
@@ -43,7 +38,6 @@ div:nth-child(1) { animation-delay: 0.1s; }
 div:nth-child(2) { animation-delay: 0.2s; }
 div:nth-child(3) { animation-delay: 0.3s; }
 div:nth-child(4) { animation-delay: 0.4s; }
-div:nth-child(5) { animation-delay: 0.5s; }
 
 @keyframes fade-in-up {
     from { opacity: 0; transform: translateY(20px); }

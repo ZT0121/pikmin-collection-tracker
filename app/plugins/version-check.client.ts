@@ -1,4 +1,5 @@
 export default defineNuxtPlugin(() => {
+  const runtimeConfig = useRuntimeConfig();
   const CHECK_INTERVAL_MS = 5 * 60 * 1000;
   const VERSION_STORAGE_KEY = 'pikmin-app-version';
   const RELOAD_LOCK_KEY = 'pikmin-app-version-reload-lock';
@@ -23,7 +24,7 @@ export default defineNuxtPlugin(() => {
 
   const fetchLatestVersion = async (): Promise<string | null> => {
     try {
-      const response = await fetch(`/version.json?t=${Date.now()}`, {
+      const response = await fetch(`${runtimeConfig.app.baseURL}version.json?t=${Date.now()}`, {
         cache: 'no-store',
       });
 

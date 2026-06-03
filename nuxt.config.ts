@@ -28,6 +28,14 @@ const withSecurityHeaders = (headers: Record<string, string>) => ({
   },
 });
 
+const appBaseURL = process.env.NUXT_APP_BASE_URL || '/';
+const withBase = (path: string) => {
+  const base = appBaseURL.endsWith('/') ? appBaseURL.slice(0, -1) : appBaseURL;
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  return `${base}${cleanPath}` || cleanPath;
+};
+const siteURL = process.env.NUXT_PUBLIC_SITE_URL || 'https://zt0121.github.io/pikmin-collection-tracker/';
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
@@ -103,11 +111,19 @@ export default defineNuxtConfig({
     '/': withSecurityHeaders({ 'cache-control': 'no-cache' }),
     '/map': {
       ...withSecurityHeaders({ 'cache-control': 'no-cache' }),
-      redirect: '/collection',
+      redirect: withBase('/collection'),
     },
     '/friends': {
       ...withSecurityHeaders({ 'cache-control': 'no-cache' }),
-      redirect: '/collection',
+      redirect: withBase('/collection'),
+    },
+    '/feedback': {
+      ...withSecurityHeaders({ 'cache-control': 'no-cache' }),
+      redirect: withBase('/collection'),
+    },
+    '/forza-music-overlay': {
+      ...withSecurityHeaders({ 'cache-control': 'no-cache' }),
+      redirect: withBase('/collection'),
     },
     '/collection': withSecurityHeaders({ 'cache-control': 'no-cache' }),
     // Large static data files are content-like assets. Avoid revalidating the
@@ -124,6 +140,7 @@ export default defineNuxtConfig({
   },
   
   app: {
+    baseURL: appBaseURL,
     head: {
       meta: [
         { charset: 'utf-8' },
@@ -131,8 +148,8 @@ export default defineNuxtConfig({
         { name: 'theme-color', content: '#059669' },
         
         // Open Graph Image is static so keeping it here as fallback, though dynamic also handles it
-        { property: 'og:image', content: '/og-image.png' },
-        { name: 'twitter:image', content: '/og-image.png' },
+        { property: 'og:image', content: withBase('/og-image.png') },
+        { name: 'twitter:image', content: withBase('/og-image.png') },
         { name: 'twitter:card', content: 'summary_large_image' },
 
         // PWA iOS Support
@@ -141,9 +158,9 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-title', content: 'Pikmin Collection Tracker' },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'manifest', href: '/manifest.webmanifest' },
-        { rel: 'apple-touch-icon', href: '/icon.png' },
+        { rel: 'icon', type: 'image/x-icon', href: withBase('/favicon.ico') },
+        { rel: 'manifest', href: withBase('/manifest.webmanifest') },
+        { rel: 'apple-touch-icon', href: withBase('/icon.png') },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap' },
@@ -151,7 +168,13 @@ export default defineNuxtConfig({
       script: [
         {
           type: 'application/ld+json',
-          innerHTML: `{"@context":"https://schema.org","@type":"WebSite","name":"Pikmin Collection Tracker","alternateName":"Pikmin Bloom Collection Tracker","url":"https://pik-tool.onrender.com/"}`
+          innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'Pikmin Collection Tracker',
+            alternateName: 'Pikmin Bloom Collection Tracker',
+            url: siteURL,
+          }),
         }
       ],
     },

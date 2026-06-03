@@ -190,10 +190,16 @@
           ⚠️ 登入後仍需在圖鑑中手動點擊收藏。<br>
           <span class="text-gray-500">登入功能僅將本網站的收藏資料儲存至雲端，並不會與 Pikmin Bloom 遊戲資料連動。</span>
         </p>
+        <div
+          v-if="!isSupabaseConfigured"
+          class="mt-4 mb-4 rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-relaxed text-amber-800"
+        >
+          雲端登入尚未設定完成。請先在 GitHub Actions Secrets 加上 Supabase URL 和 anon key，重新部署後才能使用 Google 登入。
+        </div>
         <!-- Google Sign In -->
         <button
           @click="signInWithGoogle"
-          :disabled="loading"
+          :disabled="loading || !isSupabaseConfigured"
           class="w-full py-4 px-6 bg-white border-2 border-gray-200 rounded-2xl font-bold text-gray-700 hover:border-emerald-300 hover:bg-emerald-50 transition-all duration-300 flex items-center justify-center gap-3 shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed mb-4"
         >
           <svg class="w-5 h-5" viewBox="0 0 24 24">
@@ -217,7 +223,7 @@
 
       <!-- Footer -->
       <p class="text-center text-sm text-gray-400 mt-8 px-4">
-        登入後可同步收藏進度到雲端，並在留言板分享好友代碼
+        登入後可同步收藏進度到雲端，換裝置也能接著記錄。
       </p>
     </div>
   </div>
@@ -226,6 +232,7 @@
 <script setup lang="ts">
 const router = useRouter();
 const authStore = useAuthStore();
+const runtimeConfig = useRuntimeConfig();
 
 const mode = ref<'login' | 'register' | 'forgot'>('login');
 const email = ref('');
@@ -241,6 +248,12 @@ const submitButtonText = computed(() => {
     case 'register': return '註冊';
     case 'forgot': return '發送重置連結';
   }
+});
+
+const isSupabaseConfigured = computed(() => {
+  const url = runtimeConfig.public.supabase?.url || '';
+  const key = runtimeConfig.public.supabase?.key || '';
+  return Boolean(url && key && !url.includes('example.supabase.co') && key !== 'temporary-anon-key');
 });
 
 const handleSubmit = async () => {
@@ -282,6 +295,11 @@ const handleSubmit = async () => {
 };
 
 const signInWithGoogle = async () => {
+  if (!isSupabaseConfigured.value) {
+    error.value = '雲端登入尚未設定完成，請先設定 GitHub Secrets 裡的 Supabase 資訊。';
+    return;
+  }
+
   loading.value = true;
   error.value = '';
   

@@ -18,10 +18,8 @@
 
           <!-- 3. Missing Action -->
             <template #action-missing>
-              <div @click="showMissingItems" class="glass-surface-readable group h-full w-full min-h-[220px] p-6 flex flex-col items-start justify-between relative overflow-hidden rounded-[2.5rem] transition-all duration-500 hover:-translate-y-2 cursor-pointer">
+              <div @click="showMissingItems" class="glass-surface-readable group h-full w-full min-h-[180px] p-5 flex flex-col items-start justify-between relative overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
                    <!-- Soft Aurora Background -->
-                   <div class="absolute top-[-20%] right-[-20%] w-64 h-64 bg-orange-200/20 rounded-full blur-2xl pointer-events-none group-hover:bg-orange-300/25 transition-colors duration-700"></div>
-                   <div class="absolute bottom-[-20%] left-[-20%] w-64 h-64 bg-red-100/18 rounded-full blur-2xl pointer-events-none group-hover:bg-red-200/25 transition-colors duration-700"></div>
 
                    <!-- Icon -->
                    <div class="glass-control w-14 h-14 rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300 relative z-10 mb-4">
@@ -30,13 +28,13 @@
 
                    <!-- Text Content -->
                    <div class="relative z-10 space-y-1 mb-auto">
-                       <h3 class="text-on-glass text-2xl font-black tracking-tight group-hover:text-orange-600 transition-colors">{{ $t('home.missing.title') }}</h3>
+                       <h3 class="text-on-glass text-xl font-black tracking-tight group-hover:text-orange-600 transition-colors">{{ $t('home.missing.title') }}</h3>
                        <p class="text-on-glass text-sm font-medium">{{ $t('home.missing.desc') }}</p>
                    </div>
                    
                    <!-- Count -->
                    <div class="relative z-10 mt-4 flex items-baseline gap-1.5">
-                       <span class="text-4xl font-black text-orange-500 leading-none">{{ uncollectedCount }}</span>
+                       <span class="text-3xl font-black text-orange-500 leading-none">{{ uncollectedCount }}</span>
                        <span class="text-on-glass text-sm font-bold">{{ $t('home.missing.count_suffix') }}</span>
                    </div>
               </div>
@@ -44,10 +42,8 @@
 
           <!-- 4. Limited Action -->
             <template #action-limited>
-              <div @click="showUnobtainable" class="glass-surface-readable group h-full w-full min-h-[220px] p-6 flex flex-col items-start justify-between relative overflow-hidden rounded-[2.5rem] transition-all duration-500 hover:-translate-y-2 cursor-pointer">
+              <div @click="showUnobtainable" class="glass-surface-readable group h-full w-full min-h-[180px] p-5 flex flex-col items-start justify-between relative overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
                   <!-- Soft Aurora Background -->
-                  <div class="absolute top-[-20%] right-[-20%] w-64 h-64 bg-purple-200/20 rounded-full blur-2xl pointer-events-none group-hover:bg-purple-300/25 transition-colors duration-700"></div>
-                  <div class="absolute bottom-[-20%] left-[-20%] w-64 h-64 bg-pink-100/18 rounded-full blur-2xl pointer-events-none group-hover:bg-pink-200/25 transition-colors duration-700"></div>
                   
                   <!-- Icon -->
                    <div class="glass-control w-14 h-14 rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300 relative z-10 mb-4">
@@ -56,13 +52,13 @@
 
                    <!-- Text Content -->
                    <div class="relative z-10 space-y-1 mb-auto">
-                       <h3 class="text-on-glass text-2xl font-black tracking-tight group-hover:text-purple-600 transition-colors">{{ $t('home.limited.title') }}</h3>
+                       <h3 class="text-on-glass text-xl font-black tracking-tight group-hover:text-purple-600 transition-colors">{{ $t('home.limited.title') }}</h3>
                        <p class="text-on-glass text-sm font-medium">{{ $t('home.limited.desc') }}</p>
                    </div>
 
                    <!-- Count -->
                    <div class="relative z-10 mt-4 flex items-baseline gap-1.5">
-                       <span class="text-4xl font-black text-purple-500 leading-none">{{ limitedCount }}</span>
+                       <span class="text-3xl font-black text-purple-500 leading-none">{{ limitedCount }}</span>
                        <span class="text-on-glass text-sm font-bold">{{ $t('home.limited.count_suffix') }}</span>
                    </div>
               </div>

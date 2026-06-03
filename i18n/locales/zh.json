@@ -124,6 +124,10 @@
             "plucked": "拔",
             "decor": "完成"
         },
+        "card_status": {
+            "current": "現在：{status}",
+            "next_title": "再點一次會變成：{status}"
+        },
         "sections": {
             "regular": {
                 "title": "一般飾品",

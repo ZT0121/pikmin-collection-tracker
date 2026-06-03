@@ -188,6 +188,22 @@
         >
           {{ (locale === 'en' ? variant?.name : variant?.nameEn) || '' }}
         </p>
+        <div class="mt-2 grid grid-cols-[1fr_auto] items-center gap-2 text-left">
+          <div
+            class="status-current inline-flex min-w-0 items-center gap-1.5 rounded-lg px-2 py-1 text-[11px] font-extrabold"
+            :class="statusMeta.softClass"
+          >
+            <Icon :name="statusMeta.icon" class="h-3.5 w-3.5 shrink-0" />
+            <span class="truncate">{{ t('collection.card_status.current', { status: statusMeta.label }) }}</span>
+          </div>
+          <div
+            class="status-next inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[10px] font-bold text-slate-500 bg-white/72 ring-1 ring-slate-200/80"
+            :title="t('collection.card_status.next_title', { status: nextStatusMeta.label })"
+          >
+            <Icon name="lucide:mouse-pointer-click" class="h-3 w-3 shrink-0" />
+            <span>{{ nextStatusMeta.short }}</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -267,34 +283,67 @@ const pikminBadgeClass = computed(() => {
 });
 
 const statusMeta = computed(() => {
-  const meta: Record<CollectionItemStatus, { label: string; short: string; icon: string; class: string }> = {
+  const meta: Record<CollectionItemStatus, { label: string; short: string; icon: string; class: string; softClass: string }> = {
     none: {
       label: t('collection.status.none'),
       short: t('collection.status_short.none'),
       icon: 'lucide:minus',
       class: 'bg-slate-500 text-white',
+      softClass: 'bg-slate-100 text-slate-600 ring-1 ring-slate-200',
     },
     seedling: {
       label: t('collection.status.seedling'),
       short: t('collection.status_short.seedling'),
       icon: 'lucide:sprout',
       class: 'bg-lime-500 text-white',
+      softClass: 'bg-lime-100 text-lime-800 ring-1 ring-lime-200',
     },
     plucked: {
       label: t('collection.status.plucked'),
       short: t('collection.status_short.plucked'),
       icon: 'lucide:leaf',
       class: 'bg-amber-500 text-white',
+      softClass: 'bg-amber-100 text-amber-800 ring-1 ring-amber-200',
     },
     decor: {
       label: t('collection.status.decor'),
       short: t('collection.status_short.decor'),
       icon: 'lucide:check',
       class: 'bg-emerald-500 text-white',
+      softClass: 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200',
     },
   };
 
   return meta[itemStatus.value];
+});
+
+const nextStatus = computed<CollectionItemStatus>(() => {
+  const order: CollectionItemStatus[] = ['none', 'seedling', 'plucked', 'decor'];
+  const nextIndex = (order.indexOf(itemStatus.value) + 1) % order.length;
+  return order[nextIndex] ?? 'none';
+});
+
+const nextStatusMeta = computed(() => {
+  const meta: Record<CollectionItemStatus, { label: string; short: string }> = {
+    none: {
+      label: t('collection.status.none'),
+      short: t('collection.status_short.none'),
+    },
+    seedling: {
+      label: t('collection.status.seedling'),
+      short: t('collection.status_short.seedling'),
+    },
+    plucked: {
+      label: t('collection.status.plucked'),
+      short: t('collection.status_short.plucked'),
+    },
+    decor: {
+      label: t('collection.status.decor'),
+      short: t('collection.status_short.decor'),
+    },
+  };
+
+  return meta[nextStatus.value];
 });
 
 const clearFeedbackTimers = () => {

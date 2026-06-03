@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 p-4 md:p-6 max-w-7xl mx-auto">
+  <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5 p-3 md:p-6 max-w-7xl mx-auto">
     
     <!-- 1. Hero / Welcome (Span 2x2 on Desktop) -->
     <div class="md:col-span-2 lg:col-span-3 row-span-auto md:row-span-1 relative group transition-all duration-500 z-10">

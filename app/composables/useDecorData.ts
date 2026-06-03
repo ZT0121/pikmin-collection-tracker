@@ -53,6 +53,17 @@ const mergedDecorDefinitions = mergeDecorDefinitions([
 ]);
 
 export function useDecorData() {
+  const appBaseURL = useRuntimeConfig().app.baseURL || '/';
+
+  const normalizeImageUrl = (url: string | null | undefined): string | null => {
+    if (!url) return null;
+    if (/^(https?:|data:|blob:)/.test(url)) return url;
+    if (!url.startsWith('/')) return url;
+
+    const base = appBaseURL.endsWith('/') ? appBaseURL.slice(0, -1) : appBaseURL;
+    return `${base}${url}`;
+  };
+
   // Get all decor definitions from JSON
   const getDecorDefinitions = (): DecorDefinition[] => {
     return mergedDecorDefinitions;
@@ -137,11 +148,11 @@ export function useDecorData() {
     // Check for new imageUrls dict first
     const imageUrls = (variant as any).imageUrls;
     if (imageUrls && imageUrls[pikminType]) {
-      return imageUrls[pikminType];
+      return normalizeImageUrl(imageUrls[pikminType]);
     }
     
     // Fallback to old single imageUrl
-    return (variant as any).imageUrl || null;
+    return normalizeImageUrl((variant as any).imageUrl);
   };
 
   // Get all unique categories

@@ -2,26 +2,24 @@
   <!-- 3D Container -->
   <div 
     ref="heroContainer"
-    class="relative h-full w-full px-2 py-6 sm:px-6 md:p-10 flex flex-col md:flex-row items-center justify-between gap-10 overflow-visible perspective-1000"
+    class="personal-hero relative h-full w-full px-4 py-5 sm:px-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-6 overflow-visible perspective-1000"
     @mousemove="handleMouseMove"
     @mouseleave="resetTilt"
   >
 
     <!-- Moving Background Spirits (Organic Blobs) -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-[3rem]">
-        <div class="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-gradient-radial from-emerald-300/30 to-transparent blur-[120px] animate-pulse-slow"></div>
-        <div class="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-gradient-radial from-teal-300/20 to-transparent blur-[100px] animate-float-slow delay-1000"></div>
-        <div class="absolute top-[20%] left-[30%] w-[300px] h-[300px] bg-gradient-radial from-lime-200/20 to-transparent blur-[80px] animate-float-slow delay-500"></div>
+    <div class="absolute inset-0 pointer-events-none overflow-hidden rounded-2xl">
+        <div class="absolute inset-0 bg-white/42"></div>
     </div>
 
     <!-- Left Content: Title & Text (Floats forward slightly) -->
     <div class="relative z-10 flex-1 text-center md:text-left transition-transform duration-200 ease-out hero-copy-readable" :style="textStyle">
-      <div class="glass-control text-on-glass inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider mb-5 hover:scale-105 transition-transform cursor-default">
+      <div class="glass-control text-on-glass inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold mb-4 cursor-default">
         <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
         {{ $t('hero.badge') }}
       </div>
 
-      <h1 class="text-5xl md:text-7xl font-black text-gray-900 leading-[0.92] mb-5 tracking-tight hero-title-shadow readable-on-art">
+      <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 leading-tight mb-4 tracking-tight readable-on-art">
         {{ $t('hero.title.prefix') }} <br />
         <span
           class="hero-title-green"
@@ -31,7 +29,7 @@
         </span>
       </h1>
       
-      <p class="readable-on-art text-base md:text-lg max-w-md mx-auto md:mx-0 leading-[1.75] font-extrabold mb-12 hero-subtitle-shadow">
+      <p class="readable-on-art text-sm md:text-base max-w-md mx-auto md:mx-0 leading-relaxed font-bold mb-8 text-gray-700">
         {{ $t('hero.subtitle.line1') }}<br />
         {{ $t('hero.subtitle.line2') }}
       </p>
@@ -40,7 +38,7 @@
        <div class="flex flex-col items-stretch w-full sm:w-[100%] md:w-[100%] mx-auto md:mx-0 mt-8 gap-3 md:gap-4 relative z-10">
            
            <!-- Interactive Pikmin Spirits -->
-           <div class="glass-surface-clear relative rounded-3xl md:rounded-[2rem] p-4 w-full flex flex-col md:flex-row md:items-center md:justify-center gap-4 md:gap-2 hover:scale-105 transition-transform duration-300">
+           <div class="glass-surface-clear relative rounded-2xl p-4 w-full flex flex-col md:flex-row md:items-center md:justify-center gap-4 md:gap-2 transition-transform duration-300">
                <!-- Admin Settings Button -->
                <button
                  v-if="isAdmin"
@@ -80,7 +78,7 @@
            </div>
 
            <!-- Missing Tracker Badge -->
-           <button @click="showMissingModal = true" class="glass-surface-readable group relative w-full inline-flex flex-col md:flex-row items-center md:justify-between gap-2 md:gap-3 px-5 py-4 min-h-[56px] md:py-3.5 text-sm md:text-[15px] font-medium rounded-3xl md:rounded-[2rem] focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-transform hover:-translate-y-0.5">
+           <button @click="showMissingModal = true" class="glass-surface-readable group relative w-full inline-flex flex-col md:flex-row items-center md:justify-between gap-2 md:gap-3 px-5 py-4 min-h-[56px] md:py-3.5 text-sm md:text-[15px] font-medium rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-transform hover:-translate-y-0.5">
               
               <div class="flex items-center gap-2">
                  <Icon name="lucide:search" class="text-xl text-emerald-600 shrink-0" />
@@ -105,9 +103,9 @@
     </div>
 
     <!-- Right Content: Floating 3D Stats Core -->
-    <div class="relative z-20 w-auto perspective-1000">
+    <div class="relative z-20 w-auto perspective-1000 hidden sm:block">
         <div 
-            class="relative w-72 h-72 md:w-96 md:h-96"
+            class="relative w-56 h-56 md:w-72 md:h-72"
             @click="enableDeviceTilt"
         >
             <div class="absolute inset-0 preserve-3d transition-transform duration-100 ease-out" :style="cardStyle">
@@ -147,8 +145,6 @@
                 </div>
 
                 <!-- 5. Floating Orbs (Decorations) -->
-                <div class="absolute top-0 right-10 w-12 h-12 bg-yellow-300 rounded-full blur-md opacity-60 animate-float translate-z-[30px]"></div>
-                <div class="absolute bottom-10 left-10 w-8 h-8 bg-pink-400 rounded-full blur-md opacity-50 animate-float delay-700 translate-z-[25px]"></div>
             </div>
 
             <!-- Screen-space text layer stays crisp while the glass rotates underneath -->

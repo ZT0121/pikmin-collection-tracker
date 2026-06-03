@@ -27,7 +27,7 @@
       >
         <!-- 1. Icon (Rounded Square like game) -->
         <div class="glass-control w-12 h-12 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
-            <img v-if="cat.icon.startsWith('http')" :src="cat.icon" class="w-10 h-10 object-contain" alt="icon" />
+            <img v-if="isImageIcon(cat.icon)" :src="cat.icon" class="w-10 h-10 object-contain" alt="icon" />
             <Icon v-else :name="cat.icon" class="text-2xl text-gray-700" />
         </div>
 
@@ -77,6 +77,8 @@ defineProps<{
 }>();
 
 defineEmits(['select-category']);
+
+const isImageIcon = (icon: string) => /^(https?:|data:|blob:|\/)/.test(icon);
 
 const pikminColors = [
     'bg-red-500', 'bg-yellow-400', 'bg-blue-500', 'bg-purple-600', 

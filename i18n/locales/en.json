@@ -124,6 +124,10 @@
             "plucked": "Pull",
             "decor": "Done"
         },
+        "card_status": {
+            "current": "Now: {status}",
+            "next_title": "Next click: {status}"
+        },
         "sections": {
             "regular": {
                 "title": "Regular Categories",

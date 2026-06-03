@@ -107,10 +107,13 @@ export const useAuthStore = () => {
     isLoading.value = true;
     
     try {
+      const baseURL = useRuntimeConfig().app.baseURL || '/';
+      const redirectTo = new URL(`${baseURL}auth/callback`, window.location.origin).toString();
+
       const { error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback`,
+          redirectTo,
           queryParams: {
             access_type: 'offline',
             prompt: 'consent',
@@ -170,9 +173,12 @@ export const useAuthStore = () => {
     isLoading.value = true;
     
     try {
+      const baseURL = useRuntimeConfig().app.baseURL || '/';
+      const redirectTo = new URL(`${baseURL}auth/update-password`, window.location.origin).toString();
+
       const { error } = await supabase.auth.resetPasswordForEmail(email, {
         // 直接導向更改密碼頁面（按照 Supabase 官方文件的 PKCE 流程）
-        redirectTo: `${window.location.origin}/auth/update-password`,
+        redirectTo,
       });
       
       if (error) throw error;

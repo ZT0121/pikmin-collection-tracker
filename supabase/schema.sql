@@ -19,14 +19,17 @@ CREATE TABLE IF NOT EXISTS user_profiles (
 ALTER TABLE user_profiles ENABLE ROW LEVEL SECURITY;
 
 -- Policies for user_profiles
+DROP POLICY IF EXISTS "Users can view all profiles" ON user_profiles;
 CREATE POLICY "Users can view all profiles" 
   ON user_profiles FOR SELECT 
   USING (true);
 
+DROP POLICY IF EXISTS "Users can update own profile" ON user_profiles;
 CREATE POLICY "Users can update own profile" 
   ON user_profiles FOR UPDATE 
   USING (auth.uid() = id);
 
+DROP POLICY IF EXISTS "Users can insert own profile" ON user_profiles;
 CREATE POLICY "Users can insert own profile" 
   ON user_profiles FOR INSERT 
   WITH CHECK (auth.uid() = id);
@@ -45,14 +48,17 @@ CREATE TABLE IF NOT EXISTS user_collections (
 ALTER TABLE user_collections ENABLE ROW LEVEL SECURITY;
 
 -- Policies for user_collections
+DROP POLICY IF EXISTS "Users can view own collection" ON user_collections;
 CREATE POLICY "Users can view own collection" 
   ON user_collections FOR SELECT 
   USING (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can update own collection" ON user_collections;
 CREATE POLICY "Users can update own collection" 
   ON user_collections FOR UPDATE 
   USING (auth.uid() = user_id);
 
+DROP POLICY IF EXISTS "Users can insert own collection" ON user_collections;
 CREATE POLICY "Users can insert own collection" 
   ON user_collections FOR INSERT 
   WITH CHECK (auth.uid() = user_id);
@@ -72,14 +78,17 @@ CREATE TABLE IF NOT EXISTS friend_posts (
 ALTER TABLE friend_posts ENABLE ROW LEVEL SECURITY;
 
 -- Policies for friend_posts
+DROP POLICY IF EXISTS "Anyone can view friend posts" ON friend_posts;
 CREATE POLICY "Anyone can view friend posts" 
   ON friend_posts FOR SELECT 
   USING (true);
 
+DROP POLICY IF EXISTS "Authenticated users can create posts" ON friend_posts;
 CREATE POLICY "Authenticated users can create posts" 
   ON friend_posts FOR INSERT 
   WITH CHECK (auth.uid() IS NOT NULL);
 
+DROP POLICY IF EXISTS "Users can delete own posts" ON friend_posts;
 CREATE POLICY "Users can delete own posts" 
   ON friend_posts FOR DELETE 
   USING (auth.uid() = user_id);

@@ -1,7 +1,10 @@
-export default defineNuxtPlugin(async () => {
-  const { locale, setLocale } = useI18n();
+export default defineNuxtPlugin(async (nuxtApp) => {
+  const i18n = nuxtApp.$i18n as {
+    locale?: { value?: string };
+    setLocale?: (locale: string) => Promise<void>;
+  } | undefined;
 
-  if (locale.value !== 'zh') {
-    await setLocale('zh');
+  if (i18n?.locale?.value !== 'zh') {
+    await i18n?.setLocale?.('zh');
   }
 });

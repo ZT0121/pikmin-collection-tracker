@@ -17,7 +17,7 @@
       <div class="relative z-10 flex gap-4 items-start">
         <!-- Icon -->
         <div class="w-14 h-14 shrink-0 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-2xl flex items-center justify-center border border-emerald-50 shadow-inner overflow-hidden">
-          <img src="/icon.png" alt="App Icon" class="w-full h-full object-cover" />
+          <img :src="iconSrc" alt="App Icon" class="w-full h-full object-cover" />
         </div>
         
         <!-- Content -->
@@ -88,4 +88,6 @@
 import { ref } from 'vue';
 const { showPrompt, dismissPrompt } = usePwaInstall();
 const showIosInstructions = ref(false);
+const runtimeConfig = useRuntimeConfig();
+const iconSrc = `${runtimeConfig.app.baseURL}icon.png`;
 </script>

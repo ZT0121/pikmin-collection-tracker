@@ -2,11 +2,11 @@ export const useSiteConfig = () => {
   const supabase = useSupabaseClient<any>();
   const heroFeaturedConfig = useState<{row1: string, row2: string} | null>('heroFeaturedConfig', () => null);
   const isConfigLoading = useState('isConfigLoading', () => false);
-  const CONFIG_CACHE_KEY = 'pikmin-hero-config-cache-v1';
+  const CONFIG_CACHE_KEY = 'pikmin-hero-config-cache-v2';
   const CONFIG_CACHE_TTL = 60 * 60 * 1000;
 
   const defaultConfig = {
-    row1: 'reverse-valentine-sticker',
+    row1: 'flower-crown',
     row2: '彩色粉末-世界節慶'
   };
 

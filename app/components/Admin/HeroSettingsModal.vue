@@ -115,10 +115,10 @@ const selectedRow2 = ref('');
 watch(() => props.isOpen, (newVal) => {
   if (newVal) {
     if (heroFeaturedConfig.value) {
-      selectedRow1.value = heroFeaturedConfig.value.row1 || 'reverse-valentine-sticker';
+      selectedRow1.value = heroFeaturedConfig.value.row1 || 'flower-crown';
       selectedRow2.value = heroFeaturedConfig.value.row2 || '彩色粉末-世界節慶';
     } else {
-      selectedRow1.value = 'reverse-valentine-sticker';
+      selectedRow1.value = 'flower-crown';
       selectedRow2.value = '彩色粉末-世界節慶';
     }
   }

@@ -36,47 +36,6 @@
 
        <!-- Interactive & Tracker Unified Container -->
        <div class="flex flex-col items-stretch w-full sm:w-[100%] md:w-[100%] mx-auto md:mx-0 mt-8 gap-3 md:gap-4 relative z-10">
-           
-           <!-- Interactive Pikmin Spirits -->
-           <div class="glass-surface-clear relative rounded-2xl p-4 w-full flex flex-col md:flex-row md:items-center md:justify-center gap-4 md:gap-2 transition-transform duration-300">
-               <!-- Admin Settings Button -->
-               <button
-                 v-if="isAdmin"
-                 @click.stop="showSettingsModal = true"
-                 class="glass-control absolute top-3 right-3 z-50 w-9 h-9 rounded-full text-emerald-600 hover:text-emerald-700 hover:scale-110 transition-all"
-                 aria-label="Hero settings"
-               >
-                  <Icon name="lucide:settings" class="w-4.5 h-4.5" />
-               </button>
-               <!-- Row 1: Reverse Valentine Stickers -->
-               <div class="flex items-center justify-center -space-x-2 md:-space-x-4 relative group h-14 cursor-none w-full md:w-auto">
-                  <div v-for="(pikmin, index) in valentineSpirits" :key="pikmin.id" 
-                       class="w-10 h-14 transform transition-all duration-300 hover:scale-125 hover:-translate-y-4 hover:z-20 relative filter drop-shadow-md"
-                       :style="{ zIndex: index }">
-                       <img :src="pikmin.image" :alt="pikmin.name" class="w-full h-full object-contain" />
-                  </div>
-                  
-                 <!-- Tooltip (appears on hover of container) -->
-                 <div class="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 text-[11px] font-bold text-pink-700 bg-white/95 shadow-md border border-pink-100/50 px-3.5 py-1.5 rounded-full pointer-events-none whitespace-nowrap z-40 transform group-hover:-translate-y-1">
-                     {{ row1CategoryName }}
-                 </div>
-              </div>
-
-              <!-- Row 2: Colored Powder -->
-               <div class="flex items-center justify-center -space-x-2 md:-space-x-4 relative group h-14 cursor-none w-full md:w-auto">
-                  <div v-for="(pikmin, index) in powderSpirits" :key="pikmin.id" 
-                       class="w-10 h-14 transform transition-all duration-300 hover:scale-125 hover:-translate-y-4 hover:z-20 relative filter drop-shadow-md"
-                       :style="{ zIndex: index }">
-                       <img :src="pikmin.image" :alt="pikmin.name" class="w-full h-full object-contain" />
-                  </div>
-                 
-                 <!-- Tooltip (appears on hover of container) -->
-                 <div class="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 text-[11px] font-bold text-indigo-700 bg-white/95 shadow-md border border-indigo-100/50 px-3.5 py-1.5 rounded-full pointer-events-none whitespace-nowrap z-40 transform group-hover:-translate-y-1">
-                     {{ row2CategoryName }}
-                 </div>
-              </div>
-           </div>
-
            <!-- Missing Tracker Badge -->
            <button @click="showMissingModal = true" class="glass-surface-readable group relative w-full inline-flex flex-col md:flex-row items-center md:justify-between gap-2 md:gap-3 px-5 py-4 min-h-[56px] md:py-3.5 text-sm md:text-[15px] font-medium rounded-2xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-transform hover:-translate-y-0.5">
               
@@ -87,10 +46,10 @@
 
               <div v-if="missingValentine.length > 0 || missingPowder.length > 0" class="flex items-center justify-center flex-wrap gap-2 w-full md:w-auto">
                   <span v-if="missingValentine.length > 0" class="inline-flex items-center gap-1.5 bg-pink-100/80 text-pink-700 px-3 py-1 rounded-full text-xs md:text-sm font-bold border border-pink-200/60 transition-transform hover:scale-105">
-                    貼紙 <span class="bg-white rounded-full px-1.5 text-pink-800 shadow-sm">{{ missingValentine.length }}</span>
+                    {{ row1CategoryName }} <span class="bg-white rounded-full px-1.5 text-pink-800 shadow-sm">{{ missingValentine.length }}</span>
                   </span>
                   <span v-if="missingPowder.length > 0" class="inline-flex items-center gap-1.5 bg-indigo-100/80 text-indigo-700 px-3 py-1 rounded-full text-xs md:text-sm font-bold border border-indigo-200/60 transition-transform hover:scale-105">
-                    粉末 <span class="bg-white rounded-full px-1.5 text-indigo-800 shadow-sm">{{ missingPowder.length }}</span>
+                    {{ row2CategoryName }} <span class="bg-white rounded-full px-1.5 text-indigo-800 shadow-sm">{{ missingPowder.length }}</span>
                   </span>
               </div>
               <span v-else class="text-on-glass tracking-wide font-normal px-2">
@@ -186,7 +145,15 @@
             <div class="grid grid-cols-4 sm:grid-cols-4 gap-3">
               <div v-for="spirit in missingValentine" :key="spirit.id" class="glass-surface-clear flex flex-col items-center p-2 rounded-xl hover:border-pink-200 transition-colors group">
                  <div class="w-12 h-12 flex items-center justify-center mb-1 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 drop-shadow-md">
-                    <img :src="spirit.image" :alt="spirit.name" class="w-full h-full object-contain filter grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-300" />
+                    <Icon name="lucide:image-off" class="absolute h-5 w-5 text-slate-300" />
+                    <img
+                      :src="spirit.image"
+                      :alt="spirit.name"
+                      class="relative w-full h-full object-contain filter grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-300"
+                      loading="lazy"
+                      referrerpolicy="no-referrer"
+                      @error="hideBrokenImage"
+                    />
                  </div>
                  <span class="text-[11px] font-bold text-gray-500 group-hover:text-pink-700 capitalize">
                    {{ spirit.name }}
@@ -201,7 +168,15 @@
             <div class="grid grid-cols-4 sm:grid-cols-4 gap-3">
               <div v-for="spirit in missingPowder" :key="spirit.id" class="glass-surface-clear flex flex-col items-center p-2 rounded-xl hover:border-indigo-200 transition-colors group">
                  <div class="w-12 h-12 flex items-center justify-center mb-1 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 drop-shadow-md">
-                    <img :src="spirit.image" :alt="spirit.name" class="w-full h-full object-contain filter grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-300" />
+                    <Icon name="lucide:image-off" class="absolute h-5 w-5 text-slate-300" />
+                    <img
+                      :src="spirit.image"
+                      :alt="spirit.name"
+                      class="relative w-full h-full object-contain filter grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-300"
+                      loading="lazy"
+                      referrerpolicy="no-referrer"
+                      @error="hideBrokenImage"
+                    />
                  </div>
                  <span class="text-[11px] font-bold text-gray-500 group-hover:text-indigo-700 capitalize">
                    {{ spirit.name }}
@@ -272,7 +247,7 @@ onMounted(async () => {
 });
 
 // Dynamic Categories
-const row1CategoryId = computed(() => heroFeaturedConfig.value?.row1 || 'reverse-valentine-sticker');
+const row1CategoryId = computed(() => heroFeaturedConfig.value?.row1 || 'flower-crown');
 const row2CategoryId = computed(() => heroFeaturedConfig.value?.row2 || '彩色粉末-世界節慶');
 
 const row1CategoryName = computed(() => getCategory(row1CategoryId.value)?.name || '未知分類');
@@ -316,6 +291,11 @@ const missingValentine = computed(() => {
 const missingPowder = computed(() => {
     return powderSpirits.value.filter(spirit => !isCollected(spirit.id));
 });
+
+const hideBrokenImage = (event: Event) => {
+    const image = event.currentTarget as HTMLImageElement | null;
+    if (image) image.style.display = 'none';
+};
 
 const handleMouseMove = (e: MouseEvent) => {
     if (deviceTiltEnabled.value) return;

@@ -29,6 +29,8 @@ const withSecurityHeaders = (headers: Record<string, string>) => ({
 });
 
 const appBaseURL = process.env.NUXT_APP_BASE_URL || '/';
+const supabaseURL = process.env.NUXT_PUBLIC_SUPABASE_URL?.trim();
+const supabaseKey = process.env.NUXT_PUBLIC_SUPABASE_KEY?.trim();
 const withBase = (path: string) => {
   const base = appBaseURL.endsWith('/') ? appBaseURL.slice(0, -1) : appBaseURL;
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
@@ -40,6 +42,14 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   sourcemap: false,
+  runtimeConfig: {
+    public: {
+      supabase: {
+        url: supabaseURL,
+        key: supabaseKey,
+      },
+    },
+  },
   
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase', '@nuxt/icon', '@nuxtjs/i18n'],
   
@@ -66,6 +76,8 @@ export default defineNuxtConfig({
   },
 
   supabase: {
+    url: supabaseURL,
+    key: supabaseKey,
     redirect: false, // Auth is managed by AuthStore
     // This app handles auth in the browser. Keeping SSR cookies enabled makes
     // Render refresh Supabase sessions during SSR and can race the browser,

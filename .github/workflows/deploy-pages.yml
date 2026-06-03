@@ -39,7 +39,10 @@ jobs:
         uses: actions/configure-pages@v5
 
       - name: Generate static site
-        run: pnpm generate
+        run: |
+          export NUXT_PUBLIC_SUPABASE_URL="$(printf '%s' "$NUXT_PUBLIC_SUPABASE_URL" | tr -d '\r\n')"
+          export NUXT_PUBLIC_SUPABASE_KEY="$(printf '%s' "$NUXT_PUBLIC_SUPABASE_KEY" | tr -d '\r\n')"
+          pnpm generate
         env:
           NUXT_APP_BASE_URL: /pikmin-collection-tracker/
           NUXT_PUBLIC_SUPABASE_URL: ${{ secrets.NUXT_PUBLIC_SUPABASE_URL || 'https://example.supabase.co' }}

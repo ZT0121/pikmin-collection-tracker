@@ -1,130 +1,161 @@
-# 🌱 Pikmin Bloom 飾品圖鑑收藏家
+# Pikmin Collection Tracker
 
-一個用於追蹤和管理 Pikmin Bloom 飾品收藏的非官方網頁工具。
+A personal Pikmin Bloom Decor Pikmin collection tracker built with Nuxt 3 and Supabase.
 
-[![GitHub stars](https://img.shields.io/github/stars/scott0127/pik_tool?style=social)](https://github.com/scott0127/pik_tool)
+This project focuses on private collection progress: sign in with Google, track each Decor Pikmin, and sync your progress to Supabase.
 
-## ☕ 支持這個專案
+## Features
 
-如果你覺得這個工具對你有幫助，歡迎請我喝杯咖啡！
+- Personal Decor Pikmin collection tracking
+- Google login through Supabase Auth
+- Per-user cloud sync in Supabase
+- Four progress states for each Decor Pikmin:
+  - none
+  - seedling
+  - plucked
+  - decor completed
+- Mobile-first collection UI
+- Search and filters by category, Pikmin type, and completion status
+- Event decor data can be added through JSON files in `app/data/events/`
 
-[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-支持開發-yellow?style=for-the-badge&logo=buy-me-a-coffee)](https://buymeacoffee.com/scott5497)
+Friend/social features and map features are currently hidden so the app stays focused on personal tracking.
 
-**👉 [buymeacoffee.com/scott5497](https://buymeacoffee.com/scott5497)**
+## Tech Stack
 
----
+- Nuxt 3
+- Vue
+- Supabase
+- Tailwind CSS
+- pnpm
 
-## ⚖️ 版權聲明與免責聲明
+## Local Development
 
-### 遊戲版權
-本專案為**非官方粉絲工具**，與任天堂（Nintendo）或 Niantic 無任何官方關聯。
-
-- **Pikmin Bloom** 是任天堂（Nintendo）和 Niantic, Inc. 的註冊商標
-- 所有遊戲相關圖像、名稱、數據等版權歸任天堂所有
-- 本專案不主張對任何遊戲內容擁有版權
-- 本專案未經任天堂或 Niantic 官方認可或贊助
-
-### 合理使用聲明
-本專案中使用的所有遊戲素材（包括但不限於圖像、名稱、數據）均屬於**合理使用**（Fair Use）範疇：
-- 本工具為非營利性質，目的在於提供資訊和便利性
-- 使用遊戲素材僅為協助玩家管理收藏，不用於商業販售
-- 所有素材均明確標註來源
-- 使用範圍符合教育性和資訊性用途
-
-### 資料來源
-部分遊戲資料可能參考自以下來源：
-- [Pikmin Wiki](https://www.pikminwiki.com/) / [Pikipedia](https://www.pikminwiki.com/) - 遵循 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) 授權
-- 從 Pikmin Bloom 遊戲本身提取的公開資料
-
-### 本專案原創內容
-本專案的**原創程式碼和網站設計**採用 **MIT License**：
-- 網站架構與程式碼
-- 使用者介面設計
-- 數據整理與分類系統
-
-### 免責聲明
-- 本工具所提供的資訊可能不完整或包含錯誤，我們努力保持準確性但不提供任何保證
-- 使用者需自行承擔使用本工具的風險
-- 本專案開發者不對任何因使用本工具而產生的損失負責
-- 若任天堂或 Niantic 要求移除任何內容，我們將立即配合處理
-
-**如有任何版權疑慮，請透過 GitHub Issues 聯繫我們。**
-
----
-
-## 🚀 功能特色
-
-- 📖 完整的飾品圖鑑瀏覽
-- ✅ 個人收藏追蹤
-- 🗺️ 地圖位置查詢
-- 📊 收集進度統計
-- 🤝 好友交流功能
-- 🔍 快速搜尋與篩選
-
-## 🛠️ 技術棧
-
-- **框架**：Nuxt 3
-- **資料庫**：Supabase
-- **樣式**：Tailwind CSS
-- **部署**：Vercel / Netlify
-
-## 📦 安裝與開發
-
-### 安裝依賴
+Install dependencies:
 
 ```bash
-# 推薦使用 pnpm
-pnpm install
-
-# 或使用 npm
-npm install
+corepack pnpm install
 ```
 
-### 開發伺服器
-
-啟動開發伺服器於 `http://localhost:3000`：
+Create a local environment file:
 
 ```bash
-pnpm dev
+cp .env.example .env
 ```
 
-### 環境變數設定
-
-複製 `.env.example` 為 `.env` 並填入你的 Supabase 憑證：
+Fill in your Supabase values:
 
 ```bash
-SUPABASE_URL=your_supabase_url
-SUPABASE_KEY=your_supabase_key
+NUXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NUXT_PUBLIC_SUPABASE_KEY=your-anon-key
 ```
 
-### 生產環境建置
+Start the dev server:
 
 ```bash
-pnpm build
-pnpm preview
+corepack pnpm dev
 ```
 
-## 📝 授權條款
+Open:
 
-### 程式碼授權
-本專案的原創程式碼採用 **MIT License**。
+```text
+http://localhost:3000
+```
 
-### 遊戲素材
-所有 Pikmin Bloom 相關素材版權歸任天堂所有，本專案基於合理使用原則使用這些素材。
+## Supabase Setup
 
----
+Run the SQL in `supabase/schema.sql` from your Supabase SQL editor.
 
-## 🙏 致謝
+In Supabase Auth, enable Google as an OAuth provider. Add your deployed site URL and local callback URL to the allowed redirect URLs as needed.
 
-- 感謝任天堂和 Niantic 創造了 Pikmin Bloom 這款美好的遊戲
-- 感謝 [Pikipedia](https://www.pikminwiki.com/) 社群提供的詳細資料
-- 感謝所有使用和支持本專案的玩家們
+Typical local callback:
 
-## 📬 聯繫方式
+```text
+http://localhost:3000/auth/callback
+```
 
-- GitHub Issues: [提交問題或建議](https://github.com/scott0127/pik_tool/issues)
-- Buy Me a Coffee: [支持開發](https://buymeacoffee.com/scott5497)
+Typical production callback:
 
----
+```text
+https://your-domain.com/auth/callback
+```
 
-**⭐ 如果這個專案對你有幫助，請給我一個星星！**
+## Add Future Event Decor
+
+Add a new JSON file under:
+
+```text
+app/data/events/
+```
+
+Use the same `definitions` shape as `app/data/decor.json`.
+
+Example:
+
+```text
+app/data/events/2026-06-flower-crown.json
+```
+
+The app automatically loads event JSON files through `useDecorData.ts`, so adding future event decor does not require application code changes.
+
+## Build
+
+```bash
+corepack pnpm build
+```
+
+Preview the production build:
+
+```bash
+corepack pnpm preview
+```
+
+## Deploy
+
+### Option 1: Vercel
+
+Vercel is the easiest option for this Nuxt app.
+
+1. Push this repository to GitHub.
+2. Go to Vercel and choose `New Project`.
+3. Import `ZT0121/pikmin-collection-tracker`.
+4. Framework preset should be detected as Nuxt.
+5. Add environment variables:
+
+```bash
+NUXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NUXT_PUBLIC_SUPABASE_KEY=your-anon-key
+```
+
+6. Deploy.
+7. Add the Vercel production callback URL to Supabase Auth redirect URLs:
+
+```text
+https://your-vercel-domain.vercel.app/auth/callback
+```
+
+### Option 2: Render
+
+Use these settings:
+
+```text
+Build Command: corepack pnpm install && corepack pnpm build
+Start Command: node .output/server/index.mjs
+```
+
+Add the same Supabase environment variables in Render.
+
+## Git Push
+
+If this repository is empty on GitHub, push the current branch to `main`:
+
+```bash
+git push -u origin codex/personal-collection-tracker:main
+```
+
+If GitHub returns a 403 permission error, refresh your GitHub credentials or log in again using GitHub Desktop or GitHub CLI.
+
+## Disclaimer
+
+This is an unofficial fan project and is not affiliated with, endorsed by, or sponsored by Nintendo or Niantic.
+
+Pikmin Bloom, Pikmin, and related assets are property of their respective owners. This project is intended for personal collection tracking and informational use.

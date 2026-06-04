@@ -49,11 +49,17 @@
       "title": "Almost Done",
       "view_all": "All",
       "empty": "No almost-complete categories yet",
+      "empty_hint": "Keep collecting!",
       "remaining": "{n} left"
     },
+    "monthly_event": {
+      "title": "Monthly Event",
+      "name": "Flower Crown Decor",
+      "days_left": "{n} days left"
+    },
     "tips": {
-      "title": "Today's Focus",
-      "subtitle": "Use it as a calm checklist for daily collection progress",
+      "title": "",
+      "subtitle": "",
       "tip1": "Click a card to cycle through none, seedling, plucked, and decor complete.",
       "tip2": "Use category, color, and keyword filters to narrow the list quickly.",
       "tip3": "Login to sync progress to your Supabase project."

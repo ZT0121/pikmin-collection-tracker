@@ -55,8 +55,7 @@
     "monthly_event": {
       "title": "本月活動",
       "name": "花冠 Decor",
-      "progress": "4 / 7",
-      "days_left": "活動剩餘 12 天"
+      "days_left": "活動剩餘 {n} 天"
     },
     "tips": {
       "title": "",

@@ -60,11 +60,11 @@
           <div class="flex items-start justify-between gap-4">
             <div>
               <p class="text-sm font-black text-[#746450]">📅 {{ $t('home.monthly_event.title') }}</p>
-              <h3 class="mt-2 text-lg font-black text-slate-950">{{ $t('home.monthly_event.name') }}</h3>
-              <p class="mt-1 text-sm font-bold text-slate-500">{{ $t('home.monthly_event.days_left') }}</p>
+              <h3 class="mt-2 text-lg font-black text-slate-950">{{ monthlyEventName }}</h3>
+              <p class="mt-1 text-sm font-bold text-slate-500">{{ $t('home.monthly_event.days_left', { n: monthlyEventDaysLeft }) }}</p>
             </div>
             <div class="rounded-2xl bg-[#fbf6ee] px-4 py-3 text-right ring-1 ring-[#e4d8c7]">
-              <p class="text-2xl font-black tabular-nums text-[#746450]">{{ $t('home.monthly_event.progress') }}</p>
+              <p class="text-2xl font-black tabular-nums text-[#746450]">{{ monthlyEventProgress }}</p>
             </div>
           </div>
         </section>
@@ -74,12 +74,16 @@
 </template>
 
 <script setup lang="ts">
-const { locale } = useI18n();
+import flowerCrownEventData from '~/data/events/2026-06-flower-crown.json';
+
+const { locale, t } = useI18n();
 const router = useRouter();
 const { getStats } = useCollection();
 const { getDecorDefinitions } = useDecorData();
 
 const stats = computed(() => getStats());
+const now = ref(new Date());
+let nowTimer: ReturnType<typeof setInterval> | null = null;
 
 const uncollectedCount = computed(() => Math.max(0, stats.value.total - stats.value.collected));
 
@@ -87,6 +91,40 @@ const limitedCount = computed(() => {
   const regional = stats.value.byCategoryType.regional?.total || 0;
   const special = stats.value.byCategoryType.special?.total || 0;
   return regional + special;
+});
+
+const monthlyEventCategoryId = 'flower-crown';
+
+const monthlyEventDefinition = computed(() =>
+  getDecorDefinitions().find((def) => def.category.id === monthlyEventCategoryId)
+);
+
+const monthlyEventName = computed(() => {
+  const category = monthlyEventDefinition.value?.category;
+  if (!category) return t('home.monthly_event.name');
+  return locale.value === 'en' ? category.nameEn : `${category.name} Decor`;
+});
+
+const monthlyEventStats = computed(() => {
+  const categoryStats = stats.value.byCategory[monthlyEventCategoryId];
+  const fallbackTotal = monthlyEventDefinition.value?.availablePikminTypes?.length || 0;
+
+  return {
+    collected: categoryStats?.collected || 0,
+    total: categoryStats?.total || fallbackTotal,
+  };
+});
+
+const monthlyEventProgress = computed(() =>
+  `${monthlyEventStats.value.collected} / ${monthlyEventStats.value.total}`
+);
+
+const monthlyEventDaysLeft = computed(() => {
+  const event = flowerCrownEventData.event;
+  const endAt = new Date(`${event.endsAt}T23:59:59`);
+  const diff = endAt.getTime() - now.value.getTime();
+
+  return Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
 });
 
 const nearCompleteCategories = computed(() => {
@@ -137,4 +175,15 @@ const showUnobtainable = () => {
 const goToCategory = (categoryId: string) => {
   router.push({ path: '/collection', query: { category: categoryId } });
 };
+
+onMounted(() => {
+  now.value = new Date();
+  nowTimer = setInterval(() => {
+    now.value = new Date();
+  }, 60 * 60 * 1000);
+});
+
+onUnmounted(() => {
+  if (nowTimer) clearInterval(nowTimer);
+});
 </script>

@@ -39,7 +39,7 @@
 
         <div class="hidden items-center gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2 sm:flex">
           <div class="h-2 w-20 overflow-hidden rounded-full bg-slate-100">
-            <div class="h-full rounded-full bg-emerald-500 transition-all" :style="{ width: `${stats.percentage}%` }"></div>
+            <div class="h-full rounded-full bg-rose-500 transition-all" :style="{ width: `${stats.percentage}%` }"></div>
           </div>
           <span class="text-xs font-black text-slate-700">{{ stats.percentage }}%</span>
         </div>
@@ -48,7 +48,7 @@
 
         <template v-if="user">
           <div
-            class="hidden h-10 w-10 items-center justify-center rounded-xl bg-emerald-600 text-sm font-black text-white sm:flex"
+            class="hidden h-10 w-10 items-center justify-center rounded-xl bg-rose-600 text-sm font-black text-white sm:flex"
             :title="user.email || ''"
           >
             {{ userInitial }}
@@ -91,7 +91,7 @@
               @keyup.enter="handleSearch"
               type="text"
               :placeholder="$t('header.search')"
-              class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 pl-10 pr-4 text-sm font-semibold outline-none transition focus:border-emerald-500 focus:bg-white"
+              class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 pl-10 pr-4 text-sm font-semibold outline-none transition focus:border-rose-500 focus:bg-white"
               autofocus
             />
           </div>
@@ -128,7 +128,7 @@
             <span class="font-black text-slate-950">{{ $t('header.mobile_progress_count', { collected: stats.collected, total: stats.total }) }}</span>
           </div>
           <div class="h-2 overflow-hidden rounded-full bg-white">
-            <div class="h-full rounded-full bg-emerald-500" :style="{ width: `${stats.percentage}%` }"></div>
+            <div class="h-full rounded-full bg-rose-500" :style="{ width: `${stats.percentage}%` }"></div>
           </div>
         </div>
 

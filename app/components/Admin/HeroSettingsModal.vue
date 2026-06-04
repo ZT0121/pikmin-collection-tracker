@@ -24,12 +24,12 @@
           <div v-if="isOpen" class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl max-w-md w-full relative overflow-visible transform transition-all">
             
             <!-- Decorative background -->
-            <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-emerald-100 to-transparent rounded-bl-full opacity-50 -z-10"></div>
+            <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-rose-100 to-transparent rounded-bl-full opacity-50 -z-10"></div>
             
             <!-- Header -->
             <div class="flex items-center justify-between mb-6">
               <h3 class="text-xl sm:text-2xl font-bold text-gray-800 flex items-center gap-2">
-                <Icon name="lucide:settings" class="text-emerald-500" />
+                <Icon name="lucide:settings" class="text-rose-500" />
                 首頁飾品設定
               </h3>
               <button @click="close" class="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition-colors">
@@ -42,7 +42,7 @@
               <div>
                 <label class="block text-sm font-bold text-gray-700 mb-2">上排飾品種類</label>
                 <div class="relative">
-                  <select v-model="selectedRow1" class="w-full pl-4 pr-10 py-3 appearance-none rounded-xl border-2 border-gray-200 focus:border-emerald-500 focus:outline-none transition-colors bg-gray-50 font-medium text-gray-700">
+                  <select v-model="selectedRow1" class="w-full pl-4 pr-10 py-3 appearance-none rounded-xl border-2 border-gray-200 focus:border-rose-500 focus:outline-none transition-colors bg-gray-50 font-medium text-gray-700">
                     <option v-for="cat in categories" :key="cat.id" :value="cat.id">
                       {{ cat.name }} ({{ cat.nameEn }})
                     </option>
@@ -55,7 +55,7 @@
               <div>
                 <label class="block text-sm font-bold text-gray-700 mb-2">下排飾品種類</label>
                 <div class="relative">
-                  <select v-model="selectedRow2" class="w-full pl-4 pr-10 py-3 appearance-none rounded-xl border-2 border-gray-200 focus:border-emerald-500 focus:outline-none transition-colors bg-gray-50 font-medium text-gray-700">
+                  <select v-model="selectedRow2" class="w-full pl-4 pr-10 py-3 appearance-none rounded-xl border-2 border-gray-200 focus:border-rose-500 focus:outline-none transition-colors bg-gray-50 font-medium text-gray-700">
                     <option v-for="cat in categories" :key="cat.id" :value="cat.id">
                       {{ cat.name }} ({{ cat.nameEn }})
                     </option>
@@ -70,7 +70,7 @@
               <button @click="close" class="flex-1 px-4 py-3 rounded-xl font-bold text-gray-600 bg-gray-100 hover:bg-gray-200 transition-colors">
                 取消
               </button>
-              <button @click="save" :disabled="isConfigLoading" class="flex-1 px-4 py-3 rounded-xl font-bold text-white bg-emerald-500 hover:bg-emerald-600 shadow-md shadow-emerald-200 transition-all flex items-center justify-center gap-2">
+              <button @click="save" :disabled="isConfigLoading" class="flex-1 px-4 py-3 rounded-xl font-bold text-white bg-rose-500 hover:bg-rose-600 shadow-md shadow-rose-200 transition-all flex items-center justify-center gap-2">
                 <template v-if="isConfigLoading">
                   <Icon name="lucide:loader-2" class="animate-spin" />
                   儲存中...

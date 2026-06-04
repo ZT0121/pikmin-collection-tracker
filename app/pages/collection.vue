@@ -748,7 +748,6 @@
       <template v-else>
         <DecorGrid
           :items="filteredItems"
-          :group-by-variant="false"
           @clear-filters="clearAllFilters"
         />
       </template>
@@ -766,11 +765,20 @@ import {
   type PikminType,
   type DecorItem,
 } from "~/types/decor";
-import type { CollectionCategoryFilter } from "~/composables/useCollectionFilters";
+import type {
+  CollectionCategoryFilter,
+  CollectionStatusFilter,
+} from "~/composables/useCollectionFilters";
 
 const route = useRoute();
 const { t, locale } = useI18n();
-const { isCollected, getItemProgressPercent, collectAllInCategory, hasPendingChanges } = useCollection();
+const {
+  isCollected,
+  getItemStatus,
+  getItemProgressPercent,
+  collectAllInCategory,
+  hasPendingChanges,
+} = useCollection();
 const {
   getAllDecorItems,
   getDecorDefinitions,
@@ -783,7 +791,7 @@ const {
 const searchQuery = ref("");
 const selectedCategoryType = ref<CollectionCategoryFilter | null>(null);
 const selectedPikminType = ref<PikminType | null>(null);
-const collectionFilter = ref<"all" | "collected" | "uncollected">("all");
+const collectionFilter = ref<CollectionStatusFilter>("all");
 
 // UX: Collapsible filter panel (default collapsed)
 const isFilterExpanded = ref(false);
@@ -837,6 +845,21 @@ const collectionFilters = computed(() => [
     label: t("collection.filters.status_uncollected"),
     icon: "lucide:square",
   },
+  {
+    value: "none" as const,
+    label: t("collection.filters.status_none"),
+    icon: "lucide:circle",
+  },
+  {
+    value: "seedling" as const,
+    label: t("collection.filters.status_seedling"),
+    icon: "lucide:sprout",
+  },
+  {
+    value: "plucked" as const,
+    label: t("collection.filters.status_plucked"),
+    icon: "lucide:leaf",
+  },
 ]);
 const selectedCollectionFilter = computed(() =>
   collectionFilters.value.find((filter) => filter.value === collectionFilter.value),
@@ -864,8 +887,16 @@ onMounted(() => {
   // 處理 status 參數（蒐集狀態）
   if (route.query.status) {
     const status = route.query.status as string;
-    if (status === "collected" || status === "uncollected") {
-      collectionFilter.value = status;
+    const validStatusFilters: CollectionStatusFilter[] = [
+      "all",
+      "collected",
+      "uncollected",
+      "none",
+      "seedling",
+      "plucked",
+    ];
+    if (validStatusFilters.includes(status as CollectionStatusFilter)) {
+      collectionFilter.value = status as CollectionStatusFilter;
     }
   }
 
@@ -924,6 +955,7 @@ const {
   isLimitedMode,
   selectedCategoryId,
   isCollected,
+  getItemStatus,
   getAllDecorItems,
   getItemsByCategoryType,
   searchItems,

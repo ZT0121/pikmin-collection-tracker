@@ -1,11 +1,11 @@
 {
   "app": {
-    "title": "Pikmin Decor ????",
-    "subtitle": "?? Decor Pikmin ???????",
-    "description": "?????? Pikmin Bloom Decor Pikmin ??????????????????? Decor ????????????",
-    "keywords": "Pikmin Bloom, Decor Pikmin, ????, ????",
-    "og_title": "Pikmin Decor ????",
-    "og_desc": "?????????? Pikmin Bloom Decor Pikmin ?????"
+    "title": "Pikmin Decor 收藏圖鑑",
+    "subtitle": "整理 Decor Pikmin 進度的輕量工具",
+    "description": "一個非官方的 Pikmin Bloom Decor Pikmin 收藏追蹤工具，可記錄幼苗、已拔起與完成 Decor 的進度，並支援雲端同步。",
+    "keywords": "Pikmin Bloom, Decor Pikmin, 收藏圖鑑, 進度追蹤",
+    "og_title": "Pikmin Decor 收藏圖鑑",
+    "og_desc": "用簡單清楚的方式追蹤 Pikmin Bloom Decor Pikmin 收藏進度。"
   },
   "nav": {
     "home": "總覽",
@@ -13,11 +13,11 @@
   },
   "header": {
     "coffee": "支持",
-    "coffee_mobile": "支持本站",
+    "coffee_mobile": "支持",
     "star": "Star",
     "star_mobile": "GitHub Star",
-    "feedback": "回報與建議",
-    "search": "搜尋飾品、分類或顏色...",
+    "feedback": "意見回饋",
+    "search": "搜尋 Decor、分類或顏色...",
     "mobile_progress": "目前進度",
     "mobile_progress_count": "{collected} / {total} 個"
   },
@@ -27,54 +27,54 @@
   },
   "home": {
     "missing": {
-      "title": "還缺哪些？",
-      "desc": "直接查看尚未完成的項目",
-      "count_suffix": "個待補"
+      "title": "尚未完成",
+      "desc": "查看還沒收集完成的項目",
+      "count_suffix": "個缺口"
     },
     "limited": {
-      "title": "期間與地區",
-      "desc": "整理活動、限定與地區類別",
+      "title": "限定分類",
+      "desc": "活動、地區與特殊分類",
       "count_suffix": "個限定"
     },
     "map": {
       "title": "Decor 地圖",
-      "desc": "用地點資料輔助尋找"
+      "desc": "用地點資料輔助收藏"
     },
     "actions": {
-      "browse_collection": "打開收藏清單",
-      "open_map": "開啟地圖",
-      "review_missing": "檢查缺口"
+      "browse_collection": "打開收藏圖鑑",
+      "open_map": "打開地圖",
+      "review_missing": "查看缺口"
     },
     "near_complete": {
-      "title": "快完成了",
+      "title": "快完成",
       "view_all": "全部",
-      "empty": "目前沒有接近完成的分類",
-      "remaining": "剩 {n} 個"
+      "empty": "目前沒有快完成的分類",
+      "remaining": "還差 {n} 個"
     },
     "tips": {
-      "title": "今日整理重點",
-      "subtitle": "?????????????????",
-      "tip1": "點擊卡片可依序切換：無進度、幼苗、已拔起、完成飾品。",
-      "tip2": "用分類、顏色與關鍵字縮小範圍，比從頭滑到尾快很多。",
-      "tip3": "登入後會同步到你的 Supabase，換裝置也能接續整理。"
+      "title": "今日重點",
+      "subtitle": "把每日收藏進度整理成舒服好讀的清單",
+      "tip1": "點擊卡片即可切換：無進度、幼苗、已拔起、完成 Decor。",
+      "tip2": "使用分類、Pikmin 類型與關鍵字，快速縮小清單範圍。",
+      "tip3": "登入後可將進度同步到雲端，跨裝置也能接著記錄。"
     }
   },
   "hero": {
-    "badge": "??????",
+    "badge": "收藏追蹤工具",
     "title": {
-      "prefix": "????? Decor Pikmin",
-      "suffix": "??????????"
+      "prefix": "把散步的成果",
+      "suffix": "留下來"
     },
     "subtitle": {
-      "line1": "????????????????? Decor ????",
-      "line2": "???????????Pikmin ??????????"
+      "line1": "記錄每一顆花盆、每一隻皮克敏與每個 Decor，",
+      "line2": "陪你完成自己的圖鑑。"
     },
-    "tooltip": "開始整理",
+    "tooltip": "開始記錄",
     "collected": "已完成"
   },
   "collection": {
-    "title": "Decor 收藏",
-    "subtitle": "點擊卡片切換收藏狀態：無進度、幼苗、已拔起、完成飾品",
+    "title": "Decor 收藏圖鑑",
+    "subtitle": "點擊項目切換狀態：無進度、幼苗、已拔起、完成 Decor。",
     "stats": {
       "showing": "目前顯示",
       "items": "個項目",
@@ -82,7 +82,7 @@
     },
     "filters": {
       "search_label": "搜尋",
-      "search_placeholder": "搜尋飾品名稱或分類...",
+      "search_placeholder": "搜尋 Decor 名稱或分類...",
       "category_type": "取得類型",
       "pikmin_type": "Pikmin 類型",
       "status": "狀態",
@@ -100,7 +100,7 @@
       "none": "無進度",
       "seedling": "幼苗",
       "plucked": "已拔起",
-      "decor": "完成飾品"
+      "decor": "完成 Decor"
     },
     "status_short": {
       "none": "無",
@@ -111,9 +111,7 @@
     "card_status": {
       "current": "目前：{status}",
       "current_label": "目前",
-      "next_label": "下個",
-      "rare": "稀有",
-      "next_title": "下一次點擊：{status}"
+      "rare": "稀有"
     },
     "sections": {
       "regular": {
@@ -133,19 +131,19 @@
       },
       "special": {
         "title": "特殊 Decor 怎麼取得？",
-        "desc": "多半來自期間活動、週年任務或特殊挑戰，可能有時間限制。"
+        "desc": "通常來自限定活動、週年紀念或特殊任務。"
       }
     },
     "actions": {
       "collect_all": "全部標記完成",
-      "collect_all_tooltip": "把此分類的所有 Pikmin 標記為完成",
+      "collect_all_tooltip": "將這個分類中的所有 Pikmin 標記為完成",
       "expand_all": "全部展開",
       "collapse_all": "全部收合"
     },
     "scroll": {
       "special": "跳到特殊分類",
       "top": "回到頂端",
-      "bottom": "前往底部",
+      "bottom": "到最底部",
       "categories": "所有分類"
     },
     "types": {
@@ -154,13 +152,13 @@
     },
     "alerts": {
       "collected_all": "「{category}」已經全部完成！",
-      "confirm_collect_all": "確定要將「{category}」的 {count} 個項目全部標記完成嗎？\n其中還有 {uncollected} 個尚未完成。"
+      "confirm_collect_all": "要將「{category}」的 {count} 個項目全部標記為完成嗎？\n目前還有 {uncollected} 個尚未完成。"
     },
     "sync": {
       "countdown": "{n} 秒後自動同步",
       "syncing": "同步中...",
       "retrying": "重試中 ({k}/{n})",
-      "success": "同步完成",
+      "success": "已同步",
       "error": "同步失敗",
       "force_upload": "立即同步",
       "retry": "重試",
@@ -169,82 +167,82 @@
   },
   "time": {
     "just_now": "剛剛",
-    "min_ago": "{n} 分前",
+    "min_ago": "{n} 分鐘前",
     "hour_ago": "{n} 小時前",
     "day_ago": "{n} 天前"
   },
   "footer": {
-    "total_views": "累積瀏覽",
+    "total_views": "頁面瀏覽",
     "source": "資料來源：Pikipedia",
     "disclaimer": "非官方粉絲工具",
     "feedback": "回饋",
-    "contact_me": "有問題歡迎到 GitHub 回報。",
-    "takedown_help": "若有版權疑慮，會配合處理。",
-    "copyright": "? 2026 Pikmin Decor ????",
-    "unofficial": "本網站與 Nintendo 或 Niantic 無官方關聯。Pikmin Bloom 相關名稱與素材屬其權利人所有。",
-    "made_by": "?????????",
-    "original_repo": "????",
-    "project_repo": "?????"
+    "contact_me": "聯絡我們",
+    "takedown_help": "資料或圖片如需移除，歡迎回報。",
+    "copyright": "© 2026 Pikmin Decor 收藏圖鑑",
+    "unofficial": "這是非官方粉絲製作工具，與 Nintendo 或 Niantic 無關。",
+    "made_by": "非官方粉絲製作工具",
+    "original_repo": "原始專案",
+    "project_repo": "專案原始碼"
   },
   "feedback": {
-    "page_title": "回饋",
-    "page_subtitle": "你的建議可以讓這個工具更好用。",
-    "title": "問題回報 / 功能建議",
-    "subtitle": "留下你遇到的問題或想要的功能。",
+    "page_title": "意見回饋",
+    "page_subtitle": "有想法、錯誤或資料問題都可以告訴我們。",
+    "title": "送出回饋",
+    "subtitle": "協助這個工具變得更好用。",
     "types": {
       "suggestion": "功能建議",
-      "bug": "問題回報",
-      "dev": "合作",
+      "bug": "錯誤回報",
+      "dev": "開發協助",
       "data": "資料問題",
       "other": "其他"
     },
     "form": {
-      "email_label": "Email，可不填",
+      "email_label": "Email",
       "message_label": "內容",
-      "email_placeholder": "若需要回覆可留下 Email",
-      "message_placeholder": "請描述你的建議、問題或看到的錯誤...",
-      "device_info": "裝置資訊會自動附上以利除錯",
-      "submit": "送出回饋",
+      "email_placeholder": "方便聯絡的 Email（選填）",
+      "message_placeholder": "請描述你遇到的狀況或想法...",
+      "device_info": "裝置資訊",
+      "submit": "送出",
       "submitting": "送出中..."
     },
-    "email_label": "Email，可不填",
+    "email_label": "Email",
     "message_label": "內容",
     "placeholders": {
-      "email": "若需要回覆可留下 Email",
-      "suggestion": "描述你希望增加的功能或調整...",
-      "bug": "描述問題與重現步驟...",
-      "dev": "留下合作或開發需求...",
-      "default": "輸入你的回饋..."
+      "email": "方便聯絡的 Email（選填）",
+      "suggestion": "想新增或調整什麼功能？",
+      "bug": "請描述錯誤發生的步驟。",
+      "dev": "想協助哪個部分？",
+      "default": "請留下你的回饋。"
     },
     "buttons": {
       "suggestion": "送出建議",
-      "bug": "送出回報",
-      "dev": "送出詢問",
+      "bug": "回報錯誤",
+      "dev": "送出訊息",
       "default": "送出",
       "cancel": "取消",
       "submitting": "送出中..."
     },
     "success": {
-      "title": "謝謝你的回饋！",
-      "desc": "已收到你的訊息。",
-      "ok": "完成"
+      "title": "已收到",
+      "desc": "謝謝你的回饋！",
+      "ok": "知道了"
     },
-    "other_contact": "其他聯絡方式",
-    "github_desc": "回報 Bug 或提出功能建議",
+    "other_contact": "也可以透過 GitHub issue 聯絡。",
+    "github_desc": "到 GitHub 查看或回報問題。",
     "alerts": {
-      "submit_failed": "送出失敗，請稍後再試"
+      "submit_failed": "送出失敗，請稍後再試。"
     }
   },
   "components": {
     "category_nav": {
       "all": "全部",
-      "regular": "一般 Decor",
-      "special": "特殊 Decor",
-      "uncollected_regular": "未完成的一般分類",
-      "uncollected_desc": "集中檢查尚未完成的一般 Decor",
+      "regular": "一般",
+      "special": "特殊",
+      "uncollected_regular": "未完成一般",
+      "uncollected_desc": "查看一般分類中尚未完成的項目",
       "anniversary": "週年",
-      "anniversary_desc": "Pikmin Bloom 週年活動限定 Decor",
-      "event_ended": "活動可能已結束"
+      "anniversary_desc": "週年活動與紀念分類",
+      "event_ended": "活動已結束"
     },
     "pikmin_filter": {
       "all": "全部"
@@ -255,20 +253,20 @@
     },
     "decor_grid": {
       "empty_title": "找不到符合條件的項目",
-      "empty_desc": "試著調整篩選或搜尋關鍵字。",
-      "clear_filters": "清除所有篩選"
+      "empty_desc": "試著清除篩選或換個關鍵字。",
+      "clear_filters": "清除篩選"
     },
-    "ambient_tip": "可切換沉浸背景"
+    "ambient_tip": "背景效果"
   },
   "pikmin_types": {
-    "red": "紅色 Pikmin",
-    "yellow": "黃色 Pikmin",
-    "blue": "藍色 Pikmin",
-    "purple": "紫色 Pikmin",
-    "white": "白色 Pikmin",
-    "rock": "岩石 Pikmin",
-    "winged": "羽翅 Pikmin",
-    "ice": "冰凍 Pikmin"
+    "red": "紅色",
+    "yellow": "黃色",
+    "blue": "藍色",
+    "purple": "紫色",
+    "white": "白色",
+    "rock": "岩石",
+    "winged": "羽翅",
+    "ice": "冰"
   },
   "pikmin_types_short": {
     "red": "紅",
@@ -290,46 +288,46 @@
     "ramen": "拉麵店",
     "sushi": "壽司店",
     "curry": "咖哩店",
-    "korean": "韓式餐廳",
-    "taco": "墨西哥餐廳",
+    "korean": "韓式料理",
+    "taco": "墨西哥料理",
     "convenience": "便利商店",
     "supermarket": "超市",
-    "cosmetics": "美妝店",
+    "cosmetics": "化妝品店",
     "clothing": "服飾店",
     "electronics": "電器行",
     "hardware": "五金行",
-    "library": "圖書館 / 書店",
+    "library": "圖書館",
     "pharmacy": "藥局",
-    "hair_salon": "髮廊",
+    "hair_salon": "美髮沙龍",
     "laundry": "洗衣店",
     "post_office": "郵局",
-    "hotel": "旅館",
+    "hotel": "飯店",
     "university": "大學",
     "station": "車站",
     "bus_stop": "公車站",
     "airport": "機場",
-    "bridge": "橋",
+    "bridge": "橋梁",
     "park": "公園",
     "forest": "森林",
     "waterside": "水邊",
     "beach": "海灘",
     "mountain": "山",
     "zoo": "動物園",
-    "theme_park": "遊樂園",
+    "theme_park": "主題樂園",
     "art_gallery": "美術館",
     "stadium": "體育場",
     "movie_theater": "電影院",
     "shrine": "神社",
-    "regular": "地點 Decor",
-    "regular_desc": "在特定地點取得的 Decor",
-    "special": "活動限定",
-    "special_desc": "期間活動或特殊任務取得",
+    "regular": "一般分類",
+    "regular_desc": "依地點取得的 Decor",
+    "special": "特殊分類",
+    "special_desc": "活動或限定 Decor",
     "roadside": "路邊",
     "roadside_desc": "路邊幼苗取得",
     "weather": "天氣",
-    "weather_desc": "特定天氣條件取得",
+    "weather_desc": "特定天氣取得",
     "regional": "地區限定",
-    "regional_desc": "特定國家或地區限定",
+    "regional_desc": "特定地區限定",
     "rare": "稀有款",
     "rare_desc": "一般 Decor 的稀有變體"
   }

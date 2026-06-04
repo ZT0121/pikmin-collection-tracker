@@ -10,7 +10,7 @@
     :style="{ animationDelay: `${animationDelay}ms` }"
   >
     <div
-      class="decor-card-shell liquid-glass-soft liquid-glass-dynamic relative z-10 flex h-[244px] flex-col overflow-hidden rounded-2xl border transition-all duration-300"
+      class="decor-card-shell liquid-glass-soft liquid-glass-dynamic relative z-10 flex h-[228px] flex-col overflow-hidden rounded-2xl border transition-all duration-300"
       :class="[
         isRareVariant
           ? (isDecorCompleted
@@ -212,13 +212,6 @@
             </span>
           </div>
         </div>
-        <div
-          class="mt-1.5 inline-flex max-w-full items-center gap-1 self-center rounded-lg bg-slate-50 px-2 py-1 text-[10px] font-bold text-slate-500 ring-1 ring-slate-200/80"
-          :title="t('collection.card_status.next_title', { status: nextStatusMeta.label })"
-        >
-          <Icon name="lucide:mouse-pointer-click" class="h-3 w-3 shrink-0" />
-          <span class="truncate">{{ t('collection.card_status.next_label') }}: {{ nextStatusMeta.label }}</span>
-        </div>
       </div>
     </div>
 
@@ -338,38 +331,6 @@ const statusMeta = computed(() => {
   return meta[itemStatus.value];
 });
 
-const nextStatus = computed<CollectionItemStatus>(() => {
-  const nextIndex = (statusOrder.indexOf(itemStatus.value) + 1) % statusOrder.length;
-  return statusOrder[nextIndex] ?? 'none';
-});
-
-const nextStatusMeta = computed(() => {
-  const meta: Record<CollectionItemStatus, { label: string; short: string; icon: string }> = {
-    none: {
-      label: t('collection.status.none'),
-      short: t('collection.status_short.none'),
-      icon: 'lucide:minus',
-    },
-    seedling: {
-      label: t('collection.status.seedling'),
-      short: t('collection.status_short.seedling'),
-      icon: 'lucide:sprout',
-    },
-    plucked: {
-      label: t('collection.status.plucked'),
-      short: t('collection.status_short.plucked'),
-      icon: 'lucide:leaf',
-    },
-    decor: {
-      label: t('collection.status.decor'),
-      short: t('collection.status_short.decor'),
-      icon: 'lucide:check',
-    },
-  };
-
-  return meta[nextStatus.value];
-});
-
 const statusSteps = computed(() => {
   const currentIndex = statusOrder.indexOf(itemStatus.value);
   const meta: Record<CollectionItemStatus, { label: string; icon: string; value: CollectionItemStatus }> = {
@@ -470,10 +431,10 @@ onBeforeUnmount(() => {
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 999px;
-  border: 2px solid rgb(225 29 72 / 0.44);
-  background: radial-gradient(circle, rgb(255 228 230 / 0.58), rgb(225 29 72 / 0.14) 50%, transparent 72%);
+  border: 2px solid rgb(180 83 9 / 0.42);
+  background: radial-gradient(circle, rgb(245 234 220 / 0.58), rgb(180 83 9 / 0.14) 50%, transparent 72%);
   box-shadow:
-    0 0 18px rgb(225 29 72 / 0.26),
+    0 0 18px rgb(180 83 9 / 0.24),
     0 0 42px rgb(14 165 233 / 0.18);
   transform: translate(-50%, -50%) scale(0.24);
   animation: decor-unlock-ring 680ms ease-out forwards;
@@ -528,7 +489,7 @@ onBeforeUnmount(() => {
 
 .unlock-particle-amber {
   background: radial-gradient(circle, #ffffff 0 22%, #f5c78e 34%, #b45309 68%, transparent 70%);
-  box-shadow: 0 0 12px rgb(225 29 72 / 0.38);
+  box-shadow: 0 0 12px rgb(180 83 9 / 0.34);
 }
 
 .unlock-particle-gold {

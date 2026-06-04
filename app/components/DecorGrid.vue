@@ -125,7 +125,7 @@ const getGroupPlaceholderHeight = (itemCount: number) => {
         ? 3
         : 2;
   const rows = Math.max(1, Math.ceil(itemCount / cardsPerRow));
-  return `${Math.ceil(rows * 244 + Math.max(0, rows - 1) * gap)}px`;
+  return `${Math.ceil(rows * 228 + Math.max(0, rows - 1) * gap)}px`;
 };
 
 const syncObservedGroups = async () => {

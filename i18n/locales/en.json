@@ -62,12 +62,12 @@
   "hero": {
     "badge": "Collection Tracker",
     "title": {
-      "prefix": "Track every Decor Pikmin",
-      "suffix": "at your own pace"
+      "prefix": "Keep the little wins",
+      "suffix": "from every walk"
     },
     "subtitle": {
-      "line1": "A clear checklist for seedlings, plucked Pikmin, and completed Decor.",
-      "line2": "Filter by category, Pikmin type, and progress whenever you need a quick overview."
+      "line1": "Record every seedling, every Pikmin, and every Decor you find.",
+      "line2": "Build your own collection guide at a comfortable pace."
     },
     "tooltip": "Start tracking",
     "collected": "complete"
@@ -111,9 +111,7 @@
     "card_status": {
       "current": "Current: {status}",
       "current_label": "Current",
-      "next_label": "Next",
-      "rare": "Rare",
-      "next_title": "Next click: {status}"
+      "rare": "Rare"
     },
     "sections": {
       "regular": {

@@ -1,8 +1,5 @@
 <template>
   <div class="min-h-screen relative">
-    <AppAmbientBackground v-if="!isStandalonePage" />
-
-    <!-- Loading State -->
     <Transition
       enter-active-class="transition duration-300"
       enter-from-class="opacity-0"
@@ -11,69 +8,60 @@
       leave-from-class="opacity-100"
       leave-to-class="opacity-0"
     >
-      <div v-if="isInitializing && !isStandalonePage" class="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-50 z-50">
+      <div v-if="isInitializing && !isStandalonePage" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-50">
         <div class="text-center">
-          <div class="relative inline-block mb-6">
-            <div class="w-20 h-20 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-3xl flex items-center justify-center shadow-xl float glow-emerald">
-              <span class="text-4xl">🌱</span>
-            </div>
-            <span class="absolute -top-1 -right-1 text-xl sparkle">✨</span>
+          <div class="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-3xl bg-slate-950 shadow-xl">
+            <Icon name="lucide:sprout" class="h-9 w-9 text-white" />
           </div>
-          <div class="flex items-center justify-center gap-2 mb-2">
-            <div class="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style="animation-delay: 0ms"></div>
-            <div class="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style="animation-delay: 150ms"></div>
-            <div class="w-2 h-2 bg-emerald-500 rounded-full animate-bounce" style="animation-delay: 300ms"></div>
+          <div class="mb-2 flex items-center justify-center gap-2">
+            <div class="h-2 w-2 animate-bounce rounded-full bg-emerald-500" style="animation-delay: 0ms"></div>
+            <div class="h-2 w-2 animate-bounce rounded-full bg-emerald-500" style="animation-delay: 150ms"></div>
+            <div class="h-2 w-2 animate-bounce rounded-full bg-emerald-500" style="animation-delay: 300ms"></div>
           </div>
-          <p class="text-emerald-700 font-semibold">載入圖鑑資料中...</p>
+          <p class="font-semibold text-slate-700">正在載入收藏資料...</p>
         </div>
       </div>
     </Transition>
-    
-    <!-- Main Content -->
+
     <div v-show="!isInitializing || isStandalonePage" class="relative z-10">
       <AppHeader v-if="!isStandalonePage" />
-      
+
       <main :class="mainClass">
         <NuxtPage />
       </main>
-      
+
       <AppFooter v-if="!isStandalonePage" />
     </div>
 
-    <!-- Global Components -->
     <GlobalAnnouncement v-if="!isStandalonePage" />
     <PwaInstallPrompt v-if="!isStandalonePage" />
-    <Toast 
+    <Toast
       v-if="currentToast && isShowingToast"
       :message="currentToast.message"
       :type="currentToast.type"
       :duration="currentToast.duration"
     />
 
-    <!-- Toast notifications area (legacy) -->
-    <div id="toast-container" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50"></div>
+    <div id="toast-container" class="fixed bottom-4 left-1/2 z-50 -translate-x-1/2"></div>
   </div>
 </template>
 
 <script setup lang="ts">
-// 使用新的 AuthStore
 const authStore = useAuthStore();
 const { loadCollection, loadFromCloud } = useCollection();
 const isInitializing = ref(true);
 const route = useRoute();
 const isStandalonePage = computed(() => route.meta.standalone === true);
 let appInitStarted = false;
+
 const mainClass = computed(() => {
   if (isStandalonePage.value) return 'w-full px-0 py-0';
-  return route.path === '/map' ? 'w-full px-0 py-0' : 'max-w-7xl mx-auto px-4 py-6';
+  return 'max-w-7xl mx-auto px-4 py-6';
 });
 
 const { t, locale } = useI18n();
-
-// Toast system
 const { currentToast, isShowing: isShowingToast } = useToast();
 
-// 動態 SEO 設定 (支援多語系)
 useHead(() => ({
   titleTemplate: (titleChunk) => {
     if (isStandalonePage.value) return titleChunk || 'Forza Music Overlay';
@@ -83,8 +71,8 @@ useHead(() => ({
     lang: locale.value === 'en' ? 'en' : 'zh-TW',
   },
   meta: [
-    { name: 'keywords', content: t('app.keywords') }
-  ]
+    { name: 'keywords', content: t('app.keywords') },
+  ],
 }));
 
 useSeoMeta({
@@ -101,18 +89,12 @@ const initializeAppShell = async () => {
   if (appInitStarted) return;
   appInitStarted = true;
   isInitializing.value = true;
-  console.log('[App] Starting initialization...');
-  
+
   try {
-    // 1. 先载入本地收藏资料（快速）
     loadCollection();
-    
-    // 2. 初始化 AuthStore（会获取 session 并监听变化）
     await authStore.initialize();
-    
-    // 3. 如果已登入，从云端同步
+
     if (authStore.isAuthenticated.value) {
-      console.log('[App] User logged in, syncing from cloud...');
       try {
         await loadFromCloud();
       } catch (e) {
@@ -122,8 +104,6 @@ const initializeAppShell = async () => {
   } catch (e) {
     console.error('[App] Initialization error:', e);
   } finally {
-    console.log('[App] Finishing initialization...');
-    // 快速显示页面
     setTimeout(() => {
       isInitializing.value = false;
     }, 300);
@@ -147,11 +127,8 @@ watch(isStandalonePage, async (standalone) => {
   }
 });
 
-// 监听登入状态变化，自动同步云端数据
 watch(() => authStore.isAuthenticated.value, async (isAuth, wasAuth) => {
   if (isAuth && !wasAuth) {
-    // 刚刚登入，同步云端数据
-    console.log('[App] User just signed in, syncing from cloud...');
     try {
       await loadFromCloud();
     } catch (e) {

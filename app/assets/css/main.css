@@ -18,8 +18,7 @@
   body {
     @apply min-h-screen font-sans text-gray-800 overflow-x-hidden;
     font-family: 'Nunito', 'Noto Sans TC', sans-serif;
-    background: linear-gradient(180deg, #edfff2 0%, #d6ffe0 50%, #adffc1 100%);
-    background-attachment: fixed;
+    background: #f8fafc;
   }
   
   /* Custom scrollbar */
@@ -311,10 +310,6 @@
     -webkit-text-stroke: 0;
     paint-order: normal;
     text-shadow: none;
-  }
-
-  html.mobile-menu-open .ambient-three {
-    display: none;
   }
 
   html.mobile-menu-open .ambient-cute,

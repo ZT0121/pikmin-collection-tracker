@@ -98,7 +98,7 @@ const getPikminColorClass = (index: number) => {
   background: transparent;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(180, 83, 9, 0.2);
+  background-color: rgba(116, 100, 80, 0.2);
   border-radius: 20px;
 }
 
@@ -111,7 +111,7 @@ const getPikminColorClass = (index: number) => {
   border: 1px solid rgba(255, 255, 255, 0.78);
   background: rgba(245, 234, 220, 0.62);
   box-shadow:
-    0 6px 16px rgba(180, 83, 9, 0.16),
+    0 6px 16px rgba(116, 100, 80, 0.16),
     0 1px 0 rgba(255, 255, 255, 0.82) inset;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
 }
@@ -125,9 +125,9 @@ const getPikminColorClass = (index: number) => {
 }
 
 .near-progress-fill {
-  background: linear-gradient(90deg, rgba(180, 83, 9, 0.95), rgba(245, 158, 11, 0.98));
+  background: linear-gradient(90deg, rgba(116, 100, 80, 0.95), rgba(245, 158, 11, 0.98));
   box-shadow:
-    0 0 10px rgba(180, 83, 9, 0.36),
+    0 0 10px rgba(116, 100, 80, 0.36),
     0 1px 0 rgba(255, 255, 255, 0.58) inset;
 }
 </style>

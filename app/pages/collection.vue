@@ -30,7 +30,7 @@
           class="text-3xl font-extrabold text-gray-800 flex items-center gap-3"
         >
           <span
-            class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-stone-500 flex items-center justify-center shadow-lg shadow-amber-200"
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#c8bba4] to-[#9d9588] flex items-center justify-center shadow-lg shadow-stone-200"
           >
             <Icon name="lucide:book-open" class="w-5 h-5 text-white" />
           </span>
@@ -45,7 +45,7 @@
           <p class="text-xs text-gray-500">
             {{ $t("collection.stats.showing") }}
           </p>
-          <p class="text-lg font-bold text-amber-600">
+          <p class="text-lg font-bold text-[#746450]">
             {{ filteredItems.length }} {{ $t("collection.stats.items") }}
           </p>
         </div>
@@ -54,7 +54,7 @@
           <p class="text-xs text-gray-500">
             {{ $t("collection.stats.collected") }}
           </p>
-          <p class="text-lg font-bold text-amber-600">{{ collectedCount }}</p>
+          <p class="text-lg font-bold text-[#746450]">{{ collectedCount }}</p>
         </div>
       </div>
     </div>
@@ -105,10 +105,6 @@
             $t("collection.filters.expand")
           }}</span>
           <Icon name="lucide:chevron-down" class="w-4 h-4" />
-          
-          <ClientOnly>
-            <ThreeFilterHint />
-          </ClientOnly>
         </button>
       </div>
 
@@ -143,7 +139,7 @@
               {{ $t("collection.filters.search_label") }}
             </label>
             <div
-              class="relative transition-all duration-300 group-focus-within:ring-4 ring-amber-500/10 rounded-2xl"
+              class="relative transition-all duration-300 group-focus-within:ring-4 ring-[#b9aa92]/15 rounded-2xl"
             >
               <SearchBar
                 v-model="searchQuery"
@@ -244,7 +240,7 @@
                 {{ searchQuery }}
                 <button
                   @click="searchQuery = ''"
-                  class="w-5 h-5 flex items-center justify-center rounded-full bg-amber-100 text-amber-600 hover:bg-amber-500 hover:text-white transition-colors ml-1"
+                  class="w-5 h-5 flex items-center justify-center rounded-full bg-[#f1e7d8] text-stone-600 hover:bg-[#b9aa92] hover:text-white transition-colors ml-1"
                 >
                   ×
                 </button>
@@ -261,7 +257,7 @@
                 {{ getCategoryTypeName(selectedCategoryType) }}
                 <button
                   @click="selectedCategoryType = null"
-                  class="w-5 h-5 flex items-center justify-center rounded-full bg-amber-100 text-amber-600 hover:bg-amber-500 hover:text-white transition-colors ml-1"
+                  class="w-5 h-5 flex items-center justify-center rounded-full bg-[#f1e7d8] text-stone-600 hover:bg-[#b9aa92] hover:text-white transition-colors ml-1"
                 >
                   ×
                 </button>
@@ -275,7 +271,7 @@
                 {{ selectedPikminType ? PIKMIN_TYPE_NAMES[selectedPikminType] : "" }}
                 <button
                   @click="selectedPikminType = null"
-                  class="w-5 h-5 flex items-center justify-center rounded-full bg-amber-100 text-amber-600 hover:bg-amber-500 hover:text-white transition-colors ml-1"
+                  class="w-5 h-5 flex items-center justify-center rounded-full bg-[#f1e7d8] text-stone-600 hover:bg-[#b9aa92] hover:text-white transition-colors ml-1"
                 >
                   ×
                 </button>
@@ -292,7 +288,7 @@
                 {{ selectedCollectionFilter?.label || "" }}
                 <button
                   @click="collectionFilter = 'all'"
-                  class="w-5 h-5 flex items-center justify-center rounded-full bg-amber-100 text-amber-600 hover:bg-amber-500 hover:text-white transition-colors ml-1"
+                  class="w-5 h-5 flex items-center justify-center rounded-full bg-[#f1e7d8] text-stone-600 hover:bg-[#b9aa92] hover:text-white transition-colors ml-1"
                 >
                   ×
                 </button>
@@ -309,7 +305,7 @@
                 {{ $t("collection.filters.limited") }}
                 <button
                   @click="isLimitedMode = false"
-                  class="w-5 h-5 flex items-center justify-center rounded-full bg-amber-200 text-amber-700 hover:bg-amber-500 hover:text-white transition-colors ml-1"
+                  class="w-5 h-5 flex items-center justify-center rounded-full bg-[#eadfce] text-stone-700 hover:bg-[#b9aa92] hover:text-white transition-colors ml-1"
                 >
                   ×
                 </button>
@@ -411,7 +407,7 @@
                     {{ $t("collection.filters.search_label") }}
                   </label>
                   <div
-                    class="relative transition-all duration-300 focus-within:ring-4 ring-amber-500/10 rounded-2xl"
+                    class="relative transition-all duration-300 focus-within:ring-4 ring-[#b9aa92]/15 rounded-2xl"
                   >
                     <SearchBar
                       v-model="searchQuery"
@@ -518,12 +514,12 @@
             class="collection-section-card flex items-center gap-3 mb-4 px-3 py-3 rounded-3xl"
           >
             <span
-              class="collection-section-icon w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500 to-stone-500 flex items-center justify-center shadow-md"
+              class="collection-section-icon w-12 h-12 rounded-2xl bg-gradient-to-br from-[#c8bba4] to-[#9d9588] flex items-center justify-center shadow-md"
             >
               <Icon name="lucide:map-pin" class="w-6 h-6 text-white" />
             </span>
             <div class="flex-1">
-              <h2 class="collection-section-title text-2xl font-bold text-amber-700">
+              <h2 class="collection-section-title text-2xl font-bold text-[#746450]">
                 {{ $t("collection.sections.regular.title") }}
               </h2>
               <p class="collection-section-desc text-sm mt-1">
@@ -549,27 +545,6 @@
                 {{ regularCategoriesCount
                 }}{{ $t("collection.sections.count_suffix") }}
               </p>
-            </div>
-          </div>
-
-          <!-- Info Box -->
-          <div
-            class="collection-info-card p-4 mb-6 rounded-2xl"
-          >
-            <div class="flex items-start gap-3">
-              <span
-                class="collection-info-icon w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-              >
-                <Icon name="lucide:info" class="w-4 h-4 text-amber-600" />
-              </span>
-              <div>
-                <p class="collection-info-title text-sm font-semibold text-amber-800 mb-1">
-                  {{ $t("collection.info.regular.title") }}
-                </p>
-                <p class="collection-info-desc text-xs text-amber-700">
-                  {{ $t("collection.info.regular.desc") }}
-                </p>
-              </div>
             </div>
           </div>
 
@@ -618,7 +593,7 @@
                   :class="
                     getCategoryProgressPercent(def.category.id) === 100
                       ? 'text-amber-500'
-                      : 'text-amber-600'
+                      : 'text-[#746450]'
                   "
                 >
                   {{ getCategoryProgress(def.category.id) }}
@@ -1028,14 +1003,14 @@ const handleCollectAll = (categoryId: string, categoryName: string) => {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 12% 20%, rgba(180, 83, 9, 0.16), transparent 36%),
+    radial-gradient(circle at 12% 20%, rgba(116, 100, 80, 0.16), transparent 36%),
     linear-gradient(135deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.2)),
     rgba(255, 255, 255, 0.2);
   border: 1px solid rgba(255, 255, 255, 0.82);
   box-shadow:
     0 18px 38px rgba(15, 23, 42, 0.14),
     0 1px 14px rgba(255, 255, 255, 0.88) inset,
-    0 -16px 32px rgba(180, 83, 9, 0.05) inset;
+    0 -16px 32px rgba(116, 100, 80, 0.05) inset;
   backdrop-filter: blur(2px) saturate(1.18);
   -webkit-backdrop-filter: blur(2px) saturate(1.18);
 }
@@ -1050,10 +1025,10 @@ const handleCollectAll = (categoryId: string, categoryName: string) => {
   background:
     linear-gradient(
       120deg,
-      rgba(180, 83, 9, 0.86),
+      rgba(116, 100, 80, 0.86),
       rgba(14, 165, 233, 0.48) 32%,
       rgba(255, 255, 255, 0.76) 64%,
-      rgba(180, 83, 9, 0.28)
+      rgba(116, 100, 80, 0.28)
     );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -1070,10 +1045,10 @@ const handleCollectAll = (categoryId: string, categoryName: string) => {
   border-radius: inherit;
   pointer-events: none;
   background:
-    radial-gradient(circle at 6% 50%, rgba(180, 83, 9, 0.16), transparent 28%),
+    radial-gradient(circle at 6% 50%, rgba(116, 100, 80, 0.16), transparent 28%),
     linear-gradient(
       90deg,
-      rgba(180, 83, 9, 0.12),
+      rgba(116, 100, 80, 0.12),
       transparent 22%,
       transparent 78%,
       rgba(14, 165, 233, 0.1)
@@ -1118,7 +1093,7 @@ const handleCollectAll = (categoryId: string, categoryName: string) => {
 
 .collection-section-icon {
   box-shadow:
-    0 12px 24px rgba(180, 83, 9, 0.18),
+    0 12px 24px rgba(116, 100, 80, 0.18),
     0 1px 8px rgba(255, 255, 255, 0.5) inset;
 }
 
@@ -1179,7 +1154,7 @@ const handleCollectAll = (categoryId: string, categoryName: string) => {
   background: rgba(245, 234, 220, 0.7);
   border: 1px solid rgba(253, 164, 175, 0.82);
   box-shadow:
-    0 6px 14px rgba(180, 83, 9, 0.08),
+    0 6px 14px rgba(116, 100, 80, 0.08),
     0 1px 8px rgba(255, 255, 255, 0.78) inset;
 }
 

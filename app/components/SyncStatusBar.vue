@@ -17,14 +17,14 @@
         class="sync-bar sync-bar-pending"
       >
         <div class="flex items-center gap-2 min-w-0">
-          <Icon name="lucide:cloud-upload" class="w-5 h-5 text-amber-500 flex-shrink-0 sync-pulse" />
+          <Icon name="lucide:cloud-upload" class="w-5 h-5 text-[#9d9588] flex-shrink-0 sync-pulse" />
           <span class="text-xs sm:text-sm font-medium text-gray-700 truncate">
             {{ $t('collection.sync.countdown', { n: syncCountdown }) }}
           </span>
         </div>
         <button
           @click="handleForceSync"
-          class="flex-shrink-0 px-2.5 py-1 sm:px-3 sm:py-1.5 bg-amber-500 hover:bg-amber-600 active:bg-amber-700 text-white text-xs sm:text-sm font-medium rounded-lg transition-colors shadow-sm whitespace-nowrap"
+          class="flex-shrink-0 px-2.5 py-1 sm:px-3 sm:py-1.5 bg-[#9d9588] hover:bg-[#746450] active:bg-[#5f5142] text-white text-xs sm:text-sm font-medium rounded-lg transition-colors shadow-sm whitespace-nowrap"
         >
           {{ $t('collection.sync.force_upload') }}
         </button>
@@ -57,8 +57,8 @@
         class="sync-bar sync-bar-success"
       >
         <div class="flex items-center gap-2">
-          <Icon name="lucide:check-circle" class="w-5 h-5 text-amber-500 flex-shrink-0" />
-          <span class="text-xs sm:text-sm font-medium text-amber-700">
+          <Icon name="lucide:check-circle" class="w-5 h-5 text-[#9d9588] flex-shrink-0" />
+          <span class="text-xs sm:text-sm font-medium text-[#746450]">
             {{ $t('collection.sync.success') }}
           </span>
         </div>
@@ -152,7 +152,7 @@ const handleForceSync = async () => {
 
 .sync-bar-success {
   background: rgba(237, 255, 242, 0.92);
-  border-color: rgba(180, 83, 9, 0.2);
+  border-color: rgba(116, 100, 80, 0.2);
 }
 
 .sync-bar-error {

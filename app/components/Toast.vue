@@ -74,10 +74,10 @@ const icon = computed(() => {
 
 const toastClasses = computed(() => {
   const classes: Record<ToastType, string> = {
-    success: 'bg-amber-500 text-white',
+    success: 'bg-[#9d9588] text-white',
     error: 'bg-red-500 text-white',
     info: 'bg-blue-500 text-white',
-    warning: 'bg-amber-500 text-white'
+    warning: 'bg-[#9d9588] text-white'
   };
   return classes[props.type];
 });

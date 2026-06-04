@@ -179,13 +179,15 @@ export function useDecorData() {
     '白色': ['white'],
     '紫': ['purple'],
     '紫色': ['purple'],
-    '岩石': ['rock'],
     '岩': ['rock'],
-    '翼': ['winged'],
-    '飛': ['winged'],
-    '飛行': ['winged'],
+    '岩石': ['rock'],
+    '羽': ['winged'],
+    '翅': ['winged'],
+    '羽翅': ['winged'],
+    '粉': ['winged'],
+    '粉紅': ['winged'],
     '冰': ['ice'],
-    '冰凍': ['ice'],
+    '冰色': ['ice'],
   };
 
   // Search items by name (supports Chinese search for categories, variants, and pikmin types)

@@ -14,7 +14,7 @@
             href="https://www.pikminwiki.com/Decor_Pikmin"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-stone-600 transition hover:text-amber-700"
+            class="text-stone-600 transition hover:text-[#746450]"
           >
             Pikipedia
           </a>
@@ -22,7 +22,7 @@
             href="https://github.com/scott0127/pik_tool"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-stone-600 transition hover:text-amber-700"
+            class="text-stone-600 transition hover:text-[#746450]"
           >
             {{ $t('footer.original_repo') }}
           </a>
@@ -30,7 +30,7 @@
             href="https://github.com/ZT0121/pikmin-collection-tracker"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-stone-600 transition hover:text-amber-700"
+            class="text-stone-600 transition hover:text-[#746450]"
           >
             {{ $t('footer.project_repo') }}
           </a>

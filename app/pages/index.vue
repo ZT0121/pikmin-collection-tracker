@@ -9,7 +9,7 @@
             <h2 class="text-lg font-black text-slate-950">{{ $t('home.near_complete.title') }}</h2>
             <p class="text-sm font-medium text-slate-500">{{ $t('home.tips.subtitle') }}</p>
           </div>
-          <Icon name="lucide:target" class="h-5 w-5 text-amber-600" />
+          <Icon name="lucide:target" class="h-5 w-5 text-[#746450]" />
         </div>
 
         <HomeNearCompleteScroll
@@ -32,7 +32,7 @@
               <p class="mt-1 text-sm font-medium text-slate-500">{{ $t('home.missing.desc') }}</p>
             </div>
             <div class="text-right">
-              <p class="text-3xl font-black tabular-nums text-orange-500">{{ uncollectedCount }}</p>
+              <p class="text-3xl font-black tabular-nums text-[#9d9588]">{{ uncollectedCount }}</p>
               <p class="text-xs font-bold text-slate-400">{{ $t('home.missing.count_suffix') }}</p>
             </div>
           </div>
@@ -59,7 +59,7 @@
 
         <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
           <div class="mb-4 flex items-center gap-3">
-            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#fbf6ee] text-[#746450]">
               <Icon name="lucide:clipboard-list" class="h-5 w-5" />
             </div>
             <div>
@@ -69,15 +69,15 @@
           </div>
           <ul class="space-y-3 text-sm font-medium leading-6 text-slate-600">
             <li class="flex gap-2">
-              <Icon name="lucide:check" class="mt-1 h-4 w-4 shrink-0 text-amber-600" />
+              <Icon name="lucide:check" class="mt-1 h-4 w-4 shrink-0 text-[#746450]" />
               <span>{{ $t('home.tips.tip1') }}</span>
             </li>
             <li class="flex gap-2">
-              <Icon name="lucide:check" class="mt-1 h-4 w-4 shrink-0 text-amber-600" />
+              <Icon name="lucide:check" class="mt-1 h-4 w-4 shrink-0 text-[#746450]" />
               <span>{{ $t('home.tips.tip2') }}</span>
             </li>
             <li class="flex gap-2">
-              <Icon name="lucide:check" class="mt-1 h-4 w-4 shrink-0 text-amber-600" />
+              <Icon name="lucide:check" class="mt-1 h-4 w-4 shrink-0 text-[#746450]" />
               <span>{{ $t('home.tips.tip3') }}</span>
             </li>
           </ul>

@@ -10,18 +10,18 @@
     :style="{ animationDelay: `${animationDelay}ms` }"
   >
     <div
-      class="decor-card-shell liquid-glass-soft liquid-glass-dynamic relative z-10 flex h-[228px] flex-col overflow-hidden rounded-2xl border transition-all duration-300"
+      class="decor-card-shell liquid-glass-soft liquid-glass-dynamic relative z-10 flex h-[236px] flex-col overflow-hidden rounded-2xl border transition-all duration-300"
       :class="[
         isRareVariant
           ? (isDecorCompleted
-              ? 'border-yellow-300/90 shadow-[0_14px_34px_rgba(146,64,14,0.28)] rare-golden-glow'
+              ? 'border-[#d9c9ad] shadow-[0_14px_34px_rgba(116,100,80,0.18)] rare-golden-glow'
               : hasProgress
-                ? 'border-amber-300/80 shadow-[0_10px_24px_rgba(245,158,11,0.18)]'
+                ? 'border-[#d8c9b5] shadow-[0_10px_24px_rgba(116,100,80,0.12)]'
                 : 'border-slate-300/50 shadow-[0_6px_16px_rgba(15,23,42,0.1)]')
           : (isDecorCompleted
-              ? 'border-amber-300/90 shadow-[0_12px_30px_rgba(225,29,72,0.22)]'
+              ? 'border-[#d8c9b5] shadow-[0_12px_30px_rgba(116,100,80,0.16)]'
               : hasProgress
-                ? 'border-amber-300/80 shadow-[0_10px_24px_rgba(245,158,11,0.18)]'
+                ? 'border-[#d8c9b5] shadow-[0_10px_24px_rgba(116,100,80,0.12)]'
                 : 'border-slate-300/50 shadow-[0_6px_16px_rgba(15,23,42,0.1)]')
       ]"
     >
@@ -30,15 +30,15 @@
         class="decor-image-stage relative h-[118px] w-full shrink-0 overflow-hidden border-b border-white/70 p-3"
         :class="isRareVariant
           ? (isDecorCompleted
-              ? 'bg-gradient-to-br from-amber-50/92 via-yellow-50/86 to-orange-50/84'
+              ? 'bg-gradient-to-br from-[#fffaf2] via-[#f4ecdf] to-[#eee2d2]'
               : hasProgress
-                ? 'bg-gradient-to-br from-amber-50/90 via-orange-50/82 to-yellow-50/78'
-              : 'bg-gradient-to-br from-slate-100/88 via-gray-50/82 to-slate-50/78')
+                ? 'bg-gradient-to-br from-[#fffaf2] via-[#f4ecdf] to-[#eee2d2]'
+                : 'bg-gradient-to-br from-slate-100/88 via-gray-50/82 to-slate-50/78')
           : (isDecorCompleted
-              ? 'bg-gradient-to-br from-white/92 via-amber-50/84 to-stone-50/80'
+              ? 'bg-gradient-to-br from-white/92 via-[#f7efe4] to-[#eee2d2]'
               : hasProgress
-                ? 'bg-gradient-to-br from-white/92 via-amber-50/84 to-orange-50/78'
-              : 'bg-gradient-to-br from-slate-100/88 via-gray-50/82 to-slate-50/78')"
+                ? 'bg-gradient-to-br from-white/92 via-[#f7efe4] to-[#eee2d2]'
+                : 'bg-gradient-to-br from-slate-100/88 via-gray-50/82 to-slate-50/78')"
       >
         <!-- Background pattern -->
         <div class="absolute inset-0" :class="isRareVariant ? (isDecorCompleted ? 'opacity-10' : 'opacity-[0.04]') : (isDecorCompleted ? 'opacity-5' : 'opacity-[0.03]')">
@@ -47,9 +47,9 @@
             :style="isDecorCompleted
               ? (isRareVariant
                   ? 'background-image: radial-gradient(circle, #fbbf24 1px, transparent 1px); background-size: 16px 16px;'
-                  : 'background-image: radial-gradient(circle, #b45309 1px, transparent 1px); background-size: 20px 20px;')
+                  : 'background-image: radial-gradient(circle, #b8aa94 1px, transparent 1px); background-size: 20px 20px;')
               : hasProgress
-                ? 'background-image: radial-gradient(circle, #f59e0b 1px, transparent 1px); background-size: 18px 18px;'
+                ? 'background-image: radial-gradient(circle, #c8bba4 1px, transparent 1px); background-size: 18px 18px;'
               : 'background-image: radial-gradient(circle, #94a3b8 1px, transparent 1px); background-size: 20px 20px;'"
           ></div>
         </div>
@@ -75,7 +75,7 @@
         <img
           v-if="imageUrl && !hasError"
           :src="imageUrl"
-          :alt="`${locale === 'en' ? variant?.nameEn : variant?.name} ${t('pikmin_types.' + pikminType)}`"
+          :alt="`${primaryName} ${t('pikmin_types.' + pikminType)}`"
           class="decor-image relative mx-auto h-full max-h-[92px] w-full max-w-[82px] object-contain transform transition-all duration-300 group-hover:scale-[1.04]"
           :class="isDecorCompleted ? 'opacity-100 saturate-[1.02]' : hasProgress ? 'opacity-[0.72] grayscale-[24%] saturate-[0.72]' : 'opacity-[0.45] grayscale-[70%] saturate-[0.3]'"
           loading="lazy"
@@ -122,7 +122,7 @@
         <!-- Rare Badge -->
         <div
           v-if="variant?.isRare"
-          class="rare-sparkle absolute top-2 left-2 inline-flex items-center gap-1 rounded-lg bg-amber-400 px-2 py-1 text-[11px] font-extrabold text-amber-950 shadow-lg ring-1 ring-white/80 sparkle"
+          class="rare-sparkle absolute top-2 left-2 inline-flex items-center gap-1 rounded-lg bg-[#d8c9b5] px-2 py-1 text-[11px] font-extrabold text-stone-800 shadow-lg ring-1 ring-white/80 sparkle"
         >
           <Icon name="lucide:sparkles" class="h-3.5 w-3.5 drop-shadow-sm" />
           <span>{{ t('collection.card_status.rare') }}</span>
@@ -139,7 +139,7 @@
         >
           <div
             v-if="isDecorCompleted"
-            class="absolute bottom-2 right-2 w-8 h-8 bg-amber-500 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white/80"
+            class="absolute bottom-2 right-2 w-8 h-8 bg-[#b9aa92] rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white/80"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
@@ -150,7 +150,7 @@
         <!-- Hover overlay -->
         <div
           class="absolute inset-0 transition-colors duration-300 rounded-lg pointer-events-none"
-          :class="isDecorCompleted ? 'bg-amber-500/0 group-hover:bg-amber-500/8' : hasProgress ? 'bg-amber-500/0 group-hover:bg-amber-500/8' : 'bg-slate-900/0 group-hover:bg-slate-900/6'"
+          :class="isDecorCompleted ? 'bg-stone-500/0 group-hover:bg-stone-500/8' : hasProgress ? 'bg-stone-500/0 group-hover:bg-stone-500/8' : 'bg-slate-900/0 group-hover:bg-slate-900/6'"
         ></div>
       </div>
 
@@ -160,25 +160,25 @@
         :class="isDecorCompleted
           ? 'bg-white/93 border-white/70'
           : hasProgress
-            ? 'bg-amber-50/90 border-amber-100/70'
+            ? 'bg-[#fbf6ee]/92 border-[#eadfce]/70'
           : 'bg-slate-50/90 border-slate-200/50'"
       >
-        <p
-          class="line-clamp-1 text-sm font-extrabold leading-snug"
-          :class="isDecorCompleted ? 'text-slate-900' : hasProgress ? 'text-slate-700' : 'text-slate-400'"
-          :style="{ textShadow: '0 1px 2px rgba(255,255,255,0.5)' }"
-          :title="locale === 'en' ? variant?.nameEn : variant?.name"
-        >
-          {{ (locale === 'en' ? variant?.nameEn : variant?.name) || 'Unknown' }}
-        </p>
-        <p
-          class="mt-1 line-clamp-1 text-xs font-semibold"
-          :class="isDecorCompleted ? 'text-slate-700' : hasProgress ? 'text-amber-700' : 'text-slate-400'"
-          :style="{ textShadow: '0 1px 2px rgba(255,255,255,0.5)' }"
-          :title="locale === 'en' ? variant?.name : variant?.nameEn"
-        >
-          {{ (locale === 'en' ? variant?.name : variant?.nameEn) || '' }}
-        </p>
+        <div class="min-h-[38px]">
+          <p
+            class="line-clamp-1 text-[13px] font-extrabold leading-snug text-stone-900"
+            :style="{ textShadow: '0 1px 2px rgba(255,255,255,0.55)' }"
+            :title="primaryName"
+          >
+            {{ primaryName }}
+          </p>
+          <p
+            class="mt-0.5 line-clamp-1 text-[11px] font-semibold text-stone-500"
+            :style="{ textShadow: '0 1px 2px rgba(255,255,255,0.55)' }"
+            :title="secondaryName"
+          >
+            {{ secondaryName }}
+          </p>
+        </div>
         <div
           class="mt-2 rounded-xl bg-white/86 p-2 text-left shadow-inner ring-1"
           :class="statusMeta.panelClass"
@@ -225,7 +225,7 @@
       <div
         v-if="showRipple"
         class="absolute inset-0 rounded-2xl pointer-events-none"
-        :class="isRemoving ? 'bg-slate-400/24' : isDecorCompleted ? 'bg-amber-400/30' : 'bg-amber-400/28'"
+        :class="isRemoving ? 'bg-slate-400/24' : isDecorCompleted ? 'bg-stone-400/24' : 'bg-stone-400/20'"
       ></div>
     </Transition>
   </div>
@@ -261,6 +261,12 @@ const isDecorCompleted = computed(() => itemStatus.value === 'decor');
 const hasProgress = computed(() => itemStatus.value !== 'none');
 const imageUrl = computed(() => getImageUrl(props.categoryId, props.variantId, props.pikminType));
 const isRareVariant = computed(() => props.variantId.toLowerCase().includes('rare'));
+const primaryName = computed(() => {
+  return (locale.value === 'en' ? variant.value?.nameEn : variant.value?.name) || 'Unknown';
+});
+const secondaryName = computed(() => {
+  return (locale.value === 'en' ? variant.value?.name : variant.value?.nameEn) || '';
+});
 const hasError = ref(false);
 const showRipple = ref(false);
 const isUnlocking = ref(false);
@@ -306,25 +312,25 @@ const statusMeta = computed(() => {
       label: t('collection.status.seedling'),
       short: t('collection.status_short.seedling'),
       icon: 'lucide:sprout',
-      panelClass: 'ring-orange-200',
-      softClass: 'bg-orange-100 text-orange-800 ring-1 ring-orange-200',
-      stepActiveClass: 'bg-orange-500 text-white ring-orange-500',
+      panelClass: 'ring-[#ddd1bf]',
+      softClass: 'bg-[#f1e7d8] text-stone-700 ring-1 ring-[#ddd1bf]',
+      stepActiveClass: 'bg-[#b9aa92] text-white ring-[#b9aa92]',
     },
     plucked: {
       label: t('collection.status.plucked'),
       short: t('collection.status_short.plucked'),
       icon: 'lucide:leaf',
-      panelClass: 'ring-amber-200',
-      softClass: 'bg-amber-100 text-amber-800 ring-1 ring-amber-200',
-      stepActiveClass: 'bg-amber-500 text-white ring-amber-500',
+      panelClass: 'ring-[#ddd1bf]',
+      softClass: 'bg-[#f1e7d8] text-stone-700 ring-1 ring-[#ddd1bf]',
+      stepActiveClass: 'bg-[#aeb8aa] text-white ring-[#aeb8aa]',
     },
     decor: {
       label: t('collection.status.decor'),
       short: t('collection.status_short.decor'),
       icon: 'lucide:check',
-      panelClass: 'ring-amber-200',
-      softClass: 'bg-amber-100 text-amber-800 ring-1 ring-amber-200',
-      stepActiveClass: 'bg-amber-500 text-white ring-amber-500',
+      panelClass: 'ring-[#ddd1bf]',
+      softClass: 'bg-[#f1e7d8] text-stone-700 ring-1 ring-[#ddd1bf]',
+      stepActiveClass: 'bg-[#9d9588] text-white ring-[#9d9588]',
     },
   };
 
@@ -431,11 +437,11 @@ onBeforeUnmount(() => {
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 999px;
-  border: 2px solid rgb(180 83 9 / 0.42);
-  background: radial-gradient(circle, rgb(245 234 220 / 0.58), rgb(180 83 9 / 0.14) 50%, transparent 72%);
+  border: 2px solid rgb(157 149 136 / 0.42);
+  background: radial-gradient(circle, rgb(245 239 230 / 0.62), rgb(157 149 136 / 0.14) 50%, transparent 72%);
   box-shadow:
-    0 0 18px rgb(180 83 9 / 0.24),
-    0 0 42px rgb(14 165 233 / 0.18);
+    0 0 18px rgb(157 149 136 / 0.24),
+    0 0 42px rgb(174 184 170 / 0.18);
   transform: translate(-50%, -50%) scale(0.24);
   animation: decor-unlock-ring 680ms ease-out forwards;
 }
@@ -488,8 +494,8 @@ onBeforeUnmount(() => {
 }
 
 .unlock-particle-amber {
-  background: radial-gradient(circle, #ffffff 0 22%, #f5c78e 34%, #b45309 68%, transparent 70%);
-  box-shadow: 0 0 12px rgb(180 83 9 / 0.34);
+  background: radial-gradient(circle, #ffffff 0 22%, #e6d8c5 34%, #9d9588 68%, transparent 70%);
+  box-shadow: 0 0 12px rgb(157 149 136 / 0.34);
 }
 
 .unlock-particle-gold {

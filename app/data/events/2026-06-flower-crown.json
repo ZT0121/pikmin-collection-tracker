@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "lastUpdated": "2026-06-03",
+  "lastUpdated": "2026-06-04",
   "source": "https://pikminbloom.com/news/june26-garland",
   "event": {
     "id": "2026-midsommar-festival",
-    "name": "仲夏節慶典",
+    "name": "2026 仲夏節",
     "nameEn": "2026 Midsommar Festival",
     "startsAt": "2026-06-01",
     "endsAt": "2026-06-30"
@@ -23,16 +23,16 @@
           "id": "flower_crown",
           "name": "花冠",
           "nameEn": "Flower Crown",
-          "imageUrl": "https://pikmin.wiki.gallery/images/thumb/9/93/Decor_Red_Flower_Crown.png/100px-Decor_Red_Flower_Crown.png",
+          "imageUrl": "https://pikmin.wiki.gallery/images/d/d0/Decor_Red_Flower_Crown.png",
           "imageUrls": {
-            "red": "https://pikmin.wiki.gallery/images/thumb/9/93/Decor_Red_Flower_Crown.png/100px-Decor_Red_Flower_Crown.png",
-            "yellow": "https://pikmin.wiki.gallery/images/thumb/3/31/Decor_Yellow_Flower_Crown.png/100px-Decor_Yellow_Flower_Crown.png",
-            "blue": "https://pikmin.wiki.gallery/images/thumb/0/08/Decor_Blue_Flower_Crown.png/100px-Decor_Blue_Flower_Crown.png",
-            "white": "https://pikmin.wiki.gallery/images/thumb/3/38/Decor_White_Flower_Crown.png/100px-Decor_White_Flower_Crown.png",
-            "purple": "https://pikmin.wiki.gallery/images/thumb/d/dc/Decor_Purple_Flower_Crown.png/100px-Decor_Purple_Flower_Crown.png",
-            "rock": "https://pikmin.wiki.gallery/images/thumb/9/98/Decor_Rock_Flower_Crown.png/100px-Decor_Rock_Flower_Crown.png",
-            "winged": "https://pikmin.wiki.gallery/images/thumb/c/c0/Decor_Winged_Flower_Crown.png/100px-Decor_Winged_Flower_Crown.png",
-            "ice": "https://pikmin.wiki.gallery/images/thumb/9/97/Decor_Ice_Flower_Crown.png/100px-Decor_Ice_Flower_Crown.png"
+            "red": "https://pikmin.wiki.gallery/images/d/d0/Decor_Red_Flower_Crown.png",
+            "yellow": "https://pikmin.wiki.gallery/images/3/31/Decor_Yellow_Flower_Crown.png",
+            "blue": "https://pikmin.wiki.gallery/images/a/a4/Decor_Blue_Flower_Crown.png",
+            "white": "https://pikmin.wiki.gallery/images/c/c5/Decor_White_Flower_Crown.png",
+            "purple": "https://pikmin.wiki.gallery/images/1/1a/Decor_Purple_Flower_Crown.png",
+            "rock": "https://pikmin.wiki.gallery/images/f/f1/Decor_Rock_Flower_Crown.png",
+            "winged": "https://pikmin.wiki.gallery/images/d/d5/Decor_Winged_Flower_Crown.png",
+            "ice": "https://pikmin.wiki.gallery/images/e/e2/Decor_Ice_Flower_Crown.png"
           }
         }
       ],

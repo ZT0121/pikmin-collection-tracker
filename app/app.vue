@@ -14,9 +14,9 @@
             <Icon name="lucide:sprout" class="h-9 w-9 text-white" />
           </div>
           <div class="mb-2 flex items-center justify-center gap-2">
-            <div class="h-2 w-2 animate-bounce rounded-full bg-amber-500" style="animation-delay: 0ms"></div>
-            <div class="h-2 w-2 animate-bounce rounded-full bg-amber-500" style="animation-delay: 150ms"></div>
-            <div class="h-2 w-2 animate-bounce rounded-full bg-amber-500" style="animation-delay: 300ms"></div>
+            <div class="h-2 w-2 animate-bounce rounded-full bg-[#b9aa92]" style="animation-delay: 0ms"></div>
+            <div class="h-2 w-2 animate-bounce rounded-full bg-[#b9aa92]" style="animation-delay: 150ms"></div>
+            <div class="h-2 w-2 animate-bounce rounded-full bg-[#b9aa92]" style="animation-delay: 300ms"></div>
           </div>
           <p class="font-semibold text-slate-700">正在載入收藏資料...</p>
         </div>

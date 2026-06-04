@@ -192,42 +192,78 @@ export function useCollection() {
   const SAVE_TIMEOUT_MS = 10000; // 10 seconds — anything longer is abnormal
   const MAX_SAVE_RETRIES = 3;
 
-  // Core upsert logic (single attempt)
+  // Save one user's collection without relying on a remote UNIQUE(user_id) constraint.
   const attemptSaveToCloud = async (userId: string, collectionProgress: Record<string, StoredCollectionItemStatus>): Promise<void> => {
-    // Try upsert first
-    const upsertResult = await withTimeout(
+    const now = new Date().toISOString();
+
+    const existingResult = await withTimeout(
       supabase
         .from('user_collections')
-        .upsert({
-          user_id: userId,
-          collected_items: collectionProgress,
-          updated_at: new Date().toISOString(),
-        }, {
-          onConflict: 'user_id',
-        }),
+        .select('id')
+        .eq('user_id', userId)
+        .order('updated_at', { ascending: false })
+        .limit(1)
+        .maybeSingle(),
       SAVE_TIMEOUT_MS,
-      'Upsert'
-    ) as { error: any };
+      'Find existing collection',
+    ) as { data: { id: string } | null; error: any };
 
-    if (upsertResult?.error) {
-      console.warn('[Collection] Upsert failed:', upsertResult.error);
+    if (existingResult?.error && existingResult.error.code !== 'PGRST116') {
+      throw existingResult.error;
+    }
 
-      // Try insert if upsert failed (might be first time)
-      const insertResult = await withTimeout(
+    if (existingResult?.data?.id) {
+      const updateResult = await withTimeout(
         supabase
           .from('user_collections')
-          .insert({
-            user_id: userId,
+          .update({
             collected_items: collectionProgress,
-            updated_at: new Date().toISOString(),
-          }),
+            updated_at: now,
+          })
+          .eq('id', existingResult.data.id),
         SAVE_TIMEOUT_MS,
-        'Insert fallback'
+        'Update collection',
       ) as { error: any };
 
-      if (insertResult?.error && insertResult.error.code !== '23505') { // 23505 = unique violation
-        throw insertResult.error;
+      if (updateResult?.error) {
+        throw updateResult.error;
       }
+      return;
+    }
+
+    const insertResult = await withTimeout(
+      supabase
+        .from('user_collections')
+        .insert({
+          user_id: userId,
+          collected_items: collectionProgress,
+          updated_at: now,
+        }),
+      SAVE_TIMEOUT_MS,
+      'Insert collection',
+    ) as { error: any };
+
+    if (insertResult?.error?.code === '23505') {
+      const updateResult = await withTimeout(
+        supabase
+          .from('user_collections')
+          .update({
+            collected_items: collectionProgress,
+            updated_at: now,
+          })
+          .eq('user_id', userId),
+        SAVE_TIMEOUT_MS,
+        'Update collection after duplicate insert',
+      ) as { error: any };
+
+      if (updateResult?.error) {
+        throw updateResult.error;
+      }
+      return;
+    }
+
+    if (insertResult?.error) {
+      throw insertResult.error;
     }
   };
 
@@ -321,7 +357,9 @@ export function useCollection() {
         .from('user_collections')
         .select('collected_items')
         .eq('user_id', userId)
-        .single();
+        .order('updated_at', { ascending: false })
+        .limit(1)
+        .maybeSingle();
       
       if (error && error.code !== 'PGRST116') throw error; // PGRST116 = not found
       

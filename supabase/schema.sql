@@ -55,7 +55,8 @@ CREATE POLICY "Users can view own collection"
 DROP POLICY IF EXISTS "Users can update own collection" ON user_collections;
 CREATE POLICY "Users can update own collection" 
   ON user_collections FOR UPDATE 
-  USING (auth.uid() = user_id);
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
 
 DROP POLICY IF EXISTS "Users can insert own collection" ON user_collections;
 CREATE POLICY "Users can insert own collection" 

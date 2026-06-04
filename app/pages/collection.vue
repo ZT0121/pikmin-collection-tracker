@@ -659,27 +659,6 @@
             </p>
           </div>
 
-          <!-- Info Box -->
-          <div
-            class="collection-info-card collection-info-card-purple p-4 mb-6 rounded-2xl"
-          >
-            <div class="flex items-start gap-3">
-              <span
-                class="collection-info-icon w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-              >
-                <Icon name="lucide:sparkles" class="w-4 h-4 text-purple-600" />
-              </span>
-              <div>
-                <p class="collection-info-title text-sm font-semibold text-purple-800 mb-1">
-                  {{ $t("collection.info.special.title") }}
-                </p>
-                <p class="collection-info-desc text-xs text-purple-700">
-                  {{ $t("collection.info.special.desc") }}
-                </p>
-              </div>
-            </div>
-          </div>
-
           <div
             v-for="def in specialCategories"
             :key="def.category.id"

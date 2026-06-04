@@ -27,7 +27,7 @@
   },
   "home": {
     "missing": {
-      "title": "尚未完成",
+      "title": "查看未取得項目",
       "desc": "查看還沒收集完成的項目",
       "count_suffix": "個缺口"
     },
@@ -43,17 +43,24 @@
     "actions": {
       "browse_collection": "打開收藏圖鑑",
       "open_map": "打開地圖",
-      "review_missing": "查看缺口"
+      "review_missing": "查看未取得項目"
     },
     "near_complete": {
-      "title": "快完成",
+      "title": "即將完成",
       "view_all": "全部",
-      "empty": "目前沒有快完成的分類",
+      "empty": "目前沒有接近完成的分類",
+      "empty_hint": "繼續收集吧！",
       "remaining": "還差 {n} 個"
     },
+    "monthly_event": {
+      "title": "本月活動",
+      "name": "花冠 Decor",
+      "progress": "4 / 7",
+      "days_left": "活動剩餘 12 天"
+    },
     "tips": {
-      "title": "今日重點",
-      "subtitle": "把每日收藏進度整理成舒服好讀的清單",
+      "title": "",
+      "subtitle": "",
       "tip1": "點擊卡片即可切換：未取得、花盆、已孵化、Decor 完成。",
       "tip2": "使用分類、Pikmin 類型與關鍵字，快速縮小清單範圍。",
       "tip3": "登入後可將進度同步到雲端，跨裝置也能接著記錄。"

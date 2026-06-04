@@ -3,11 +3,10 @@
     <HomeHeroSection />
 
     <div class="grid gap-4 lg:grid-cols-[1fr_360px]">
-      <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-        <div class="mb-4 flex items-center justify-between gap-3">
+      <section class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+        <div class="mb-3 flex items-center justify-between gap-3">
           <div>
             <h2 class="text-lg font-black text-slate-950">{{ $t('home.near_complete.title') }}</h2>
-            <p class="text-sm font-medium text-slate-500">{{ $t('home.tips.subtitle') }}</p>
           </div>
           <Icon name="lucide:target" class="h-5 w-5 text-[#746450]" />
         </div>
@@ -57,30 +56,17 @@
           </div>
         </button>
 
-        <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <div class="mb-4 flex items-center gap-3">
-            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-[#fbf6ee] text-[#746450]">
-              <Icon name="lucide:clipboard-list" class="h-5 w-5" />
-            </div>
+        <section class="rounded-2xl border border-[#e4d8c7] bg-white p-5 shadow-sm">
+          <div class="flex items-start justify-between gap-4">
             <div>
-              <h3 class="font-black text-slate-950">{{ $t('home.tips.title') }}</h3>
-              <p class="text-xs font-medium text-slate-500">{{ $t('home.tips.subtitle') }}</p>
+              <p class="text-sm font-black text-[#746450]">📅 {{ $t('home.monthly_event.title') }}</p>
+              <h3 class="mt-2 text-lg font-black text-slate-950">{{ $t('home.monthly_event.name') }}</h3>
+              <p class="mt-1 text-sm font-bold text-slate-500">{{ $t('home.monthly_event.days_left') }}</p>
+            </div>
+            <div class="rounded-2xl bg-[#fbf6ee] px-4 py-3 text-right ring-1 ring-[#e4d8c7]">
+              <p class="text-2xl font-black tabular-nums text-[#746450]">{{ $t('home.monthly_event.progress') }}</p>
             </div>
           </div>
-          <ul class="space-y-3 text-sm font-medium leading-6 text-slate-600">
-            <li class="flex gap-2">
-              <Icon name="lucide:check" class="mt-1 h-4 w-4 shrink-0 text-[#746450]" />
-              <span>{{ $t('home.tips.tip1') }}</span>
-            </li>
-            <li class="flex gap-2">
-              <Icon name="lucide:check" class="mt-1 h-4 w-4 shrink-0 text-[#746450]" />
-              <span>{{ $t('home.tips.tip2') }}</span>
-            </li>
-            <li class="flex gap-2">
-              <Icon name="lucide:check" class="mt-1 h-4 w-4 shrink-0 text-[#746450]" />
-              <span>{{ $t('home.tips.tip3') }}</span>
-            </li>
-          </ul>
         </section>
       </aside>
     </div>

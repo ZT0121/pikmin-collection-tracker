@@ -1,33 +1,23 @@
 <template>
-  <div class="h-full flex flex-col pt-2 pb-2 px-1">
-    <!-- Header: Simple & Clean (Pikmin Bloom Style) -->
-    <div class="flex items-center justify-between mb-4 px-2">
-      <div class="flex items-center gap-2">
-         <Icon name="lucide:footprints" class="text-amber-500 transform -rotate-45" />
-         <h2 class="text-on-glass text-white-halo text-lg font-black tracking-tight">{{ $t('home.near_complete.title') }}</h2>
-      </div>
-      <button v-if="categories.length > 3" class="glass-control text-xs font-bold text-amber-700 px-3 py-1.5 rounded-full transition-all">
-        {{ $t('home.near_complete.view_all') }}
-      </button>
-    </div>
-
+  <div class="flex flex-col">
     <!-- Empty State -->
-    <div v-if="categories.length === 0" class="flex-1 flex flex-col items-center justify-center text-center opacity-60">
-        <Icon name="lucide:flower-2" class="text-4xl text-amber-300 mb-2 animate-pulse" />
+    <div v-if="categories.length === 0" class="flex flex-col items-center justify-center rounded-xl border border-dashed border-[#e4d8c7] bg-[#fffaf3] px-4 py-6 text-center">
+        <Icon name="lucide:flower-2" class="mb-2 text-3xl text-[#c8bba4]" />
         <p class="text-sm font-bold text-gray-600">{{ $t('home.near_complete.empty') }}</p>
+        <p class="mt-1 text-xs font-semibold text-gray-400">{{ $t('home.near_complete.empty_hint') }}</p>
     </div>
 
     <!-- List: Expedition Style -->
-    <div v-else class="flex-1 flex flex-col gap-3 overflow-y-auto pr-2 custom-scrollbar">
-      <div 
-        v-for="(cat, index) in categories.slice(0, 4)" 
+    <div v-else class="grid gap-2 sm:grid-cols-2">
+      <div
+        v-for="cat in categories.slice(0, 4)"
         :key="cat.id"
         @click="$emit('select-category', cat.id)"
-        class="glass-surface-readable group relative w-full rounded-2xl p-3 transition-all duration-300 cursor-pointer flex items-center gap-3 hover:-translate-y-0.5"
+        class="glass-surface-readable group relative w-full rounded-xl p-3 transition-all duration-300 cursor-pointer flex items-center gap-3 hover:-translate-y-0.5"
       >
         <!-- 1. Icon (Rounded Square like game) -->
-        <div class="glass-control w-12 h-12 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
-            <img v-if="isImageIcon(cat.icon)" :src="cat.icon" class="w-10 h-10 object-contain" alt="icon" />
+        <div class="glass-control w-10 h-10 rounded-xl flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform overflow-hidden">
+            <img v-if="isImageIcon(cat.icon)" :src="cat.icon" class="w-8 h-8 object-contain" alt="icon" />
             <Icon v-else :name="cat.icon" class="text-2xl text-gray-700" />
         </div>
 
@@ -41,7 +31,7 @@
             </div>
 
             <!-- Flower Path Progress Bar -->
-            <div class="near-progress-track relative h-2.5 w-full rounded-full overflow-hidden">
+            <div class="near-progress-track relative h-2 w-full rounded-full overflow-hidden">
                 <!-- Fill -->
                 <div class="near-progress-fill absolute inset-y-0 left-0 rounded-full transition-all duration-1000"
                      :style="{ width: `${cat.percentage}%` }">
@@ -52,8 +42,8 @@
         </div>
 
         <!-- 3. Goal (Gift) -->
-        <div class="glass-control w-8 h-8 rounded-full flex items-center justify-center shrink-0 group-hover:rotate-12 transition-transform">
-             <Icon name="lucide:gift" class="w-4 h-4 text-orange-500" />
+        <div class="glass-control w-7 h-7 rounded-full flex items-center justify-center shrink-0 group-hover:rotate-12 transition-transform">
+             <Icon name="lucide:gift" class="w-3.5 h-3.5 text-[#9d9588]" />
         </div>
       </div>
     </div>
@@ -80,14 +70,6 @@ defineEmits(['select-category']);
 
 const isImageIcon = (icon: string) => /^(https?:|data:|blob:|\/)/.test(icon);
 
-const pikminColors = [
-    'bg-red-500', 'bg-yellow-400', 'bg-blue-500', 'bg-purple-600', 
-    'bg-slate-100', 'bg-pink-400', 'bg-slate-600', 'bg-stone-300'
-];
-
-const getPikminColorClass = (index: number) => {
-    return pikminColors[(index - 1) % pikminColors.length];
-};
 </script>
 
 <style scoped>
@@ -105,7 +87,7 @@ const getPikminColorClass = (index: number) => {
 .near-badge {
   flex-shrink: 0;
   max-width: 86px;
-  color: rgb(146, 64, 14);
+  color: #746450;
   line-height: 1.15;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.78);
@@ -125,7 +107,7 @@ const getPikminColorClass = (index: number) => {
 }
 
 .near-progress-fill {
-  background: linear-gradient(90deg, rgba(116, 100, 80, 0.95), rgba(245, 158, 11, 0.98));
+  background: linear-gradient(90deg, rgba(198, 184, 161, 0.95), rgba(157, 149, 136, 0.98));
   box-shadow:
     0 0 10px rgba(116, 100, 80, 0.36),
     0 1px 0 rgba(255, 255, 255, 0.58) inset;

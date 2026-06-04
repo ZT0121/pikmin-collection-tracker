@@ -5,7 +5,7 @@
       class="absolute top-0 left-0 w-full h-[400px] overflow-hidden pointer-events-none -z-10"
     >
       <div class="deco-leaf deco-leaf-1">
-        <Icon name="lucide:leaf" class="w-6 h-6 text-emerald-300/30" />
+        <Icon name="lucide:leaf" class="w-6 h-6 text-rose-300/30" />
       </div>
       <div class="deco-leaf deco-leaf-2">
         <Icon name="lucide:flower-2" class="w-5 h-5 text-pink-300/25" />
@@ -14,7 +14,7 @@
         <Icon name="lucide:sparkles" class="w-4 h-4 text-amber-300/30" />
       </div>
       <div class="deco-leaf deco-leaf-4">
-        <Icon name="lucide:leaf" class="w-8 h-8 text-teal-300/20" />
+        <Icon name="lucide:leaf" class="w-8 h-8 text-cyan-300/20" />
       </div>
       <div class="deco-leaf deco-leaf-5">
         <Icon name="lucide:star" class="w-3 h-3 text-purple-300/25" />
@@ -30,7 +30,7 @@
           class="text-3xl font-extrabold text-gray-800 flex items-center gap-3"
         >
           <span
-            class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg shadow-emerald-200"
+            class="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-rose-200"
           >
             <Icon name="lucide:book-open" class="w-5 h-5 text-white" />
           </span>
@@ -45,7 +45,7 @@
           <p class="text-xs text-gray-500">
             {{ $t("collection.stats.showing") }}
           </p>
-          <p class="text-lg font-bold text-emerald-600">
+          <p class="text-lg font-bold text-rose-600">
             {{ filteredItems.length }} {{ $t("collection.stats.items") }}
           </p>
         </div>
@@ -54,7 +54,7 @@
           <p class="text-xs text-gray-500">
             {{ $t("collection.stats.collected") }}
           </p>
-          <p class="text-lg font-bold text-emerald-600">{{ collectedCount }}</p>
+          <p class="text-lg font-bold text-rose-600">{{ collectedCount }}</p>
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@
       <!-- Background gradients wrapper (clipped) -->
       <div class="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none -z-10">
         <div
-          class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-emerald-100/40 to-teal-50/40 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"
+          class="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-rose-100/40 to-cyan-50/40 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"
         ></div>
         <div
           class="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-purple-50/40 to-pink-50/40 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3"
@@ -91,14 +91,14 @@
         </div>
         <div
           v-if="activeFilterCount > 0"
-          class="liquid-glass-chip px-3 py-1.5 text-emerald-800 text-sm"
+          class="liquid-glass-chip px-3 py-1.5 text-rose-800 text-sm"
         >
           <Icon name="lucide:filter" class="w-3.5 h-3.5" />
           <span>{{ activeFilterCount }}</span>
         </div>
         <button
           @click="isFilterExpanded = true"
-          class="liquid-glass-soft relative flex items-center gap-2 px-4 py-2.5 text-emerald-800 rounded-xl text-sm font-bold transition-all"
+          class="liquid-glass-soft relative flex items-center gap-2 px-4 py-2.5 text-rose-800 rounded-xl text-sm font-bold transition-all"
         >
           <Icon name="lucide:sliders-horizontal" class="w-4 h-4" />
           <span class="hidden sm:inline">{{
@@ -121,7 +121,7 @@
           >
             <Icon
               name="lucide:sliders-horizontal"
-              class="w-4 h-4 text-emerald-500"
+              class="w-4 h-4 text-rose-500"
             />
             {{ $t("collection.filters.title") }}
           </span>
@@ -139,11 +139,11 @@
             <label
               class="text-sm font-semibold text-gray-600 mb-3 flex items-center gap-2"
             >
-              <Icon name="lucide:search" class="w-4 h-4 text-emerald-500" />
+              <Icon name="lucide:search" class="w-4 h-4 text-rose-500" />
               {{ $t("collection.filters.search_label") }}
             </label>
             <div
-              class="relative transition-all duration-300 group-focus-within:ring-4 ring-emerald-500/10 rounded-2xl"
+              class="relative transition-all duration-300 group-focus-within:ring-4 ring-rose-500/10 rounded-2xl"
             >
               <SearchBar
                 v-model="searchQuery"
@@ -159,7 +159,7 @@
             >
               <Icon
                 name="lucide:toggle-left"
-                class="w-4 h-4 text-emerald-500"
+                class="w-4 h-4 text-rose-500"
               />
               {{ $t("collection.filters.status") }}
             </label>
@@ -183,7 +183,7 @@
         </div>
 
         <div
-          class="h-px w-full bg-gradient-to-r from-transparent via-emerald-200/50 to-transparent"
+          class="h-px w-full bg-gradient-to-r from-transparent via-rose-200/50 to-transparent"
         ></div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -193,7 +193,7 @@
             >
               <Icon
                 name="lucide:layout-grid"
-                class="w-4 h-4 text-emerald-500"
+                class="w-4 h-4 text-rose-500"
               />
               {{ $t("collection.filters.category_type") }}
             </label>
@@ -208,7 +208,7 @@
             <label
               class="text-sm font-semibold text-gray-600 mb-3 flex items-center gap-2"
             >
-              <Icon name="lucide:leaf" class="w-4 h-4 text-emerald-500" />
+              <Icon name="lucide:leaf" class="w-4 h-4 text-rose-500" />
               {{ $t("collection.filters.pikmin_type") }}
             </label>
             <PikminFilter
@@ -232,19 +232,19 @@
             class="liquid-glass-soft flex flex-col sm:flex-row sm:items-center justify-between rounded-2xl p-4 gap-4"
           >
             <div class="flex items-center gap-2 flex-wrap">
-              <span class="text-sm text-emerald-800 font-bold mr-2">{{
+              <span class="text-sm text-rose-800 font-bold mr-2">{{
                 $t("collection.filters.active_label")
               }}</span>
 
               <span
                 v-if="searchQuery"
-                class="liquid-glass-chip group px-3 py-1.5 text-emerald-800 text-sm"
+                class="liquid-glass-chip group px-3 py-1.5 text-rose-800 text-sm"
               >
                 <Icon name="lucide:search" class="w-3.5 h-3.5 opacity-70" />
                 {{ searchQuery }}
                 <button
                   @click="searchQuery = ''"
-                  class="w-5 h-5 flex items-center justify-center rounded-full bg-emerald-100 text-emerald-600 hover:bg-emerald-500 hover:text-white transition-colors ml-1"
+                  class="w-5 h-5 flex items-center justify-center rounded-full bg-rose-100 text-rose-600 hover:bg-rose-500 hover:text-white transition-colors ml-1"
                 >
                   ×
                 </button>
@@ -252,7 +252,7 @@
 
               <span
                 v-if="selectedCategoryType"
-                class="liquid-glass-chip group px-3 py-1.5 text-emerald-800 text-sm"
+                class="liquid-glass-chip group px-3 py-1.5 text-rose-800 text-sm"
               >
                 <Icon
                   name="lucide:layout-grid"
@@ -261,7 +261,7 @@
                 {{ getCategoryTypeName(selectedCategoryType) }}
                 <button
                   @click="selectedCategoryType = null"
-                  class="w-5 h-5 flex items-center justify-center rounded-full bg-emerald-100 text-emerald-600 hover:bg-emerald-500 hover:text-white transition-colors ml-1"
+                  class="w-5 h-5 flex items-center justify-center rounded-full bg-rose-100 text-rose-600 hover:bg-rose-500 hover:text-white transition-colors ml-1"
                 >
                   ×
                 </button>
@@ -269,13 +269,13 @@
 
               <span
                 v-if="selectedPikminType"
-                class="liquid-glass-chip group px-3 py-1.5 text-emerald-800 text-sm"
+                class="liquid-glass-chip group px-3 py-1.5 text-rose-800 text-sm"
               >
                 <Icon name="lucide:leaf" class="w-3.5 h-3.5 opacity-70" />
                 {{ selectedPikminType ? PIKMIN_TYPE_NAMES[selectedPikminType] : "" }}
                 <button
                   @click="selectedPikminType = null"
-                  class="w-5 h-5 flex items-center justify-center rounded-full bg-emerald-100 text-emerald-600 hover:bg-emerald-500 hover:text-white transition-colors ml-1"
+                  class="w-5 h-5 flex items-center justify-center rounded-full bg-rose-100 text-rose-600 hover:bg-rose-500 hover:text-white transition-colors ml-1"
                 >
                   ×
                 </button>
@@ -283,7 +283,7 @@
 
               <span
                 v-if="collectionFilter !== 'all'"
-                class="liquid-glass-chip group px-3 py-1.5 text-emerald-800 text-sm"
+                class="liquid-glass-chip group px-3 py-1.5 text-rose-800 text-sm"
               >
                 <Icon
                   :name="selectedCollectionFilter?.icon || 'lucide:list'"
@@ -292,7 +292,7 @@
                 {{ selectedCollectionFilter?.label || "" }}
                 <button
                   @click="collectionFilter = 'all'"
-                  class="w-5 h-5 flex items-center justify-center rounded-full bg-emerald-100 text-emerald-600 hover:bg-emerald-500 hover:text-white transition-colors ml-1"
+                  class="w-5 h-5 flex items-center justify-center rounded-full bg-rose-100 text-rose-600 hover:bg-rose-500 hover:text-white transition-colors ml-1"
                 >
                   ×
                 </button>
@@ -383,7 +383,7 @@
                 >
                   <Icon
                     name="lucide:sliders-horizontal"
-                    class="w-5 h-5 text-emerald-500"
+                    class="w-5 h-5 text-rose-500"
                   />
                   {{ $t("collection.filters.title") }}
                 </span>
@@ -406,12 +406,12 @@
                   >
                     <Icon
                       name="lucide:search"
-                      class="w-4 h-4 text-emerald-500"
+                      class="w-4 h-4 text-rose-500"
                     />
                     {{ $t("collection.filters.search_label") }}
                   </label>
                   <div
-                    class="relative transition-all duration-300 focus-within:ring-4 ring-emerald-500/10 rounded-2xl"
+                    class="relative transition-all duration-300 focus-within:ring-4 ring-rose-500/10 rounded-2xl"
                   >
                     <SearchBar
                       v-model="searchQuery"
@@ -428,7 +428,7 @@
                   >
                     <Icon
                       name="lucide:toggle-left"
-                      class="w-4 h-4 text-emerald-500"
+                      class="w-4 h-4 text-rose-500"
                     />
                     {{ $t("collection.filters.status") }}
                   </label>
@@ -457,7 +457,7 @@
                   >
                     <Icon
                       name="lucide:layout-grid"
-                      class="w-4 h-4 text-emerald-500"
+                      class="w-4 h-4 text-rose-500"
                     />
                     {{ $t("collection.filters.category_type") }}
                   </label>
@@ -473,7 +473,7 @@
                   <label
                     class="text-sm font-semibold text-gray-600 mb-3 flex items-center gap-2"
                   >
-                    <Icon name="lucide:leaf" class="w-4 h-4 text-emerald-500" />
+                    <Icon name="lucide:leaf" class="w-4 h-4 text-rose-500" />
                     {{ $t("collection.filters.pikmin_type") }}
                   </label>
                   <PikminFilter
@@ -518,12 +518,12 @@
             class="collection-section-card flex items-center gap-3 mb-4 px-3 py-3 rounded-3xl"
           >
             <span
-              class="collection-section-icon w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-md"
+              class="collection-section-icon w-12 h-12 rounded-2xl bg-gradient-to-br from-rose-500 to-cyan-500 flex items-center justify-center shadow-md"
             >
               <Icon name="lucide:map-pin" class="w-6 h-6 text-white" />
             </span>
             <div class="flex-1">
-              <h2 class="collection-section-title text-2xl font-bold text-emerald-700">
+              <h2 class="collection-section-title text-2xl font-bold text-rose-700">
                 {{ $t("collection.sections.regular.title") }}
               </h2>
               <p class="collection-section-desc text-sm mt-1">
@@ -560,13 +560,13 @@
               <span
                 class="collection-info-icon w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
               >
-                <Icon name="lucide:info" class="w-4 h-4 text-emerald-600" />
+                <Icon name="lucide:info" class="w-4 h-4 text-rose-600" />
               </span>
               <div>
-                <p class="collection-info-title text-sm font-semibold text-emerald-800 mb-1">
+                <p class="collection-info-title text-sm font-semibold text-rose-800 mb-1">
                   {{ $t("collection.info.regular.title") }}
                 </p>
-                <p class="collection-info-desc text-xs text-emerald-700">
+                <p class="collection-info-desc text-xs text-rose-700">
                   {{ $t("collection.info.regular.desc") }}
                 </p>
               </div>
@@ -618,7 +618,7 @@
                   :class="
                     getCategoryProgressPercent(def.category.id) === 100
                       ? 'text-amber-500'
-                      : 'text-emerald-600'
+                      : 'text-rose-600'
                   "
                 >
                   {{ getCategoryProgress(def.category.id) }}
@@ -632,7 +632,7 @@
                     :class="
                       getCategoryProgressPercent(def.category.id) === 100
                         ? 'bg-gradient-to-r from-amber-400 to-yellow-300'
-                        : 'bg-gradient-to-r from-emerald-400 to-teal-400'
+                        : 'bg-gradient-to-r from-rose-400 to-cyan-400'
                     "
                     :style="{
                       width: getCategoryProgressPercent(def.category.id) + '%',
@@ -799,13 +799,6 @@
     <!-- Sync Status Bar -->
     <SyncStatusBar />
 
-    <!-- Category Jump Navigation (All screen sizes) -->
-    <CategoryJumpNav
-      :categories="jumpNavCategories"
-      :show-scroll-top="showScrollTop"
-      :has-special="specialCategories.length > 0"
-      :has-active-filters="hasActiveFilters"
-    />
   </div>
 </template>
 
@@ -833,7 +826,6 @@ const searchQuery = ref("");
 const selectedCategoryType = ref<CollectionCategoryFilter | null>(null);
 const selectedPikminType = ref<PikminType | null>(null);
 const collectionFilter = ref<"all" | "collected" | "uncollected">("all");
-const showScrollTop = ref(false);
 
 // UX: Collapsible filter panel (default collapsed)
 const isFilterExpanded = ref(false);
@@ -932,15 +924,11 @@ onMounted(() => {
     selectedPikminType.value = route.query.pikmin as PikminType;
   }
 
-  // Scroll listener
-  window.addEventListener("scroll", handleScroll);
-
   // Warn user if they try to leave with unsaved changes
   window.addEventListener("beforeunload", handleBeforeUnload);
 });
 
 onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
   window.removeEventListener("beforeunload", handleBeforeUnload);
 });
 
@@ -949,29 +937,6 @@ const handleBeforeUnload = (e: BeforeUnloadEvent) => {
     e.preventDefault();
     // Modern browsers ignore custom messages, but returnValue is still needed
     e.returnValue = "";
-  }
-};
-
-const handleScroll = () => {
-  showScrollTop.value = window.scrollY > 500;
-};
-
-const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-};
-
-// Scroll to special categories section
-const scrollToSpecialCategories = () => {
-  const specialSection = document.getElementById("special-categories-section");
-  if (specialSection) {
-    const offset = 100; // 預留 header 高度
-    const elementPosition = specialSection.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: "smooth",
-    });
   }
 };
 
@@ -986,24 +951,6 @@ const specialCategories = computed(() => {
 
 const regularCategoriesCount = computed(() => regularCategories.value.length);
 const specialCategoriesCount = computed(() => specialCategories.value.length);
-
-// CategoryJumpNav data
-const jumpNavCategories = computed(() => {
-  const allDefs = [...regularCategories.value, ...specialCategories.value];
-  return allDefs.map((def) => {
-    const items = getItemsByCategory(def.category.id);
-    const collected = items.filter((item) => isCollected(item.id)).length;
-    const total = items.length;
-    return {
-      id: def.category.id,
-      name: locale.value === "en" ? def.category.nameEn : def.category.name,
-      icon: getCategoryIcon(def.category.icon),
-      progress: total > 0 ? Math.round((collected / total) * 100) : 0,
-      progressText: `${collected}/${total}`,
-      isSpecial: def.category.type !== "regular",
-    };
-  });
-});
 
 const {
   activeFilterCount,
@@ -1365,4 +1312,3 @@ const handleCollectAll = (categoryId: string, categoryName: string) => {
   }
 }
 </style>
-

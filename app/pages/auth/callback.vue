@@ -2,15 +2,15 @@
   <div class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
     <!-- Background -->
     <div class="fixed inset-0 pointer-events-none -z-10">
-      <div class="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-teal-50"></div>
-      <div class="absolute top-0 right-0 w-96 h-96 bg-emerald-200 rounded-full blur-3xl opacity-30"></div>
-      <div class="absolute bottom-0 left-0 w-80 h-80 bg-teal-200 rounded-full blur-3xl opacity-30"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-rose-50 via-white to-cyan-50"></div>
+      <div class="absolute top-0 right-0 w-96 h-96 bg-rose-200 rounded-full blur-3xl opacity-30"></div>
+      <div class="absolute bottom-0 left-0 w-80 h-80 bg-cyan-200 rounded-full blur-3xl opacity-30"></div>
     </div>
 
     <div class="text-center animate-slide-up">
       <!-- Loading State -->
       <div v-if="!error" class="glass rounded-3xl p-12 shadow-2xl">
-        <div class="w-24 h-24 mx-auto bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full flex items-center justify-center mb-6 shadow-xl shadow-emerald-200">
+        <div class="w-24 h-24 mx-auto bg-gradient-to-br from-rose-400 to-cyan-500 rounded-full flex items-center justify-center mb-6 shadow-xl shadow-rose-200">
           <svg class="animate-spin h-12 w-12 text-white" viewBox="0 0 24 24">
             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none" />
             <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
@@ -21,9 +21,9 @@
         
         <!-- Animated Dots -->
         <div class="flex justify-center gap-1.5 mt-6">
-          <div class="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-bounce" style="animation-delay: 0s;"></div>
-          <div class="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-bounce" style="animation-delay: 0.1s;"></div>
-          <div class="w-2.5 h-2.5 bg-emerald-400 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
+          <div class="w-2.5 h-2.5 bg-rose-400 rounded-full animate-bounce" style="animation-delay: 0s;"></div>
+          <div class="w-2.5 h-2.5 bg-rose-400 rounded-full animate-bounce" style="animation-delay: 0.1s;"></div>
+          <div class="w-2.5 h-2.5 bg-rose-400 rounded-full animate-bounce" style="animation-delay: 0.2s;"></div>
         </div>
       </div>
 

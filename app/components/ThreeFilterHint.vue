@@ -2,11 +2,11 @@
   <div v-if="isVisible" class="absolute -top-14 right-2 w-max pointer-events-none z-50 flex flex-col items-center animate-fade-in-up">
     
     <!-- Tooltip Bubble -->
-    <div class="relative bg-emerald-600/95 backdrop-blur-md text-white text-xs font-bold pl-3 pr-1 py-1.5 rounded-full shadow-lg border border-emerald-400/30 flex items-center gap-2 pointer-events-auto transform transition-transform hover:scale-105 shadow-emerald-600/20">
+    <div class="relative bg-rose-600/95 backdrop-blur-md text-white text-xs font-bold pl-3 pr-1 py-1.5 rounded-full shadow-lg border border-rose-400/30 flex items-center gap-2 pointer-events-auto transform transition-transform hover:scale-105 shadow-rose-600/20">
       <span class="tracking-wide">展開進階篩選</span>
       <button 
         @click.stop="dismissHint" 
-        class="w-5 h-5 flex items-center justify-center bg-emerald-700/50 hover:bg-emerald-800 text-emerald-100 rounded-full transition-colors active:scale-90"
+        class="w-5 h-5 flex items-center justify-center bg-rose-700/50 hover:bg-rose-800 text-rose-100 rounded-full transition-colors active:scale-90"
         title="關閉提示"
       >
         <Icon name="lucide:x" class="w-3 h-3" />
@@ -14,10 +14,10 @@
     </div>
 
     <!-- Connecting Straight Line -->
-    <div class="w-px h-6 bg-gradient-to-b from-emerald-500/80 to-emerald-500/0 mt-0.5"></div>
+    <div class="w-px h-6 bg-gradient-to-b from-rose-500/80 to-rose-500/0 mt-0.5"></div>
     
     <!-- Connecting Dot -->
-    <div class="w-1.5 h-1.5 rounded-full bg-emerald-500/60 -mt-1 animate-pulse"></div>
+    <div class="w-1.5 h-1.5 rounded-full bg-rose-500/60 -mt-1 animate-pulse"></div>
 
   </div>
 </template>

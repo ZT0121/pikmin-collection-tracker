@@ -10,7 +10,7 @@
     :style="{ animationDelay: `${animationDelay}ms` }"
   >
     <div
-      class="decor-card-shell liquid-glass-soft liquid-glass-dynamic relative z-10 flex h-[236px] flex-col overflow-hidden rounded-2xl border transition-all duration-300"
+      class="decor-card-shell liquid-glass-soft liquid-glass-dynamic relative z-10 flex h-[264px] flex-col overflow-hidden rounded-2xl border transition-all duration-300"
       :class="[
         isRareVariant
           ? (isDecorCompleted
@@ -27,7 +27,7 @@
     >
       <!-- Image Container -->
       <div
-        class="decor-image-stage relative h-[118px] w-full shrink-0 overflow-hidden border-b border-white/70 p-3"
+        class="decor-image-stage relative h-[116px] w-full shrink-0 overflow-hidden border-b border-white/70 p-3"
         :class="isRareVariant
           ? (isDecorCompleted
               ? 'bg-gradient-to-br from-[#fffaf2] via-[#f4ecdf] to-[#eee2d2]'
@@ -76,7 +76,7 @@
           v-if="imageUrl && !hasError"
           :src="imageUrl"
           :alt="`${primaryName} ${t('pikmin_types.' + pikminType)}`"
-          class="decor-image relative mx-auto h-full max-h-[92px] w-full max-w-[82px] object-contain transform transition-all duration-300 group-hover:scale-[1.04]"
+          class="decor-image relative mx-auto h-full max-h-[90px] w-full max-w-[82px] object-contain transform transition-all duration-300 group-hover:scale-[1.04]"
           :class="isDecorCompleted ? 'opacity-100 saturate-[1.02]' : hasProgress ? 'opacity-[0.72] grayscale-[24%] saturate-[0.72]' : 'opacity-[0.45] grayscale-[70%] saturate-[0.3]'"
           loading="lazy"
           referrerpolicy="no-referrer"
@@ -194,13 +194,13 @@
             </span>
           </div>
           <div
-            class="mt-1.5 grid grid-cols-4 gap-1"
+            class="mt-2 grid grid-cols-4 gap-1"
             :aria-label="statusMeta.label"
           >
             <span
               v-for="step in statusSteps"
               :key="step.value"
-              class="flex h-6 items-center justify-center rounded-md ring-1 transition-colors"
+              class="flex h-7 items-center justify-center rounded-md px-1 text-[10px] font-extrabold leading-none ring-1 transition-colors"
               :class="step.isActive
                 ? statusMeta.stepActiveClass
                 : step.isPassed
@@ -208,7 +208,7 @@
                   : 'bg-white text-slate-300 ring-slate-200/70'"
               :title="step.label"
             >
-              <Icon :name="step.icon" class="h-3.5 w-3.5" />
+              <span class="truncate">{{ step.short }}</span>
             </span>
           </div>
         </div>
@@ -348,6 +348,7 @@ const statusSteps = computed(() => {
 
   return statusOrder.map((value, index) => ({
     ...meta[value],
+    short: t(`collection.status_short.${value}`),
     isActive: value === itemStatus.value,
     isPassed: index < currentIndex,
   }));

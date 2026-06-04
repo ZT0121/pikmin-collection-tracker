@@ -69,15 +69,20 @@
         v-else-if="syncStatus === 'error'"
         class="sync-bar sync-bar-error"
       >
-        <div class="flex items-center gap-2 min-w-0">
+        <div class="flex items-start gap-2 min-w-0">
           <Icon name="lucide:alert-circle" class="w-5 h-5 text-red-500 flex-shrink-0" />
-          <span class="text-xs sm:text-sm font-medium text-red-700 truncate">
-            {{ $t('collection.sync.error') }}
-          </span>
+          <div class="min-w-0">
+            <p class="text-xs sm:text-sm font-medium text-red-700">
+              {{ $t('collection.sync.error') }}
+            </p>
+            <p v-if="syncErrorMessage" class="mt-0.5 max-w-[240px] truncate text-[11px] font-medium text-red-600" :title="syncErrorMessage">
+              {{ syncErrorMessage }}
+            </p>
+          </div>
         </div>
         <button
           @click="handleForceSync"
-          class="flex-shrink-0 px-2.5 py-1 sm:px-3 sm:py-1.5 bg-red-500 hover:bg-red-600 active:bg-red-700 text-white text-xs sm:text-sm font-medium rounded-lg transition-colors shadow-sm whitespace-nowrap"
+          class="flex-shrink-0 px-2.5 py-1 sm:px-3 sm:py-1.5 bg-red-100 hover:bg-red-200 active:bg-red-300 text-red-700 text-xs sm:text-sm font-bold rounded-lg transition-colors shadow-sm whitespace-nowrap"
         >
           {{ $t('collection.sync.retry') }}
         </button>
@@ -87,7 +92,7 @@
 </template>
 
 <script setup lang="ts">
-const { syncStatus, syncCountdown, hasPendingChanges, syncRetryAttempt, forceSync } = useCollection();
+const { syncStatus, syncCountdown, hasPendingChanges, syncRetryAttempt, syncErrorMessage, forceSync } = useCollection();
 const authStore = useAuthStore();
 
 const isVisible = computed(() => {
@@ -141,8 +146,8 @@ const handleForceSync = async () => {
 }
 
 .sync-bar-pending {
-  background: rgba(255, 251, 235, 0.92);
-  border-color: rgba(245, 158, 11, 0.2);
+  background: rgba(250, 246, 239, 0.94);
+  border-color: rgba(190, 174, 149, 0.26);
 }
 
 .sync-bar-syncing {
@@ -151,7 +156,7 @@ const handleForceSync = async () => {
 }
 
 .sync-bar-success {
-  background: rgba(237, 255, 242, 0.92);
+  background: rgba(248, 246, 241, 0.94);
   border-color: rgba(116, 100, 80, 0.2);
 }
 

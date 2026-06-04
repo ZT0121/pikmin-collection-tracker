@@ -46,7 +46,7 @@
         <button
           @click="$emit('select', 'uncollected-regular')"
           class="filter-chip"
-          :class="[selected === 'uncollected-regular' ? 'filter-chip-active bg-[#9d9588] border-[#9d9588]' : 'filter-chip-inactive']"
+          :class="[selected === 'uncollected-regular' ? 'filter-chip-active' : 'filter-chip-inactive']"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />

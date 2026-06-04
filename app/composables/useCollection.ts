@@ -48,6 +48,7 @@ export function useCollection() {
   const hasPendingChanges = useState<boolean>('collection-has-pending', () => false);
   const syncRetryAttempt = useState<number>('collection-sync-retry', () => 0);
   const lastSyncedSignature = useState<string | null>('collection-last-synced-signature', () => null);
+  const syncErrorMessage = useState<string | null>('collection-sync-error-message', () => null);
 
   // Load from localStorage on client side
   const loadCollection = () => {
@@ -192,6 +193,28 @@ export function useCollection() {
   const SAVE_TIMEOUT_MS = 10000; // 10 seconds — anything longer is abnormal
   const MAX_SAVE_RETRIES = 3;
 
+  const formatSyncError = (error: unknown): string => {
+    if (!error) return 'Unknown sync error';
+    if (error instanceof Error) return error.message;
+    if (typeof error === 'string') return error;
+    if (typeof error === 'object') {
+      const maybeError = error as { message?: string; details?: string; hint?: string; code?: string };
+      return [
+        maybeError.message,
+        maybeError.details,
+        maybeError.hint,
+        maybeError.code ? `code: ${maybeError.code}` : '',
+      ].filter(Boolean).join(' | ') || JSON.stringify(error);
+    }
+    return String(error);
+  };
+
+  const getActiveCloudUserId = async (): Promise<string | null> => {
+    const { data, error } = await supabase.auth.getSession();
+    if (error) throw error;
+    return data.session?.user?.id ?? null;
+  };
+
   // Save one user's collection without relying on a remote UNIQUE(user_id) constraint.
   const attemptSaveToCloud = async (userId: string, collectionProgress: Record<string, StoredCollectionItemStatus>): Promise<void> => {
     const now = new Date().toISOString();
@@ -269,15 +292,17 @@ export function useCollection() {
 
   // Save to Supabase (if logged in) — with timeout + auto-retry
   const saveToCloud = async (force = false): Promise<boolean> => {
-    const userId = authStore.user.value?.id;
-    if (!userId) {
-      console.log('[Collection] No active session, skip cloud sync');
-      syncStatus.value = 'idle';
-      hasPendingChanges.value = false;
-      return false;
-    }
-
     try {
+      const userId = await getActiveCloudUserId();
+      if (!userId) {
+        console.log('[Collection] No active session, skip cloud sync');
+        syncStatus.value = 'error';
+        hasPendingChanges.value = true;
+        syncErrorMessage.value = 'Session expired. Please sign in again.';
+        return false;
+      }
+
+      syncErrorMessage.value = null;
       const collectionProgress = getProgressRecordForSave();
       const signature = Object.entries(collectionProgress)
         .sort(([a], [b]) => a.localeCompare(b))
@@ -324,10 +349,12 @@ export function useCollection() {
 
       // All retries exhausted
       console.error('[Collection] All save attempts failed:', lastError);
+      syncErrorMessage.value = formatSyncError(lastError);
       setSyncResult('error');
       return false;
     } catch (e) {
       console.error('[Collection] Failed to save to cloud:', e);
+      syncErrorMessage.value = formatSyncError(e);
       setSyncResult('error');
       return false;
     }
@@ -337,7 +364,7 @@ export function useCollection() {
   // ☁️ 雲端優先策略：已登入時直接使用雲端資料，不做 UNION merge
   // 這樣可以確保多裝置之間的資料一致性，也支援取消標記
   const loadFromCloud = async (force = false) => {
-    const userId = authStore.user.value?.id;
+    const userId = await getActiveCloudUserId();
     if (!userId) {
       console.log('[Collection] No active session, skip loading from cloud');
       return;
@@ -652,6 +679,7 @@ export function useCollection() {
     syncCountdown: readonly(syncCountdown),
     hasPendingChanges: readonly(hasPendingChanges),
     syncRetryAttempt: readonly(syncRetryAttempt),
+    syncErrorMessage: readonly(syncErrorMessage),
     loadCollection,
     loadFromCloud,
     getItemStatus,

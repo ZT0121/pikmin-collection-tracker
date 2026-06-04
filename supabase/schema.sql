@@ -38,7 +38,7 @@ CREATE POLICY "Users can insert own profile"
 -- { decor_item_id: "seedling" | "plucked" | "decor" }
 CREATE TABLE IF NOT EXISTS user_collections (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID UNIQUE REFERENCES auth.users(id) ON DELETE CASCADE,
+  user_id UUID NOT NULL UNIQUE REFERENCES auth.users(id) ON DELETE CASCADE,
   collected_items JSONB DEFAULT '{}'::jsonb,
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -62,6 +62,11 @@ DROP POLICY IF EXISTS "Users can insert own collection" ON user_collections;
 CREATE POLICY "Users can insert own collection" 
   ON user_collections FOR INSERT 
   WITH CHECK (auth.uid() = user_id);
+
+-- PostgREST still needs table privileges in addition to RLS policies.
+GRANT USAGE ON SCHEMA public TO authenticated;
+GRANT SELECT, INSERT, UPDATE ON TABLE public.user_collections TO authenticated;
+REVOKE TRUNCATE, TRIGGER ON TABLE public.user_collections FROM anon, authenticated;
 
 -- 3. Function to auto-create profile on signup
 CREATE OR REPLACE FUNCTION public.handle_new_user()

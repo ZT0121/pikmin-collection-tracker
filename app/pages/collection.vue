@@ -1003,14 +1003,13 @@ const handleCollectAll = (categoryId: string, categoryName: string) => {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 12% 20%, rgba(116, 100, 80, 0.16), transparent 36%),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.2)),
-    rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.82);
+    linear-gradient(135deg, rgba(255, 252, 247, 0.92), rgba(247, 240, 230, 0.76)),
+    rgba(255, 255, 255, 0.42);
+  border: 1px solid rgba(226, 215, 199, 0.86);
   box-shadow:
-    0 18px 38px rgba(15, 23, 42, 0.14),
+    0 14px 30px rgba(116, 100, 80, 0.08),
     0 1px 14px rgba(255, 255, 255, 0.88) inset,
-    0 -16px 32px rgba(116, 100, 80, 0.05) inset;
+    0 -16px 32px rgba(116, 100, 80, 0.035) inset;
   backdrop-filter: blur(2px) saturate(1.18);
   -webkit-backdrop-filter: blur(2px) saturate(1.18);
 }
@@ -1025,10 +1024,9 @@ const handleCollectAll = (categoryId: string, categoryName: string) => {
   background:
     linear-gradient(
       120deg,
-      rgba(116, 100, 80, 0.86),
-      rgba(14, 165, 233, 0.48) 32%,
-      rgba(255, 255, 255, 0.76) 64%,
-      rgba(116, 100, 80, 0.28)
+      rgba(221, 209, 191, 0.86),
+      rgba(255, 255, 255, 0.76) 44%,
+      rgba(198, 184, 161, 0.42)
     );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -1044,16 +1042,8 @@ const handleCollectAll = (categoryId: string, categoryName: string) => {
   content: "";
   border-radius: inherit;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 6% 50%, rgba(116, 100, 80, 0.16), transparent 28%),
-    linear-gradient(
-      90deg,
-      rgba(116, 100, 80, 0.12),
-      transparent 22%,
-      transparent 78%,
-      rgba(14, 165, 233, 0.1)
-    );
-  opacity: 0.8;
+  background: linear-gradient(90deg, rgba(244, 236, 223, 0.58), transparent 28%, transparent 72%, rgba(232, 222, 207, 0.48));
+  opacity: 0.62;
 }
 
 .collection-section-card > * {
@@ -1132,13 +1122,13 @@ const handleCollectAll = (categoryId: string, categoryName: string) => {
   justify-content: center;
   width: 30px;
   height: 30px;
-  color: rgb(190 18 60 / 0.82);
+  color: #746450;
   border-radius: 12px;
   transition: all 180ms ease;
 }
 
 .collection-section-action:hover {
-  color: rgb(159 18 57);
+  color: #5f5142;
   background: rgba(255, 255, 255, 0.58);
   transform: translateY(-1px);
 }
@@ -1146,13 +1136,13 @@ const handleCollectAll = (categoryId: string, categoryName: string) => {
 .collection-count-pill {
   min-width: max-content;
   padding: 7px 10px;
-  color: rgb(190 18 60);
+  color: #5f5142;
   font-size: 0.82rem;
   font-weight: 800;
   line-height: 1;
   border-radius: 999px;
-  background: rgba(245, 234, 220, 0.7);
-  border: 1px solid rgba(253, 164, 175, 0.82);
+  background: rgba(246, 239, 229, 0.82);
+  border: 1px solid rgba(222, 209, 190, 0.86);
   box-shadow:
     0 6px 14px rgba(116, 100, 80, 0.08),
     0 1px 8px rgba(255, 255, 255, 0.78) inset;

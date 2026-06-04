@@ -1,10 +1,10 @@
 {
   "app": {
-    "title": "Pikmin Decor 收藏圖鑑",
-    "subtitle": "整理 Decor Pikmin 進度的輕量工具",
+    "title": "Pikmin Decor 收藏進度紀錄",
+    "subtitle": "",
     "description": "一個非官方的 Pikmin Bloom Decor Pikmin 收藏追蹤工具，可記錄幼苗、已拔起與完成 Decor 的進度，並支援雲端同步。",
     "keywords": "Pikmin Bloom, Decor Pikmin, 收藏圖鑑, 進度追蹤",
-    "og_title": "Pikmin Decor 收藏圖鑑",
+    "og_title": "Pikmin Decor 收藏進度紀錄",
     "og_desc": "用簡單清楚的方式追蹤 Pikmin Bloom Decor Pikmin 收藏進度。"
   },
   "nav": {

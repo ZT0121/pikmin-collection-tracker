@@ -556,7 +556,7 @@
           >
             <!-- Category Header (clickable accordion) -->
             <div
-              class="liquid-glass-2026 liquid-glass-readable liquid-glass-dynamic flex items-center gap-3 sticky top-[120px] z-10 -mx-4 px-4 py-3 rounded-xl cursor-pointer group"
+              class="liquid-glass-2026 liquid-glass-readable liquid-glass-dynamic flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer group"
               @click="toggleCategory(def.category.id)"
             >
               <Icon :name="getCategoryIcon(def.category.icon)" class="text-2xl flex-shrink-0" />
@@ -688,7 +688,7 @@
           >
             <!-- Category Header (clickable accordion) -->
             <div
-              class="liquid-glass-2026 liquid-glass-readable liquid-glass-dynamic flex items-center gap-3 sticky top-[120px] z-10 -mx-4 px-4 py-3 rounded-xl cursor-pointer group"
+              class="liquid-glass-2026 liquid-glass-readable liquid-glass-dynamic flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer group"
               @click="toggleCategory(def.category.id)"
             >
               <Icon :name="getCategoryIcon(def.category.icon)" class="text-2xl flex-shrink-0" />

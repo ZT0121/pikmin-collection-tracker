@@ -200,7 +200,7 @@
             <span
               v-for="step in statusSteps"
               :key="step.value"
-              class="flex h-7 items-center justify-center rounded-md px-1 text-[9px] font-extrabold leading-none ring-1 transition-colors"
+              class="flex h-7 items-center justify-center rounded-md px-1 text-base leading-none ring-1 transition-colors"
               :class="step.isActive
                 ? step.activeClass
                 : step.isPassed
@@ -208,7 +208,8 @@
                   : 'bg-white text-stone-400 ring-[#e8ded0]'"
               :title="step.label"
             >
-              <span class="whitespace-nowrap">{{ step.short }}</span>
+              <span aria-hidden="true">{{ step.emoji }}</span>
+              <span class="sr-only">{{ step.label }}</span>
             </span>
           </div>
         </div>
@@ -350,16 +351,15 @@ const statusMeta = computed(() => {
 
 const statusSteps = computed(() => {
   const currentIndex = statusOrder.indexOf(itemStatus.value);
-  const meta: Record<CollectionItemStatus, { label: string; icon: string; value: CollectionItemStatus }> = {
-    none: { value: 'none', label: t('collection.status.none'), icon: 'lucide:minus' },
-    seedling: { value: 'seedling', label: t('collection.status.seedling'), icon: 'lucide:sprout' },
-    plucked: { value: 'plucked', label: t('collection.status.plucked'), icon: 'lucide:leaf' },
-    decor: { value: 'decor', label: t('collection.status.decor'), icon: 'lucide:check' },
+  const meta: Record<CollectionItemStatus, { label: string; icon: string; value: CollectionItemStatus; emoji: string }> = {
+    none: { value: 'none', label: t('collection.status.none'), icon: 'lucide:minus', emoji: '❔' },
+    seedling: { value: 'seedling', label: t('collection.status.seedling'), icon: 'lucide:sprout', emoji: '🌱' },
+    plucked: { value: 'plucked', label: t('collection.status.plucked'), icon: 'lucide:leaf', emoji: '🐣' },
+    decor: { value: 'decor', label: t('collection.status.decor'), icon: 'lucide:check', emoji: '🎁' },
   };
 
   return statusOrder.map((value, index) => ({
     ...meta[value],
-    short: t(`collection.status_short.${value}`),
     activeClass: getStatusMetaMap()[value].stepActiveClass,
     isActive: value === itemStatus.value,
     isPassed: index < currentIndex,

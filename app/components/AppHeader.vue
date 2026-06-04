@@ -9,9 +9,6 @@
           <h1 class="truncate text-base font-extrabold tracking-normal text-stone-950 sm:text-lg">
             {{ $t('app.title') }}
           </h1>
-          <p class="hidden truncate text-xs font-medium text-stone-500 sm:block">
-            {{ $t('app.subtitle') }}
-          </p>
         </div>
       </NuxtLink>
 

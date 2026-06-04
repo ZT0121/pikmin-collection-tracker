@@ -140,7 +140,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'theme-color', content: '#0f172a' },
+        { name: 'theme-color', content: '#d97706' },
         
         // Open Graph Image is static so keeping it here as fallback, though dynamic also handles it
         { property: 'og:image', content: withBase('/og-image.png') },
@@ -150,10 +150,16 @@ export default defineNuxtConfig({
         // PWA iOS Support
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
-        { name: 'apple-mobile-web-app-title', content: "Pikmin Decor Tracker" },
+        { name: 'apple-mobile-web-app-title', content: "Decor 圖鑑" },
       ],
       link: [
         { rel: 'manifest', href: withBase('/manifest.webmanifest') },
+        { rel: 'icon', href: withBase('/favicon.ico') },
+        { rel: 'icon', type: 'image/png', sizes: '32x32', href: withBase('/favicon.png') },
+        { rel: 'icon', type: 'image/png', sizes: '48x48', href: withBase('/favicon-48.png') },
+        { rel: 'apple-touch-icon', href: withBase('/icons/apple-touch-icon.png') },
+        { rel: 'icon', type: 'image/png', sizes: '192x192', href: withBase('/icons/icon-192.png') },
+        { rel: 'icon', type: 'image/png', sizes: '512x512', href: withBase('/icons/icon-512.png') },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap' },

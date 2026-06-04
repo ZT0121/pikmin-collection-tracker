@@ -1,319 +1,181 @@
 <template>
-  <header class="sticky top-0 z-50">
-    <!-- Decorative top bar -->
-    <div class="h-1 bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-400"></div>
-    
-    <div
-      class="glass-frosted-shell border-t-0 border-x-0"
-      :class="{ 'mobile-menu-shell-open': showMobileMenu }"
-    >
-      <div class="max-w-8xl mx-auto px-4 py-3">
-        <div class="flex items-center justify-between">
-          <!-- Logo and Title -->
-          <NuxtLink to="/" class="flex items-center gap-3 group">
-            <div class="relative">
-              <div class="w-12 h-12 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
-                <span class="text-2xl">🌱</span>
-              </div>
-              <!-- Floating leaf decoration -->
-              <span class="absolute -top-1 -right-1 text-sm sway">🍃</span>
-            </div>
-            <div>
-              <h1 class="text-xl font-extrabold text-gradient group-hover:opacity-80 transition-opacity">
-                {{ $t('app.title') }}
-              </h1>
-              <p class="text-xs text-gray-500 font-medium">{{ $t('app.subtitle') }}</p>
-            </div>
-          </NuxtLink>
+  <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/88 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3">
+      <NuxtLink to="/" class="flex min-w-0 items-center gap-3">
+        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-950 text-white shadow-sm">
+          <Icon name="lucide:sprout" class="h-5 w-5" />
+        </div>
+        <div class="min-w-0">
+          <h1 class="truncate text-base font-extrabold tracking-normal text-slate-950 sm:text-lg">
+            {{ $t('app.title') }}
+          </h1>
+          <p class="hidden truncate text-xs font-medium text-slate-500 sm:block">
+            {{ $t('app.subtitle') }}
+          </p>
+        </div>
+      </NuxtLink>
 
-          <!-- Desktop Navigation -->
-          <nav class="hidden md:flex items-center gap-1 bg-white/50 rounded-2xl p-1">
-            <NuxtLink 
-              v-for="link in navLinks" 
-              :key="link.to"
-              :to="link.to"
-              class="nav-item"
-              :class="[
-                $route.path === link.to ? 'nav-item-active' : 'nav-item-inactive'
-              ]"
-            >
-              <Icon :name="link.icon" class="text-2xl" />
-              <span class="hidden lg:inline">{{ link.name }}</span>
-            </NuxtLink>
-          </nav>
+      <nav class="hidden items-center rounded-xl border border-slate-200 bg-slate-50 p-1 md:flex">
+        <NuxtLink
+          v-for="link in navLinks"
+          :key="link.to"
+          :to="link.to"
+          class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-bold transition"
+          :class="$route.path === link.to ? 'bg-white text-slate-950 shadow-sm' : 'text-slate-500 hover:text-slate-900'"
+        >
+          <Icon :name="link.icon" class="h-4 w-4" />
+          <span>{{ link.name }}</span>
+        </NuxtLink>
+      </nav>
 
-          <!-- Right Section -->
-          <div class="flex items-center gap-3">
-            <!-- PWA Install Button (iOS) -->
-            <button 
-              v-if="canInstallIos"
-              @click="triggerIosPrompt"
-              class="flex items-center gap-1.5 px-3 sm:px-4 h-10 rounded-2xl bg-gradient-to-r from-teal-500 to-emerald-500 text-white shadow-md shadow-emerald-500/20 hover:shadow-lg hover:-translate-y-0.5 transition-all group"
-              title="安裝 App 到主畫面 (iOS)"
-            >
-              <Icon name="lucide:apple" class="text-lg group-hover:scale-110 transition-transform" />
-              <span class="text-sm font-bold hidden sm:inline">iOS 捷徑</span>
-            </button>
+      <div class="flex items-center gap-2">
+        <button
+          @click="showSearch = !showSearch"
+          class="hidden h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition hover:border-slate-300 hover:text-slate-950 md:flex"
+          :title="$t('header.search')"
+        >
+          <Icon name="lucide:search" class="h-4 w-4" />
+        </button>
 
-            <!-- PWA Install Button (Android Mobile) -->
-            <button 
-              v-if="canInstallAndroid"
-              @click="triggerAndroidPrompt"
-              class="md:hidden flex items-center gap-1.5 px-3 sm:px-4 h-10 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-md shadow-emerald-500/20 hover:shadow-lg hover:-translate-y-0.5 transition-all group"
-              title="安裝 App 到主畫面 (Android)"
-            >
-              <Icon name="lucide:download" class="text-lg group-hover:scale-110 transition-transform" />
-              <span class="text-sm font-bold hidden sm:inline">下載 App</span>
-            </button>
-
-            <!-- Progress Ring (Desktop) -->
-            <div class="hidden sm:flex items-center gap-3 bg-white/50 rounded-2xl px-4 py-2">
-              <div class="relative w-10 h-10">
-                <svg class="w-10 h-10 progress-ring" viewBox="0 0 36 36">
-                  <circle
-                    class="text-gray-200"
-                    stroke="currentColor"
-                    stroke-width="3"
-                    fill="transparent"
-                    r="16"
-                    cx="18"
-                    cy="18"
-                  />
-                  <circle
-                    class="text-emerald-500 progress-ring-circle"
-                    stroke="currentColor"
-                    stroke-width="3"
-                    stroke-linecap="round"
-                    fill="transparent"
-                    r="16"
-                    cx="18"
-                    cy="18"
-                    :stroke-dasharray="100.53"
-                    :stroke-dashoffset="100.53 - (stats.percentage / 100) * 100.53"
-                  />
-                </svg>
-                <span class="absolute inset-0 flex items-center justify-center text-xs font-bold text-emerald-600">
-                  {{ stats.percentage }}%
-                </span>
-              </div>
-              <div class="text-right">
-                <p class="text-sm font-bold text-gray-700">{{ stats.collected }}</p>
-                <p class="text-xs text-gray-400">/ {{ stats.total }}</p>
-              </div>
-            </div>
-
-            <!-- Search Button (Desktop) -->
-            <button 
-              @click="showSearch = !showSearch"
-              class="hidden md:flex w-10 h-10 items-center justify-center rounded-xl bg-white/60 hover:bg-white text-gray-500 hover:text-emerald-600 transition-all"
-            >
-              🔍
-            </button>
-            
-            <!-- Language Switcher (Desktop) -->
-            <LanguageSwitcher class="hidden md:flex" />
-
-            <!-- User Menu -->
-            <div class="hidden sm:block">
-              <template v-if="user">
-                <div class="flex items-center gap-2">
-                  <div 
-                    class="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-bold text-sm cursor-default"
-                    :title="user.email || ''"
-                  >
-                    {{ userInitial }}
-                  </div>
-                  <button
-                    @click="handleLogout"
-                    class="text-sm text-gray-500 hover:text-red-500 transition-colors"
-                  >
-                    {{ $t('auth.logout') }}
-                  </button>
-                </div>
-              </template>
-              <NuxtLink
-                v-else
-                to="/auth"
-                class="btn-primary text-sm !py-2 !px-4"
-              >
-                {{ $t('auth.login') }}
-              </NuxtLink>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <button 
-              @click="toggleMobileMenu"
-              class="md:hidden w-10 h-10 flex items-center justify-center rounded-xl bg-white/60 hover:bg-white transition-all"
-            >
-              <Transition
-                enter-active-class="transition duration-200"
-                enter-from-class="rotate-90 opacity-0"
-                enter-to-class="rotate-0 opacity-100"
-                leave-active-class="transition duration-200"
-                leave-from-class="rotate-0 opacity-100"
-                leave-to-class="-rotate-90 opacity-0"
-                mode="out-in"
-              >
-                <span v-if="showMobileMenu" class="text-xl">✕</span>
-                <span v-else class="text-xl">☰</span>
-              </Transition>
-            </button>
+        <div class="hidden items-center gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2 sm:flex">
+          <div class="h-2 w-20 overflow-hidden rounded-full bg-slate-100">
+            <div class="h-full rounded-full bg-emerald-500 transition-all" :style="{ width: `${stats.percentage}%` }"></div>
           </div>
+          <span class="text-xs font-black text-slate-700">{{ stats.percentage }}%</span>
         </div>
 
-        <!-- Search Bar (Expandable) -->
-        <Transition
-          enter-active-class="transition duration-300 ease-out"
-          enter-from-class="opacity-0 -translate-y-4 scale-95"
-          enter-to-class="opacity-100 translate-y-0 scale-100"
-          leave-active-class="transition duration-200 ease-in"
-          leave-from-class="opacity-100 translate-y-0 scale-100"
-          leave-to-class="opacity-0 -translate-y-4 scale-95"
+        <LanguageSwitcher class="hidden md:flex" />
+
+        <template v-if="user">
+          <div
+            class="hidden h-10 w-10 items-center justify-center rounded-xl bg-emerald-600 text-sm font-black text-white sm:flex"
+            :title="user.email || ''"
+          >
+            {{ userInitial }}
+          </div>
+          <button
+            @click="handleLogout"
+            class="hidden rounded-xl px-3 py-2 text-sm font-bold text-slate-500 transition hover:text-red-600 sm:block"
+          >
+            {{ $t('auth.logout') }}
+          </button>
+        </template>
+        <NuxtLink v-else to="/auth" class="hidden rounded-xl bg-slate-950 px-4 py-2 text-sm font-bold text-white transition hover:bg-slate-800 sm:block">
+          {{ $t('auth.login') }}
+        </NuxtLink>
+
+        <button
+          @click="toggleMobileMenu"
+          class="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 md:hidden"
+          aria-label="Toggle navigation"
         >
-          <div v-if="showSearch" class="mt-4 relative">
-            <input 
+          <Icon :name="showMobileMenu ? 'lucide:x' : 'lucide:menu'" class="h-5 w-5" />
+        </button>
+      </div>
+    </div>
+
+    <Transition
+      enter-active-class="transition duration-200 ease-out"
+      enter-from-class="opacity-0 -translate-y-2"
+      enter-to-class="opacity-100 translate-y-0"
+      leave-active-class="transition duration-150 ease-in"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 -translate-y-2"
+    >
+      <div v-if="showSearch" class="border-t border-slate-200 bg-white/95 px-4 py-3">
+        <div class="mx-auto max-w-7xl">
+          <div class="relative">
+            <Icon name="lucide:search" class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <input
               v-model="searchQuery"
               @keyup.enter="handleSearch"
               type="text"
               :placeholder="$t('header.search')"
-              class="input-field pl-12 pr-12"
+              class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 pl-10 pr-4 text-sm font-semibold outline-none transition focus:border-emerald-500 focus:bg-white"
               autofocus
             />
-            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl">🔍</span>
-            <button 
-              v-if="searchQuery"
-              @click="searchQuery = ''; handleSearch()"
-              class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-            >
-              ✕
-            </button>
           </div>
-        </Transition>
-
-        <!-- Mobile Menu -->
-        <Transition
-          enter-active-class="transition duration-300 ease-out"
-          enter-from-class="opacity-0 -translate-y-4"
-          enter-to-class="opacity-100 translate-y-0"
-          leave-active-class="transition duration-200 ease-in"
-          leave-from-class="opacity-100 translate-y-0"
-          leave-to-class="opacity-0 -translate-y-4"
-        >
-          <div
-            v-if="showMobileMenu"
-            :key="mobileMenuRenderKey"
-            class="mobile-menu-panel md:hidden mt-4 space-y-4"
-          >
-            <!-- Mobile Progress -->
-            <div class="flex items-center justify-between bg-white/50 rounded-2xl p-4">
-              <div class="flex items-center gap-3">
-                <div class="relative w-12 h-12">
-                  <svg class="w-12 h-12 progress-ring" viewBox="0 0 36 36">
-                    <circle class="text-gray-200" stroke="currentColor" stroke-width="3" fill="transparent" r="16" cx="18" cy="18"/>
-                    <circle class="text-emerald-500 progress-ring-circle" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="transparent" r="16" cx="18" cy="18"
-                      :stroke-dasharray="100.53"
-                      :stroke-dashoffset="100.53 - (stats.percentage / 100) * 100.53"
-                    />
-                  </svg>
-                  <span class="absolute inset-0 flex items-center justify-center text-sm font-bold text-emerald-600">
-                    {{ stats.percentage }}%
-                  </span>
-                </div>
-                <div>
-                </div>
-                <div>
-                  <p class="font-bold text-gray-700">{{ $t('header.mobile_progress') }}</p>
-                  <p class="text-sm text-gray-500">{{ $t('header.mobile_progress_count', { collected: stats.collected, total: stats.total }) }}</p>
-                  <p v-if="user" class="text-xs text-gray-400 truncate max-w-[150px]" :title="user.email">{{ user.email }}</p>
-                </div>
-              </div>
-              <template v-if="user">
-                <button @click="handleLogout" class="text-sm text-red-500">{{ $t('auth.logout') }}</button>
-              </template>
-              <NuxtLink v-else to="/auth" @click="showMobileMenu = false" class="btn-primary text-sm !py-2">
-                {{ $t('auth.login') }}
-              </NuxtLink>
-            </div>
-
-            <!-- Mobile Search & Language -->
-            <div class="flex gap-2 items-center">
-              <div class="relative flex-1">
-                <input 
-                  v-model="searchQuery"
-                  @keyup.enter="handleSearch"
-                  type="text"
-                  :placeholder="$t('header.search')"
-                  class="input-field pl-12"
-                />
-                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-xl">🔍</span>
-              </div>
-              
-              <!-- Mobile Language Switcher -->
-              <LanguageSwitcher class="!w-[52px] !h-[52px] !rounded-2xl !bg-white/80 border-2 !border-gray-200" />
-            </div>
-
-            <!-- Mobile Nav -->
-            <div class="grid grid-cols-2 gap-2">
-              <NuxtLink
-                v-for="(link, index) in navLinks"
-                :key="link.to"
-                :to="link.to"
-                @click="showMobileMenu = false"
-                class="mobile-nav-link flex flex-col items-center gap-2 p-3 rounded-2xl transition-all"
-                :style="{ animationDelay: `${40 + index * 55}ms` }"
-                :class="[
-                  $route.path === link.to 
-                    ? 'mobile-nav-link-active bg-emerald-500 text-white shadow-lg' 
-                    : 'bg-white/60 text-gray-600 hover:bg-white'
-                ]"
-              >
-                <Icon
-                  :key="`${mobileMenuRenderKey}-${link.to}-icon`"
-                  :name="link.icon"
-                  class="mobile-nav-icon text-3xl mb-1"
-                  :style="{ animationDelay: `${80 + index * 70}ms` }"
-                />
-                <span class="text-xs font-semibold">{{ link.name }}</span>
-              </NuxtLink>
-            </div>
-          </div>
-        </Transition>
+        </div>
       </div>
-    </div>
-  </header>
+    </Transition>
 
+    <Transition
+      enter-active-class="transition duration-200 ease-out"
+      enter-from-class="opacity-0 -translate-y-2"
+      enter-to-class="opacity-100 translate-y-0"
+      leave-active-class="transition duration-150 ease-in"
+      leave-from-class="opacity-100 translate-y-0"
+      leave-to-class="opacity-0 -translate-y-2"
+    >
+      <div v-if="showMobileMenu" class="border-t border-slate-200 bg-white px-4 py-4 md:hidden">
+        <div class="grid grid-cols-2 gap-2">
+          <NuxtLink
+            v-for="link in navLinks"
+            :key="link.to"
+            :to="link.to"
+            @click="showMobileMenu = false"
+            class="flex items-center justify-center gap-2 rounded-xl border px-3 py-3 text-sm font-bold"
+            :class="$route.path === link.to ? 'border-slate-950 bg-slate-950 text-white' : 'border-slate-200 bg-slate-50 text-slate-700'"
+          >
+            <Icon :name="link.icon" class="h-4 w-4" />
+            {{ link.name }}
+          </NuxtLink>
+        </div>
+
+        <div class="mt-3 rounded-xl border border-slate-200 bg-slate-50 p-3">
+          <div class="mb-2 flex items-center justify-between text-sm">
+            <span class="font-bold text-slate-600">{{ $t('header.mobile_progress') }}</span>
+            <span class="font-black text-slate-950">{{ $t('header.mobile_progress_count', { collected: stats.collected, total: stats.total }) }}</span>
+          </div>
+          <div class="h-2 overflow-hidden rounded-full bg-white">
+            <div class="h-full rounded-full bg-emerald-500" :style="{ width: `${stats.percentage}%` }"></div>
+          </div>
+        </div>
+
+        <div class="mt-3 flex gap-2">
+          <NuxtLink
+            v-if="!user"
+            to="/auth"
+            @click="showMobileMenu = false"
+            class="flex-1 rounded-xl bg-slate-950 px-4 py-3 text-center text-sm font-bold text-white"
+          >
+            {{ $t('auth.login') }}
+          </NuxtLink>
+          <button
+            v-else
+            @click="handleLogout"
+            class="flex-1 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-600"
+          >
+            {{ $t('auth.logout') }}
+          </button>
+          <LanguageSwitcher class="h-12 rounded-xl border border-slate-200 bg-white" />
+        </div>
+      </div>
+    </Transition>
+  </header>
 </template>
 
 <script setup lang="ts">
 const authStore = useAuthStore();
 const router = useRouter();
 const { getStats } = useCollection();
-const { canInstallIos, canInstallAndroid, triggerIosPrompt, triggerAndroidPrompt } = usePwaInstall();
-
-const showMobileMenu = ref(false);
-const mobileMenuRenderKey = ref(0);
-const showSearch = ref(false);
-const searchQuery = ref('');
-
 const { t } = useI18n();
 
-const stats = computed(() => getStats());
+const showMobileMenu = ref(false);
+const showSearch = ref(false);
+const searchQuery = ref('');
+const isLoggingOut = ref(false);
 
-// 使用 AuthStore 的计算属性
+const stats = computed(() => getStats());
 const user = computed(() => authStore.user.value);
 const userInitial = computed(() => authStore.userInitial.value);
 
 const navLinks = computed(() => [
-  { to: '/', name: t('nav.home'), icon: 'line-md:home-md' },
-  { to: '/collection', name: t('nav.collection'), icon: 'line-md:text-box' },
+  { to: '/', name: t('nav.home'), icon: 'lucide:layout-dashboard' },
+  { to: '/collection', name: t('nav.collection'), icon: 'lucide:list-checks' },
 ]);
 
-const isLoggingOut = ref(false);
-
 const toggleMobileMenu = () => {
-  if (!showMobileMenu.value) {
-    mobileMenuRenderKey.value += 1;
-  }
   showMobileMenu.value = !showMobileMenu.value;
 };
 
@@ -321,118 +183,21 @@ const handleLogout = async () => {
   if (isLoggingOut.value) return;
   isLoggingOut.value = true;
   showMobileMenu.value = false;
-  
-  // 使用 AuthStore 登出
   await authStore.signOut();
+  isLoggingOut.value = false;
 };
 
 const handleSearch = () => {
   showMobileMenu.value = false;
   showSearch.value = false;
-  router.push({ 
-    path: '/collection', 
-    query: searchQuery.value ? { search: searchQuery.value } : {} 
+  router.push({
+    path: '/collection',
+    query: searchQuery.value ? { search: searchQuery.value } : {},
   });
 };
 
-// Close menus on route change
 watch(() => router.currentRoute.value.path, () => {
   showMobileMenu.value = false;
   showSearch.value = false;
 });
-
-watch(showMobileMenu, (isOpen) => {
-  if (typeof document === 'undefined') return;
-  document.documentElement.classList.toggle('mobile-menu-open', isOpen);
-});
-
-onUnmounted(() => {
-  if (typeof document !== 'undefined') {
-    document.documentElement.classList.remove('mobile-menu-open');
-  }
-});
 </script>
-
-<style scoped>
-@media (max-width: 767px) {
-  .mobile-menu-shell-open {
-    background:
-      radial-gradient(circle at 20% 0%, rgba(255, 255, 255, 0.86), transparent 34%),
-      linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(237, 255, 242, 0.76));
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
-
-  .mobile-menu-panel {
-    contain: layout paint;
-    isolation: isolate;
-    will-change: transform, opacity;
-  }
-
-  .mobile-menu-panel .mobile-nav-link {
-    animation: mobile-nav-tile-in 520ms cubic-bezier(0.2, 0.9, 0.22, 1.2) both;
-    transform-origin: 50% 80%;
-  }
-
-  .mobile-menu-panel .mobile-nav-icon {
-    display: inline-block;
-    animation: mobile-nav-icon-pop 680ms cubic-bezier(0.18, 0.95, 0.22, 1.28) both;
-    transform-origin: center;
-    will-change: transform, opacity;
-  }
-}
-
-@keyframes mobile-nav-tile-in {
-  0% {
-    opacity: 0;
-    transform: translateY(14px) scale(0.94);
-  }
-  62% {
-    opacity: 1;
-    transform: translateY(-3px) scale(1.035);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes mobile-nav-icon-pop {
-  0% {
-    opacity: 0;
-    transform: translateY(9px) scale(0.72) rotate(-8deg);
-  }
-  56% {
-    opacity: 1;
-    transform: translateY(-5px) scale(1.18) rotate(5deg);
-  }
-  78% {
-    transform: translateY(1px) scale(0.96) rotate(-2deg);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1) rotate(0);
-  }
-}
-
-.mobile-action-button,
-.mobile-action-button :deep(*) {
-  color: #fff !important;
-  -webkit-text-stroke: 0 !important;
-  paint-order: normal !important;
-  text-shadow: 0 1px 2px rgba(15, 23, 42, 0.28) !important;
-}
-
-.mobile-action-marquee {
-  min-width: max-content;
-  animation: marquee 8s linear infinite;
-}
-
-.mobile-nav-link-active,
-.mobile-nav-link-active :deep(*) {
-  color: #fff !important;
-  -webkit-text-stroke: 0 !important;
-  paint-order: normal !important;
-  text-shadow: 0 1px 2px rgba(15, 23, 42, 0.22) !important;
-}
-</style>

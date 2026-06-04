@@ -13,6 +13,12 @@ const CURRENT_VERSION = 2;
 const CLOUD_SYNC_DEBOUNCE_MS = 15000;
 const CLOUD_SYNC_DEBOUNCE_SECONDS = CLOUD_SYNC_DEBOUNCE_MS / 1000;
 const COLLECTION_STATUS_ORDER: CollectionItemStatus[] = ['none', 'seedling', 'plucked', 'decor'];
+const COLLECTION_STATUS_PROGRESS: Record<CollectionItemStatus, number> = {
+  none: 0,
+  seedling: 33,
+  plucked: 66,
+  decor: 100,
+};
 
 // Global timeout registry for debouncing cloud syncs across all component callers
 let globalSyncTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -492,6 +498,10 @@ export function useCollection() {
     return getItemStatus(itemId) === 'decor';
   };
 
+  const getItemProgressPercent = (itemId: string): number => {
+    return COLLECTION_STATUS_PROGRESS[getItemStatus(itemId)];
+  };
+
   // Set collected status for an item
   const setCollected = (itemId: string, collected: boolean) => {
     collectionState.value.collected[itemId] = collected;
@@ -552,42 +562,47 @@ export function useCollection() {
     const stats: CollectionStats = {
       total: items.length,
       collected: 0,
+      progress: 0,
       percentage: 0,
       byCategory: {},
-      byPikminType: {} as Record<PikminType, { total: number; collected: number }>,
-      byCategoryType: {} as Record<DecorCategoryType, { total: number; collected: number }>,
+      byPikminType: {} as Record<PikminType, { total: number; collected: number; progress: number; percentage: number }>,
+      byCategoryType: {} as Record<DecorCategoryType, { total: number; collected: number; progress: number; percentage: number }>,
     };
 
     // Initialize Pikmin type stats
-    const pikminTypes: PikminType[] = ['red', 'yellow', 'blue', 'purple', 'white', 'rock', 'winged', 'ice'];
+    const pikminTypes: PikminType[] = ['red', 'yellow', 'blue', 'purple', 'white', 'winged', 'rock', 'ice'];
     pikminTypes.forEach(type => {
-      stats.byPikminType[type] = { total: 0, collected: 0 };
+      stats.byPikminType[type] = { total: 0, collected: 0, progress: 0, percentage: 0 };
     });
 
     // Initialize category type stats
     const categoryTypes: DecorCategoryType[] = ['regular', 'special', 'roadside', 'weather', 'regional', 'rare'];
     categoryTypes.forEach(type => {
-      stats.byCategoryType[type] = { total: 0, collected: 0 };
+      stats.byCategoryType[type] = { total: 0, collected: 0, progress: 0, percentage: 0 };
     });
 
     items.forEach(item => {
+      const itemProgress = getItemProgressPercent(item.id);
       const isItemCollected = isCollected(item.id);
       if (isItemCollected) {
         stats.collected++;
       }
+      stats.progress += itemProgress / 100;
 
       // By category
       if (!stats.byCategory[item.categoryId]) {
-        stats.byCategory[item.categoryId] = { total: 0, collected: 0 };
+        stats.byCategory[item.categoryId] = { total: 0, collected: 0, progress: 0, percentage: 0 };
       }
       const catStats = stats.byCategory[item.categoryId]!;
       catStats.total++;
+      catStats.progress += itemProgress / 100;
       if (isItemCollected) {
         catStats.collected++;
       }
 
       // By Pikmin type
       stats.byPikminType[item.pikminType].total++;
+      stats.byPikminType[item.pikminType].progress += itemProgress / 100;
       if (isItemCollected) {
         stats.byPikminType[item.pikminType].collected++;
       }
@@ -596,13 +611,32 @@ export function useCollection() {
       const definition = definitions.find(d => d.category.id === item.categoryId);
       if (definition) {
         stats.byCategoryType[definition.category.type].total++;
+        stats.byCategoryType[definition.category.type].progress += itemProgress / 100;
         if (isItemCollected) {
           stats.byCategoryType[definition.category.type].collected++;
         }
       }
     });
 
-    stats.percentage = stats.total > 0 ? Math.round((stats.collected / stats.total) * 100) : 0;
+    Object.values(stats.byCategory).forEach((categoryStats) => {
+      categoryStats.percentage = categoryStats.total > 0
+        ? Math.round((categoryStats.progress / categoryStats.total) * 100)
+        : 0;
+    });
+
+    Object.values(stats.byPikminType).forEach((pikminStats) => {
+      pikminStats.percentage = pikminStats.total > 0
+        ? Math.round((pikminStats.progress / pikminStats.total) * 100)
+        : 0;
+    });
+
+    Object.values(stats.byCategoryType).forEach((categoryTypeStats) => {
+      categoryTypeStats.percentage = categoryTypeStats.total > 0
+        ? Math.round((categoryTypeStats.progress / categoryTypeStats.total) * 100)
+        : 0;
+    });
+
+    stats.percentage = stats.total > 0 ? Math.round((stats.progress / stats.total) * 100) : 0;
 
     return stats;
   };
@@ -687,6 +721,7 @@ export function useCollection() {
     cycleItemStatus,
     toggleCollected,
     isCollected,
+    getItemProgressPercent,
     setCollected,
     collectAllInCategory,
     clearCategory,

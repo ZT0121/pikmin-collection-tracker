@@ -2,7 +2,7 @@
   <div ref="gridRoot">
     <div
       v-if="!groupByVariant"
-      class="grid grid-cols-2 gap-3 px-1 sm:grid-cols-3 sm:px-2 lg:grid-cols-4 xl:grid-cols-6"
+      class="grid grid-cols-2 gap-3 px-1 sm:grid-cols-4 sm:px-2"
     >
       <DecorCard
         v-for="(item, index) in items"
@@ -28,7 +28,7 @@
         <!-- Pikmin Row for this Variant -->
         <div
           v-if="isGroupVisible(group.key)"
-          class="grid grid-cols-2 gap-3 px-1 sm:grid-cols-3 sm:px-2 lg:grid-cols-4 xl:grid-cols-6"
+          class="grid grid-cols-2 gap-3 px-1 sm:grid-cols-4 sm:px-2"
         >
           <DecorCard
             v-for="(item, index) in group.items"
@@ -79,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import type { DecorItem } from '~/types/decor';
+import { PIKMIN_TYPES, type DecorItem } from '~/types/decor';
 
 const props = defineProps<{
   items: DecorItem[];
@@ -99,30 +99,48 @@ const visibleGroupKeys = ref<Set<string>>(new Set());
 const viewportWidth = ref(1024);
 let visibilityObserver: IntersectionObserver | null = null;
 
+const getPikminSortIndex = (item: DecorItem) => {
+  const index = PIKMIN_TYPES.indexOf(item.pikminType);
+  return index === -1 ? PIKMIN_TYPES.length : index;
+};
+
+const sortByOfficialPikminOrder = (items: DecorItem[]) =>
+  [...items].sort((a, b) => getPikminSortIndex(a) - getPikminSortIndex(b));
+
 // Group items by categoryId + variantId
 const groupedItems = computed(() => {
   const groups = new Map<string, { 
     key: string; 
     variantName: string;
     isRare: boolean;
+    order: number;
     items: DecorItem[] 
   }>();
   
-  props.items.forEach(item => {
+  props.items.forEach((item, itemIndex) => {
     const key = `${item.categoryId}_${item.variantId}`;
     if (!groups.has(key)) {
       const variant = getVariant(item.categoryId, item.variantId);
       groups.set(key, { 
         key, 
         variantName: variant?.name || item.variantId,
-        isRare: item.variantId.toLowerCase().includes('rare'),
+        isRare: Boolean(variant?.isRare) || item.variantId.toLowerCase().includes('rare'),
+        order: itemIndex,
         items: [] 
       });
     }
     groups.get(key)!.items.push(item);
   });
-  
-  return Array.from(groups.values());
+
+  return Array.from(groups.values())
+    .sort((a, b) => {
+      if (a.isRare !== b.isRare) return a.isRare ? -1 : 1;
+      return a.order - b.order;
+    })
+    .map((group) => ({
+      ...group,
+      items: sortByOfficialPikminOrder(group.items),
+    }));
 });
 
 const isGroupVisible = (key: string) => visibleGroupKeys.value.has(key);
@@ -139,13 +157,7 @@ const setGroupVisibility = (key: string, isVisible: boolean) => {
 
 const getGroupPlaceholderHeight = (itemCount: number) => {
   const gap = 12;
-  const cardsPerRow = viewportWidth.value >= 1280
-    ? 6
-    : viewportWidth.value >= 1024
-      ? 4
-      : viewportWidth.value >= 640
-        ? 3
-        : 2;
+  const cardsPerRow = viewportWidth.value >= 640 ? 4 : 2;
   const rows = Math.max(1, Math.ceil(itemCount / cardsPerRow));
   return `${Math.ceil(rows * 264 + Math.max(0, rows - 1) * gap)}px`;
 };

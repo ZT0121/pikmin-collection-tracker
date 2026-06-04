@@ -770,7 +770,7 @@ import type { CollectionCategoryFilter } from "~/composables/useCollectionFilter
 
 const route = useRoute();
 const { t, locale } = useI18n();
-const { isCollected, collectAllInCategory, hasPendingChanges } = useCollection();
+const { isCollected, getItemProgressPercent, collectAllInCategory, hasPendingChanges } = useCollection();
 const {
   getAllDecorItems,
   getDecorDefinitions,
@@ -817,8 +817,8 @@ const collapseAllCategories = () => {
 const getCategoryProgressPercent = (categoryId: string): number => {
   const items = getItemsByCategory(categoryId);
   if (items.length === 0) return 0;
-  const collected = items.filter((item) => isCollected(item.id)).length;
-  return Math.round((collected / items.length) * 100);
+  const progress = items.reduce((sum, item) => sum + getItemProgressPercent(item.id), 0);
+  return Math.round(progress / items.length);
 };
 
 const collectionFilters = computed(() => [

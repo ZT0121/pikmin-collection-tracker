@@ -87,7 +87,9 @@ export function useDecorData() {
           typesToGenerate = PIKMIN_TYPES.filter(type => availableTypesInVariant.has(type));
         } else {
           // Fallback: 如果沒有 imageUrls，使用 availablePikminTypes
-          typesToGenerate = availableTypes as PikminType[];
+          typesToGenerate = [...availableTypes].sort(
+            (a, b) => PIKMIN_TYPES.indexOf(a) - PIKMIN_TYPES.indexOf(b),
+          ) as PikminType[];
         }
         
         typesToGenerate.forEach(pikminType => {

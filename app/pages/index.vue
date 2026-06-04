@@ -143,7 +143,7 @@ const nearCompleteCategories = computed(() => {
     const catStats = stats.value.byCategory[def.category.id];
     if (!catStats || catStats.total === 0) return;
 
-    const percentage = Math.round((catStats.collected / catStats.total) * 100);
+    const percentage = catStats.percentage;
     const remaining = catStats.total - catStats.collected;
     const firstVariant = def.variants[0] as any;
     const iconUrl = firstVariant?.imageUrls?.red || firstVariant?.imageUrl || '';

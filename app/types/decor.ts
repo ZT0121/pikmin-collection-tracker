@@ -1,6 +1,6 @@
 export type PikminType = 'red' | 'yellow' | 'blue' | 'purple' | 'white' | 'rock' | 'winged' | 'ice';
 
-export const PIKMIN_TYPES: PikminType[] = ['red', 'yellow', 'blue', 'white', 'purple', 'rock', 'winged', 'ice'];
+export const PIKMIN_TYPES: PikminType[] = ['red', 'yellow', 'blue', 'purple', 'white', 'winged', 'rock', 'ice'];
 
 export const PIKMIN_TYPE_NAMES: Record<PikminType, string> = {
   red: '紅色 Pikmin',
@@ -85,8 +85,9 @@ export interface CollectionState {
 export interface CollectionStats {
   total: number;
   collected: number;
+  progress: number;
   percentage: number;
-  byCategory: Record<string, { total: number; collected: number }>;
-  byPikminType: Record<PikminType, { total: number; collected: number }>;
-  byCategoryType: Record<DecorCategoryType, { total: number; collected: number }>;
+  byCategory: Record<string, { total: number; collected: number; progress: number; percentage: number }>;
+  byPikminType: Record<PikminType, { total: number; collected: number; progress: number; percentage: number }>;
+  byCategoryType: Record<DecorCategoryType, { total: number; collected: number; progress: number; percentage: number }>;
 }

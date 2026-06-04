@@ -1,7 +1,7 @@
 <template>
   <button
     @click="toggleLanguage"
-    class="border-2 border-black flex items-center justify-center w-10 h-10 rounded-xl bg-white/60 hover:bg-white text-gray-500 hover:text-emerald-600 transition-all"
+    class="border-2 border-black flex items-center justify-center w-10 h-10 rounded-xl bg-white/60 hover:bg-white text-gray-500 hover:text-rose-600 transition-all"
     :title="nextLocaleName"
   >
     <Icon name="hugeicons:translate" class="text-xl" />

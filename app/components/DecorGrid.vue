@@ -10,7 +10,7 @@
       <!-- Pikmin Row for this Variant -->
         <div
           v-if="isGroupVisible(group.key)"
-          class="flex flex-wrap gap-3 px-1 sm:px-2 overflow-visible"
+          class="grid grid-cols-1 gap-3 px-1 sm:grid-cols-2 sm:px-2 lg:grid-cols-3 xl:grid-cols-4"
         >
           <DecorCard
             v-for="(item, index) in group.items"
@@ -20,7 +20,7 @@
           :variant-id="item.variantId"
           :pikmin-type="item.pikminType"
           :animation-delay="Math.min((groupIndex * 8 + index) * 30, 300)"
-            class="w-[calc(12.5%-0.72rem)] min-w-[100px] max-w-[138px]"
+            class="min-w-0"
             @toggle="$emit('toggle', $event)"
           />
         </div>
@@ -116,12 +116,16 @@ const setGroupVisibility = (key: string, isVisible: boolean) => {
 };
 
 const getGroupPlaceholderHeight = (itemCount: number) => {
-  const availableWidth = Math.min(Math.max(viewportWidth.value - 32, 320), 1280);
   const gap = 12;
-  const cardWidth = Math.min(Math.max((availableWidth - gap * 7) / 8, 100), 140);
-  const cardsPerRow = Math.max(1, Math.floor((availableWidth + gap) / (cardWidth + gap)));
-  const rows = Math.max(1, Math.ceil(itemCount / Math.min(cardsPerRow, 8)));
-  return `${Math.ceil(rows * (cardWidth + 58) + Math.max(0, rows - 1) * gap)}px`;
+  const cardsPerRow = viewportWidth.value >= 1280
+    ? 4
+    : viewportWidth.value >= 1024
+      ? 3
+      : viewportWidth.value >= 640
+        ? 2
+        : 1;
+  const rows = Math.max(1, Math.ceil(itemCount / cardsPerRow));
+  return `${Math.ceil(rows * 148 + Math.max(0, rows - 1) * gap)}px`;
 };
 
 const syncObservedGroups = async () => {

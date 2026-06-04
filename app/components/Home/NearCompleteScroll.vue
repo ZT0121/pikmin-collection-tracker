@@ -3,17 +3,17 @@
     <!-- Header: Simple & Clean (Pikmin Bloom Style) -->
     <div class="flex items-center justify-between mb-4 px-2">
       <div class="flex items-center gap-2">
-         <Icon name="lucide:footprints" class="text-emerald-500 transform -rotate-45" />
+         <Icon name="lucide:footprints" class="text-rose-500 transform -rotate-45" />
          <h2 class="text-on-glass text-white-halo text-lg font-black tracking-tight">{{ $t('home.near_complete.title') }}</h2>
       </div>
-      <button v-if="categories.length > 3" class="glass-control text-xs font-bold text-emerald-700 px-3 py-1.5 rounded-full transition-all">
+      <button v-if="categories.length > 3" class="glass-control text-xs font-bold text-rose-700 px-3 py-1.5 rounded-full transition-all">
         {{ $t('home.near_complete.view_all') }}
       </button>
     </div>
 
     <!-- Empty State -->
     <div v-if="categories.length === 0" class="flex-1 flex flex-col items-center justify-center text-center opacity-60">
-        <Icon name="lucide:flower-2" class="text-4xl text-emerald-300 mb-2 animate-pulse" />
+        <Icon name="lucide:flower-2" class="text-4xl text-rose-300 mb-2 animate-pulse" />
         <p class="text-sm font-bold text-gray-600">{{ $t('home.near_complete.empty') }}</p>
     </div>
 

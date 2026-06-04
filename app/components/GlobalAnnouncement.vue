@@ -15,7 +15,7 @@
         <!-- 頂部標題與關閉按鈕 -->
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <div class="shrink-0 text-emerald-500">
+            <div class="shrink-0 text-rose-500">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
@@ -25,14 +25,14 @@
               <button 
                 @click="currentTab = 'update'" 
                 class="px-2 py-1 text-xs rounded-full transition-colors"
-                :class="currentTab === 'update' ? 'bg-emerald-500 text-white shadow-sm' : 'glass-control text-gray-700 hover:text-emerald-700'"
+                :class="currentTab === 'update' ? 'bg-rose-500 text-white shadow-sm' : 'glass-control text-gray-700 hover:text-rose-700'"
               >
                 📢 更新
               </button>
               <button 
                 @click="currentTab = 'event'" 
                 class="px-2 py-1 text-xs rounded-full transition-colors"
-                :class="currentTab === 'event' ? 'bg-green-500 text-white shadow-sm' : 'glass-control text-gray-700 hover:text-emerald-700'"
+                :class="currentTab === 'event' ? 'bg-rose-500 text-white shadow-sm' : 'glass-control text-gray-700 hover:text-rose-700'"
               >
                 🎉 活動
               </button>
@@ -62,7 +62,7 @@
                 4/26 號更新地圖，優化地圖面積邏輯與準確度。
               </span>
             </li>
-            <li>3/14 主頁現在會顯示<span class="text-green-600 font-medium">當月全新與復刻的裝飾品</span>皮克敏了!新增<span class="bg-gradient-to-r from-yellow-400 via-red-500 to-purple-600 bg-clip-text text-transparent font-bold">彩色粉末皮克敏系列</span></li>
+            <li>3/14 主頁現在會顯示<span class="text-rose-600 font-medium">當月全新與復刻的裝飾品</span>皮克敏了!新增<span class="bg-gradient-to-r from-yellow-400 via-red-500 to-purple-600 bg-clip-text text-transparent font-bold">彩色粉末皮克敏系列</span></li>
             <li class="flex items-center gap-1 flex-wrap">新增 <span class="ios-badge inline-flex items-center gap-0.5 bg-gray-900 text-white px-1.5 py-[1.5px] rounded-[5px] text-[11px] font-semibold tracking-wide shadow-sm" style="font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;"><Icon name="lucide:apple" class="w-3 h-3 mb-[0.5px]"/> iOS</span> 專屬「加到主畫面」捷徑按鈕</li>
             <li>
               <div class="flex items-start gap-3"> <!-- items-start 讓文字對齊網格頂部 -->
@@ -94,21 +94,21 @@
             />
             <!-- 活動說明 -->
             <div class="announcement-copy text-sm space-y-1">
-              <p class="font-medium text-green-600">🚶 走路集點優惠！</p>
+              <p class="font-medium text-rose-600">🚶 走路集點優惠！</p>
               <p class="text-xs">邊玩 Pikmin Bloom 邊用 LINE 散步趣集點</p>
               <p class="text-xs">最高可獲 <span class="font-bold text-orange-500">10,000 點</span></p>
               <p class="text-xs flex items-center gap-1">
                 邀請碼：
                 <button 
                   @click="copyInviteCode"
-                  class="font-mono glass-control px-1.5 py-0.5 rounded active:bg-emerald-200 transition-colors cursor-pointer inline-flex items-center gap-1"
+                  class="font-mono glass-control px-1.5 py-0.5 rounded active:bg-rose-200 transition-colors cursor-pointer inline-flex items-center gap-1"
                   :title="copied ? '已複製！' : '點擊複製'"
                 >
                   G79K77XF
                   <svg v-if="!copied" xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                   </svg>
-                  <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg v-else xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-rose-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
                 </button>
@@ -119,7 +119,7 @@
 
         <!-- 進度條 -->
         <div class="w-full glass-control rounded-full h-1 overflow-hidden">
-          <div class="bg-emerald-500 h-full transition-all duration-[10000ms] ease-linear w-full" :class="{ '!w-0': startProgress }"></div>
+          <div class="bg-rose-500 h-full transition-all duration-[10000ms] ease-linear w-full" :class="{ '!w-0': startProgress }"></div>
         </div>
       </div>
     </div>

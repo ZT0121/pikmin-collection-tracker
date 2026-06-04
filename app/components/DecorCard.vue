@@ -10,7 +10,7 @@
     :style="{ animationDelay: `${animationDelay}ms` }"
   >
     <div
-      class="decor-card-shell liquid-glass-soft liquid-glass-dynamic relative rounded-2xl overflow-hidden transition-all duration-300 z-10 border"
+      class="decor-card-shell liquid-glass-soft liquid-glass-dynamic relative z-10 flex min-h-[148px] overflow-hidden rounded-2xl border transition-all duration-300"
       :class="[
         isRareVariant
           ? (isDecorCompleted
@@ -19,7 +19,7 @@
                 ? 'border-amber-300/80 shadow-[0_10px_24px_rgba(245,158,11,0.18)]'
                 : 'border-slate-300/50 shadow-[0_6px_16px_rgba(15,23,42,0.1)]')
           : (isDecorCompleted
-              ? 'border-emerald-300/90 shadow-[0_12px_30px_rgba(5,150,105,0.24)]'
+              ? 'border-rose-300/90 shadow-[0_12px_30px_rgba(225,29,72,0.22)]'
               : hasProgress
                 ? 'border-amber-300/80 shadow-[0_10px_24px_rgba(245,158,11,0.18)]'
                 : 'border-slate-300/50 shadow-[0_6px_16px_rgba(15,23,42,0.1)]')
@@ -27,7 +27,7 @@
     >
       <!-- Image Container -->
       <div
-        class="decor-image-stage relative aspect-square p-3 overflow-hidden"
+        class="decor-image-stage relative w-[112px] shrink-0 overflow-hidden border-r border-white/70 p-3 sm:w-[124px]"
         :class="isRareVariant
           ? (isDecorCompleted
               ? 'bg-gradient-to-br from-amber-50/92 via-yellow-50/86 to-orange-50/84'
@@ -35,9 +35,9 @@
                 ? 'bg-gradient-to-br from-amber-50/90 via-orange-50/82 to-yellow-50/78'
               : 'bg-gradient-to-br from-slate-100/88 via-gray-50/82 to-slate-50/78')
           : (isDecorCompleted
-              ? 'bg-gradient-to-br from-white/92 via-emerald-50/84 to-teal-50/80'
+              ? 'bg-gradient-to-br from-white/92 via-rose-50/84 to-cyan-50/80'
               : hasProgress
-                ? 'bg-gradient-to-br from-white/92 via-amber-50/84 to-lime-50/78'
+                ? 'bg-gradient-to-br from-white/92 via-amber-50/84 to-sky-50/78'
               : 'bg-gradient-to-br from-slate-100/88 via-gray-50/82 to-slate-50/78')"
       >
         <!-- Background pattern -->
@@ -47,7 +47,7 @@
             :style="isDecorCompleted
               ? (isRareVariant
                   ? 'background-image: radial-gradient(circle, #fbbf24 1px, transparent 1px); background-size: 16px 16px;'
-                  : 'background-image: radial-gradient(circle, #00b92f 1px, transparent 1px); background-size: 20px 20px;')
+                  : 'background-image: radial-gradient(circle, #e11d48 1px, transparent 1px); background-size: 20px 20px;')
               : hasProgress
                 ? 'background-image: radial-gradient(circle, #f59e0b 1px, transparent 1px); background-size: 18px 18px;'
               : 'background-image: radial-gradient(circle, #94a3b8 1px, transparent 1px); background-size: 20px 20px;'"
@@ -62,7 +62,7 @@
             v-for="particle in unlockParticles"
             :key="particle.id"
             class="unlock-particle"
-            :class="isRareVariant ? 'unlock-particle-gold' : 'unlock-particle-emerald'"
+            :class="isRareVariant ? 'unlock-particle-gold' : 'unlock-particle-rose'"
             :style="{
               '--particle-x': particle.x,
               '--particle-y': particle.y,
@@ -139,7 +139,7 @@
         >
           <div
             v-if="isDecorCompleted"
-            class="absolute bottom-2 right-2 w-8 h-8 bg-emerald-500 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white/80"
+            class="absolute bottom-2 right-2 w-8 h-8 bg-rose-500 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white/80"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
@@ -150,13 +150,13 @@
         <!-- Hover overlay -->
         <div
           class="absolute inset-0 transition-colors duration-300 rounded-lg pointer-events-none"
-          :class="isDecorCompleted ? 'bg-emerald-500/0 group-hover:bg-emerald-500/8' : hasProgress ? 'bg-amber-500/0 group-hover:bg-amber-500/8' : 'bg-slate-900/0 group-hover:bg-slate-900/6'"
+          :class="isDecorCompleted ? 'bg-rose-500/0 group-hover:bg-rose-500/8' : hasProgress ? 'bg-amber-500/0 group-hover:bg-amber-500/8' : 'bg-slate-900/0 group-hover:bg-slate-900/6'"
         ></div>
       </div>
 
       <!-- Info Section -->
       <div
-        class="p-3 text-center border-t backdrop-blur-sm"
+        class="flex min-w-0 flex-1 flex-col justify-between p-3 text-left backdrop-blur-sm"
         :class="isDecorCompleted
           ? 'bg-white/93 border-white/70'
           : hasProgress
@@ -164,7 +164,7 @@
           : 'bg-slate-50/90 border-slate-200/50'"
       >
         <p
-          class="text-sm font-extrabold truncate"
+          class="line-clamp-2 text-sm font-extrabold leading-snug"
           :class="isDecorCompleted ? 'text-slate-900' : hasProgress ? 'text-slate-700' : 'text-slate-400'"
           :style="{ textShadow: '0 1px 2px rgba(255,255,255,0.5)' }"
           :title="locale === 'en' ? variant?.nameEn : variant?.name"
@@ -172,7 +172,7 @@
           {{ (locale === 'en' ? variant?.nameEn : variant?.name) || 'Unknown' }}
         </p>
         <p
-          class="text-xs truncate mt-0.5 font-semibold"
+          class="mt-1 line-clamp-1 text-xs font-semibold"
           :class="isDecorCompleted ? 'text-slate-700' : hasProgress ? 'text-amber-700' : 'text-slate-400'"
           :style="{ textShadow: '0 1px 2px rgba(255,255,255,0.5)' }"
           :title="locale === 'en' ? variant?.name : variant?.nameEn"
@@ -180,11 +180,11 @@
           {{ (locale === 'en' ? variant?.name : variant?.nameEn) || '' }}
         </p>
         <div
-          class="mt-2 rounded-xl bg-white/86 p-2 text-left shadow-inner ring-1"
+          class="mt-3 rounded-xl bg-white/86 p-2 text-left shadow-inner ring-1"
           :class="statusMeta.panelClass"
         >
           <div class="flex items-center justify-between gap-2">
-            <span class="text-[10px] font-bold text-slate-500">{{ t('collection.card_status.current_label') }}</span>
+            <span class="shrink-0 text-[10px] font-bold text-slate-500">{{ t('collection.card_status.current_label') }}</span>
             <span
               class="inline-flex min-w-0 items-center gap-1.5 rounded-lg px-2 py-1 text-[11px] font-extrabold"
               :class="statusMeta.softClass"
@@ -213,7 +213,7 @@
           </div>
         </div>
         <div
-          class="mt-1.5 inline-flex max-w-full items-center gap-1 rounded-lg bg-slate-50 px-2 py-1 text-[10px] font-bold text-slate-500 ring-1 ring-slate-200/80"
+          class="mt-2 inline-flex max-w-full items-center gap-1 self-start rounded-lg bg-slate-50 px-2 py-1 text-[10px] font-bold text-slate-500 ring-1 ring-slate-200/80"
           :title="t('collection.card_status.next_title', { status: nextStatusMeta.label })"
         >
           <Icon name="lucide:mouse-pointer-click" class="h-3 w-3 shrink-0" />
@@ -232,7 +232,7 @@
       <div
         v-if="showRipple"
         class="absolute inset-0 rounded-2xl pointer-events-none"
-        :class="isRemoving ? 'bg-slate-400/24' : isDecorCompleted ? 'bg-emerald-400/30' : 'bg-amber-400/28'"
+        :class="isRemoving ? 'bg-slate-400/24' : isDecorCompleted ? 'bg-rose-400/30' : 'bg-amber-400/28'"
       ></div>
     </Transition>
   </div>
@@ -313,9 +313,9 @@ const statusMeta = computed(() => {
       label: t('collection.status.seedling'),
       short: t('collection.status_short.seedling'),
       icon: 'lucide:sprout',
-      panelClass: 'ring-lime-200',
-      softClass: 'bg-lime-100 text-lime-800 ring-1 ring-lime-200',
-      stepActiveClass: 'bg-lime-500 text-white ring-lime-500',
+      panelClass: 'ring-sky-200',
+      softClass: 'bg-sky-100 text-sky-800 ring-1 ring-sky-200',
+      stepActiveClass: 'bg-sky-500 text-white ring-sky-500',
     },
     plucked: {
       label: t('collection.status.plucked'),
@@ -329,9 +329,9 @@ const statusMeta = computed(() => {
       label: t('collection.status.decor'),
       short: t('collection.status_short.decor'),
       icon: 'lucide:check',
-      panelClass: 'ring-emerald-200',
-      softClass: 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200',
-      stepActiveClass: 'bg-emerald-500 text-white ring-emerald-500',
+      panelClass: 'ring-rose-200',
+      softClass: 'bg-rose-100 text-rose-800 ring-1 ring-rose-200',
+      stepActiveClass: 'bg-rose-500 text-white ring-rose-500',
     },
   };
 
@@ -526,8 +526,8 @@ onBeforeUnmount(() => {
   opacity: 0.58;
 }
 
-.unlock-particle-emerald {
-  background: radial-gradient(circle, #ffffff 0 22%, #6ee7b7 34%, #10b981 68%, transparent 70%);
+.unlock-particle-rose {
+  background: radial-gradient(circle, #ffffff 0 22%, #fda4af 34%, #e11d48 68%, transparent 70%);
   box-shadow: 0 0 12px rgb(16 185 129 / 0.38);
 }
 

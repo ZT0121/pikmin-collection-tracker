@@ -10,7 +10,7 @@
       <!-- Pikmin Row for this Variant -->
         <div
           v-if="isGroupVisible(group.key)"
-          class="grid grid-cols-1 gap-3 px-1 sm:grid-cols-2 sm:px-2 lg:grid-cols-3 xl:grid-cols-4"
+          class="grid grid-cols-2 gap-3 px-1 sm:grid-cols-3 sm:px-2 lg:grid-cols-4 xl:grid-cols-6"
         >
           <DecorCard
             v-for="(item, index) in group.items"
@@ -118,14 +118,14 @@ const setGroupVisibility = (key: string, isVisible: boolean) => {
 const getGroupPlaceholderHeight = (itemCount: number) => {
   const gap = 12;
   const cardsPerRow = viewportWidth.value >= 1280
-    ? 4
+    ? 6
     : viewportWidth.value >= 1024
-      ? 3
+      ? 4
       : viewportWidth.value >= 640
-        ? 2
-        : 1;
+        ? 3
+        : 2;
   const rows = Math.max(1, Math.ceil(itemCount / cardsPerRow));
-  return `${Math.ceil(rows * 148 + Math.max(0, rows - 1) * gap)}px`;
+  return `${Math.ceil(rows * 244 + Math.max(0, rows - 1) * gap)}px`;
 };
 
 const syncObservedGroups = async () => {

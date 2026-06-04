@@ -45,9 +45,9 @@
       linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
       rgba(255, 255, 255, 0.015);
     box-shadow:
-      0 16px 42px rgba(0, 133, 35, 0.12),
+      0 16px 42px rgba(225, 29, 72, 0.12),
       0 1px 0 rgba(255, 255, 255, 0.92) inset,
-      0 -18px 34px rgba(0, 185, 47, 0.06) inset,
+      0 -18px 34px rgba(225, 29, 72, 0.06) inset,
       0 0 0 1px rgba(255, 255, 255, 0.28) inset;
   }
 
@@ -60,9 +60,9 @@
       rgba(255, 255, 255, 0.18);
     border-color: rgba(255, 255, 255, 0.78);
     box-shadow:
-      0 16px 42px rgba(0, 133, 35, 0.14),
+      0 16px 42px rgba(225, 29, 72, 0.14),
       0 1px 0 rgba(255, 255, 255, 0.92) inset,
-      0 -18px 34px rgba(0, 185, 47, 0.08) inset,
+      0 -18px 34px rgba(225, 29, 72, 0.08) inset,
       0 0 0 1px rgba(255, 255, 255, 0.36) inset;
     backdrop-filter: blur(6px) saturate(1.22) contrast(1.03);
     -webkit-backdrop-filter: blur(6px) saturate(1.22) contrast(1.03);
@@ -209,22 +209,22 @@
   .glass-text-rose {
     position: relative;
     display: inline-block;
-    color: rgba(210, 255, 239, 0.07);
-    -webkit-text-fill-color: rgba(210, 255, 239, 0.07);
-    -webkit-text-stroke: 0.026em rgba(42, 255, 183, 0.98);
+    color: rgba(255, 228, 230, 0.07);
+    -webkit-text-fill-color: rgba(255, 228, 230, 0.07);
+    -webkit-text-stroke: 0.026em rgba(244, 63, 94, 0.98);
     paint-order: stroke fill;
     filter:
       drop-shadow(0 0 1px rgba(236, 255, 249, 0.98))
-      drop-shadow(0 0 3px rgba(34, 255, 177, 0.72))
-      drop-shadow(0 0 7px rgba(0, 185, 47, 0.42))
+      drop-shadow(0 0 3px rgba(244, 63, 94, 0.72))
+      drop-shadow(0 0 7px rgba(225, 29, 72, 0.42))
       drop-shadow(0 0 12px rgba(14, 165, 233, 0.18))
-      drop-shadow(0 12px 22px rgba(0, 133, 35, 0.24));
+      drop-shadow(0 12px 22px rgba(225, 29, 72, 0.24));
     text-shadow:
       0 0 2px rgba(236, 255, 249, 0.92),
-      0 0 4px rgba(32, 255, 169, 0.64),
-      0 0 8px rgba(0, 185, 47, 0.36),
+      0 0 4px rgba(244, 63, 94, 0.64),
+      0 0 8px rgba(225, 29, 72, 0.36),
       0 0 12px rgba(14, 165, 233, 0.18),
-      0 2px 5px rgba(0, 55, 38, 0.35);
+      0 2px 5px rgba(76, 29, 149, 0.35);
   }
 
   .glass-text-rose::before {
@@ -232,7 +232,7 @@
     inset: -0.14em -0.06em;
     content: attr(data-text);
     color: transparent;
-    -webkit-text-stroke: 0.052em rgba(0, 237, 168, 0.5);
+    -webkit-text-stroke: 0.052em rgba(244, 63, 94, 0.5);
     filter: blur(3px);
     opacity: 0.32;
     pointer-events: none;
@@ -332,7 +332,7 @@
       0 0 5px rgba(255, 255, 255, 0.92),
       0 0 12px rgba(255, 255, 255, 0.78),
       0 2px 0 rgba(255, 255, 255, 0.7),
-      0 8px 18px rgba(0, 137, 36, 0.22);
+      0 8px 18px rgba(225, 29, 72, 0.22);
   }
 
   .text-white-halo {
@@ -351,7 +351,7 @@
     background: rgba(255, 255, 255, 0.12);
     border-color: rgba(255, 255, 255, 0.78);
     box-shadow:
-      0 8px 18px rgba(0, 133, 35, 0.08),
+      0 8px 18px rgba(225, 29, 72, 0.08),
       0 1px 8px rgba(255, 255, 255, 0.72) inset;
     backdrop-filter: blur(0.5px) saturate(1.06);
     -webkit-backdrop-filter: blur(0.5px) saturate(1.06);
@@ -360,14 +360,14 @@
   .liquid-glass-button {
     @apply relative overflow-hidden rounded-2xl border font-bold transition-all duration-300;
     background:
-      linear-gradient(135deg, rgba(0, 185, 47, 0.92), rgba(0, 133, 35, 0.86)),
+      linear-gradient(135deg, rgba(225, 29, 72, 0.92), rgba(225, 29, 72, 0.86)),
       rgba(255, 255, 255, 0.12);
     border-color: rgba(255, 255, 255, 0.64);
     color: white;
     box-shadow:
-      0 14px 30px rgba(0, 133, 35, 0.28),
+      0 14px 30px rgba(225, 29, 72, 0.28),
       0 1px 10px rgba(255, 255, 255, 0.36) inset,
-      0 -8px 20px rgba(0, 133, 35, 0.16) inset;
+      0 -8px 20px rgba(225, 29, 72, 0.16) inset;
     backdrop-filter: blur(2px) saturate(1.18);
     -webkit-backdrop-filter: blur(2px) saturate(1.18);
   }
@@ -375,9 +375,9 @@
   .liquid-glass-button:hover {
     transform: translateY(-1px);
     box-shadow:
-      0 18px 38px rgba(0, 133, 35, 0.34),
+      0 18px 38px rgba(225, 29, 72, 0.34),
       0 1px 12px rgba(255, 255, 255, 0.42) inset,
-      0 -8px 20px rgba(0, 133, 35, 0.16) inset;
+      0 -8px 20px rgba(225, 29, 72, 0.16) inset;
   }
 
   @keyframes liquid-glass-flow {
@@ -501,7 +501,7 @@
   
   .btn-primary:hover {
     @apply shadow-xl scale-105;
-    background: linear-gradient(135deg, #be123c 0%, #06691f 100%);
+    background: linear-gradient(135deg, #be123c 0%, #9f1239 100%);
   }
   
   .btn-primary:active {
@@ -555,7 +555,7 @@
   
   .category-tag-active {
     @apply text-white border-white/50 shadow-lg shadow-rose-900/10;
-    background: linear-gradient(135deg, rgba(0, 185, 47, 0.96), rgba(0, 133, 35, 0.9));
+    background: linear-gradient(135deg, rgba(225, 29, 72, 0.96), rgba(225, 29, 72, 0.9));
   }
   
   .category-tag-inactive {
@@ -611,7 +611,7 @@
     background: rgba(255, 255, 255, 0.62);
     border-color: rgba(255, 255, 255, 0.82);
     box-shadow:
-      0 10px 24px rgba(0, 133, 35, 0.08),
+      0 10px 24px rgba(225, 29, 72, 0.08),
       0 1px 8px rgba(255, 255, 255, 0.78) inset;
     backdrop-filter: blur(2px) saturate(1.2);
     -webkit-backdrop-filter: blur(2px) saturate(1.2);
@@ -664,7 +664,7 @@
   
   /* Glow effects */
   .glow-rose {
-    box-shadow: 0 0 20px rgba(0, 185, 47, 0.4);
+    box-shadow: 0 0 20px rgba(225, 29, 72, 0.4);
   }
   
   .glow-white {

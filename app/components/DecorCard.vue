@@ -1,7 +1,7 @@
 <template>
   <div
     @click="handleClick"
-    class="relative group cursor-pointer pop-in"
+    class="relative group h-full cursor-pointer pop-in"
     :class="{
       'decor-unlocked-now': isUnlocking,
       'decor-removing': isRemoving,
@@ -10,7 +10,7 @@
     :style="{ animationDelay: `${animationDelay}ms` }"
   >
     <div
-      class="decor-card-shell liquid-glass-soft liquid-glass-dynamic relative z-10 flex min-h-[148px] overflow-hidden rounded-2xl border transition-all duration-300"
+      class="decor-card-shell liquid-glass-soft liquid-glass-dynamic relative z-10 flex h-[244px] flex-col overflow-hidden rounded-2xl border transition-all duration-300"
       :class="[
         isRareVariant
           ? (isDecorCompleted
@@ -27,7 +27,7 @@
     >
       <!-- Image Container -->
       <div
-        class="decor-image-stage relative w-[112px] shrink-0 overflow-hidden border-r border-white/70 p-3 sm:w-[124px]"
+        class="decor-image-stage relative h-[118px] w-full shrink-0 overflow-hidden border-b border-white/70 p-3"
         :class="isRareVariant
           ? (isDecorCompleted
               ? 'bg-gradient-to-br from-amber-50/92 via-yellow-50/86 to-orange-50/84'
@@ -76,7 +76,7 @@
           v-if="imageUrl && !hasError"
           :src="imageUrl"
           :alt="`${locale === 'en' ? variant?.nameEn : variant?.name} ${t('pikmin_types.' + pikminType)}`"
-          class="decor-image relative w-full h-full object-contain transform group-hover:scale-110 transition-all duration-300"
+          class="decor-image relative mx-auto h-full max-h-[92px] w-full max-w-[82px] object-contain transform transition-all duration-300 group-hover:scale-[1.04]"
           :class="isDecorCompleted ? 'opacity-100 saturate-[1.02]' : hasProgress ? 'opacity-[0.72] grayscale-[24%] saturate-[0.72]' : 'opacity-[0.45] grayscale-[70%] saturate-[0.3]'"
           loading="lazy"
           referrerpolicy="no-referrer"
@@ -156,7 +156,7 @@
 
       <!-- Info Section -->
       <div
-        class="flex min-w-0 flex-1 flex-col justify-between p-3 text-left backdrop-blur-sm"
+        class="flex min-h-0 flex-1 flex-col p-3 text-center backdrop-blur-sm"
         :class="isDecorCompleted
           ? 'bg-white/93 border-white/70'
           : hasProgress
@@ -164,7 +164,7 @@
           : 'bg-slate-50/90 border-slate-200/50'"
       >
         <p
-          class="line-clamp-2 text-sm font-extrabold leading-snug"
+          class="line-clamp-1 text-sm font-extrabold leading-snug"
           :class="isDecorCompleted ? 'text-slate-900' : hasProgress ? 'text-slate-700' : 'text-slate-400'"
           :style="{ textShadow: '0 1px 2px rgba(255,255,255,0.5)' }"
           :title="locale === 'en' ? variant?.nameEn : variant?.name"
@@ -180,10 +180,10 @@
           {{ (locale === 'en' ? variant?.name : variant?.nameEn) || '' }}
         </p>
         <div
-          class="mt-3 rounded-xl bg-white/86 p-2 text-left shadow-inner ring-1"
+          class="mt-2 rounded-xl bg-white/86 p-2 text-left shadow-inner ring-1"
           :class="statusMeta.panelClass"
         >
-          <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center justify-between gap-1.5">
             <span class="shrink-0 text-[10px] font-bold text-slate-500">{{ t('collection.card_status.current_label') }}</span>
             <span
               class="inline-flex min-w-0 items-center gap-1.5 rounded-lg px-2 py-1 text-[11px] font-extrabold"
@@ -213,7 +213,7 @@
           </div>
         </div>
         <div
-          class="mt-2 inline-flex max-w-full items-center gap-1 self-start rounded-lg bg-slate-50 px-2 py-1 text-[10px] font-bold text-slate-500 ring-1 ring-slate-200/80"
+          class="mt-1.5 inline-flex max-w-full items-center gap-1 self-center rounded-lg bg-slate-50 px-2 py-1 text-[10px] font-bold text-slate-500 ring-1 ring-slate-200/80"
           :title="t('collection.card_status.next_title', { status: nextStatusMeta.label })"
         >
           <Icon name="lucide:mouse-pointer-click" class="h-3 w-3 shrink-0" />
@@ -470,11 +470,11 @@ onBeforeUnmount(() => {
   width: 2.25rem;
   height: 2.25rem;
   border-radius: 999px;
-  border: 2px solid rgb(16 185 129 / 0.44);
-  background: radial-gradient(circle, rgb(236 253 245 / 0.55), rgb(16 185 129 / 0.14) 50%, transparent 72%);
+  border: 2px solid rgb(225 29 72 / 0.44);
+  background: radial-gradient(circle, rgb(255 228 230 / 0.58), rgb(225 29 72 / 0.14) 50%, transparent 72%);
   box-shadow:
-    0 0 18px rgb(16 185 129 / 0.28),
-    0 0 42px rgb(45 212 191 / 0.22);
+    0 0 18px rgb(225 29 72 / 0.26),
+    0 0 42px rgb(14 165 233 / 0.18);
   transform: translate(-50%, -50%) scale(0.24);
   animation: decor-unlock-ring 680ms ease-out forwards;
 }
@@ -528,7 +528,7 @@ onBeforeUnmount(() => {
 
 .unlock-particle-rose {
   background: radial-gradient(circle, #ffffff 0 22%, #fda4af 34%, #e11d48 68%, transparent 70%);
-  box-shadow: 0 0 12px rgb(16 185 129 / 0.38);
+  box-shadow: 0 0 12px rgb(225 29 72 / 0.38);
 }
 
 .unlock-particle-gold {

@@ -21,9 +21,9 @@
       <button
         v-if="modelValue"
         @click="$emit('update:modelValue', '')"
-        class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-rose-600 transition-colors"
+        class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-amber-600 transition-colors"
       >
-        <span class="w-6 h-6 bg-gray-100 hover:bg-rose-100 rounded-full flex items-center justify-center">
+        <span class="w-6 h-6 bg-gray-100 hover:bg-amber-100 rounded-full flex items-center justify-center">
           <Icon name="lucide:x" class="w-3.5 h-3.5" />
         </span>
       </button>

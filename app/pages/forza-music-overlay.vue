@@ -10,7 +10,7 @@
       <div class="mx-auto grid min-h-[92vh] w-full max-w-7xl grid-cols-1 gap-10 px-5 py-8 md:grid-cols-[minmax(0,1fr)_430px] md:px-8 lg:px-10">
         <div class="flex flex-col justify-center">
           <div class="mb-5 flex flex-wrap items-center gap-3">
-            <span class="rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs font-bold uppercase text-cyan-200">
+            <span class="rounded-full border border-stone-300/30 bg-stone-300/10 px-3 py-1 text-xs font-bold uppercase text-stone-200">
               Windows Utility
             </span>
             <span class="rounded-full border border-slate-500/30 bg-white/5 px-3 py-1 text-xs font-semibold text-slate-300">
@@ -31,7 +31,7 @@
               :href="release.downloadUrl"
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-cyan-300 px-5 text-sm font-black text-slate-950 transition hover:bg-cyan-200"
+              class="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-stone-300 px-5 text-sm font-black text-slate-950 transition hover:bg-stone-200"
             >
               <Icon name="lucide:external-link" class="h-5 w-5" />
               前往 Google Drive 下載
@@ -84,10 +84,10 @@
           <div class="download-panel w-full">
             <div class="mb-5 flex items-start justify-between gap-4">
               <div>
-                <p class="text-xs font-bold text-cyan-200">最新版</p>
+                <p class="text-xs font-bold text-stone-200">最新版</p>
                 <h2 class="mt-2 text-2xl font-black text-white">v{{ release.version }}</h2>
               </div>
-              <div class="rounded-lg bg-cyan-300 p-3 text-slate-950">
+              <div class="rounded-lg bg-stone-300 p-3 text-slate-950">
                 <Icon name="lucide:music-4" class="h-6 w-6" />
               </div>
             </div>
@@ -113,7 +113,7 @@
                 :href="release.downloadUrl"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 break-all text-sm font-bold leading-6 text-cyan-200 hover:text-cyan-100"
+                class="inline-flex items-center gap-2 break-all text-sm font-bold leading-6 text-stone-200 hover:text-stone-100"
               >
                 <Icon name="lucide:external-link" class="h-4 w-4 shrink-0" />
                 {{ release.fileName }}
@@ -143,7 +143,7 @@
 
         <div class="feature-grid">
           <article v-for="feature in features" :key="feature.title" class="feature-item">
-            <Icon :name="feature.icon" class="h-6 w-6 text-cyan-200" />
+            <Icon :name="feature.icon" class="h-6 w-6 text-stone-200" />
             <h3>{{ feature.title }}</h3>
             <p>{{ feature.desc }}</p>
           </article>
@@ -196,7 +196,7 @@
                 <Icon :name="item.icon" class="h-7 w-7" />
               </div>
               <div>
-                <p class="text-xs font-black text-cyan-700">{{ item.step }}</p>
+                <p class="text-xs font-black text-stone-700">{{ item.step }}</p>
                 <h3>{{ item.title }}</h3>
                 <p>{{ item.desc }}</p>
               </div>
@@ -217,7 +217,7 @@
             :href="releaseFolderUrl"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex h-11 w-fit items-center justify-center gap-2 rounded-lg bg-white px-4 text-sm font-black text-slate-950 transition hover:bg-cyan-100"
+            class="inline-flex h-11 w-fit items-center justify-center gap-2 rounded-lg bg-white px-4 text-sm font-black text-slate-950 transition hover:bg-stone-100"
           >
             <Icon name="lucide:folder-open" class="h-4 w-4" />
             所有版本資料夾
@@ -227,7 +227,7 @@
         <div class="divide-y divide-white/10 border-y border-white/10">
           <article v-for="entry in changelog" :key="entry.version" class="update-row">
             <div>
-              <p class="text-sm font-bold text-cyan-200">v{{ entry.version }}</p>
+              <p class="text-sm font-bold text-stone-200">v{{ entry.version }}</p>
               <p class="mt-1 text-sm text-slate-400">{{ entry.date }}</p>
             </div>
             <div>
@@ -237,7 +237,7 @@
                   :href="entry.downloadUrl"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex h-10 w-fit items-center justify-center gap-2 rounded-lg bg-cyan-300 px-4 text-sm font-black text-slate-950 transition hover:bg-cyan-200"
+                  class="inline-flex h-10 w-fit items-center justify-center gap-2 rounded-lg bg-stone-300 px-4 text-sm font-black text-slate-950 transition hover:bg-stone-200"
                 >
                   <Icon name="lucide:external-link" class="h-4 w-4" />
                   下載 v{{ entry.version }}
@@ -248,7 +248,7 @@
               </div>
               <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-300">
                 <li v-for="note in entry.notes" :key="note" class="flex gap-2">
-                  <Icon name="lucide:check" class="mt-1 h-4 w-4 shrink-0 text-cyan-200" />
+                  <Icon name="lucide:check" class="mt-1 h-4 w-4 shrink-0 text-stone-200" />
                   <span>{{ note }}</span>
                 </li>
               </ul>

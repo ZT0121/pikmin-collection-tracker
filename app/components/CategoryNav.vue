@@ -46,7 +46,7 @@
         <button
           @click="$emit('select', 'uncollected-regular')"
           class="filter-chip"
-          :class="[selected === 'uncollected-regular' ? 'filter-chip-active bg-rose-600 border-rose-600' : 'filter-chip-inactive']"
+          :class="[selected === 'uncollected-regular' ? 'filter-chip-active bg-amber-600 border-amber-600' : 'filter-chip-inactive']"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
@@ -201,15 +201,15 @@ const selectedInfo = computed(() => {
 }
 
 .filter-chip-active {
-  @apply text-white border-white/60 shadow-lg shadow-rose-900/10;
-  background: linear-gradient(135deg, rgba(225, 29, 72, 0.96), rgba(225, 29, 72, 0.88));
+  @apply text-white border-white/60 shadow-lg shadow-amber-900/10;
+  background: linear-gradient(135deg, rgba(180, 83, 9, 0.96), rgba(180, 83, 9, 0.88));
 }
 
 .filter-chip-inactive {
-  @apply text-gray-700 border-white/75 hover:border-rose-300/80 hover:text-rose-800;
+  @apply text-gray-700 border-white/75 hover:border-amber-300/80 hover:text-amber-800;
   background: rgba(255, 255, 255, 0.54);
   box-shadow:
-    0 8px 18px rgba(225, 29, 72, 0.08),
+    0 8px 18px rgba(180, 83, 9, 0.08),
     0 1px 8px rgba(255, 255, 255, 0.68) inset;
   backdrop-filter: blur(16px) saturate(1.35);
   -webkit-backdrop-filter: blur(16px) saturate(1.35);

@@ -1,11 +1,11 @@
 {
   "app": {
-    "title": "ZT's Pikmin Collection Notes",
-    "subtitle": "Personal Decor Pikmin progress desk",
-    "description": "A personalized Pikmin Bloom Decor Pikmin tracker with local progress and Supabase sync.",
+    "title": "Pikmin Decor Collection Tracker",
+    "subtitle": "A calm checklist for Decor Pikmin progress",
+    "description": "Track Pikmin Bloom Decor Pikmin progress with local records and optional cloud sync.",
     "keywords": "Pikmin Bloom, Decor Pikmin, collection tracker, progress tracker",
-    "og_title": "ZT's Pikmin Collection Notes",
-    "og_desc": "Track your Pikmin Bloom Decor Pikmin collection at your own pace."
+    "og_title": "Pikmin Decor Collection Tracker",
+    "og_desc": "A simple, unofficial tracker for Pikmin Bloom Decor Pikmin collections."
   },
   "nav": {
     "home": "Overview",
@@ -53,21 +53,21 @@
     },
     "tips": {
       "title": "Today's Focus",
-      "subtitle": "Turn your collection into a clear checklist",
+      "subtitle": "Use it as a calm checklist for daily collection progress",
       "tip1": "Click a card to cycle through none, seedling, plucked, and decor complete.",
       "tip2": "Use category, color, and keyword filters to narrow the list quickly.",
       "tip3": "Login to sync progress to your Supabase project."
     }
   },
   "hero": {
-    "badge": "Personal Tracker",
+    "badge": "Collection Tracker",
     "title": {
-      "prefix": "Turn your collection into",
-      "suffix": "walking notes"
+      "prefix": "Track every Decor Pikmin",
+      "suffix": "at your own pace"
     },
     "subtitle": {
-      "line1": "The useful tracking core stays, but the experience is being reshaped for you.",
-      "line2": "Missing items, limited sets, and nearly complete categories live here."
+      "line1": "A clear checklist for seedlings, plucked Pikmin, and completed Decor.",
+      "line2": "Filter by category, Pikmin type, and progress whenever you need a quick overview."
     },
     "tooltip": "Start tracking",
     "collected": "complete"
@@ -180,9 +180,11 @@
     "feedback": "Feedback",
     "contact_me": "Report issues on GitHub.",
     "takedown_help": "Copyright concerns will be handled cooperatively.",
-    "copyright": "© 2026 ZT's Pikmin Collection Notes",
+    "copyright": "? 2026 Pikmin Decor Collection Tracker",
     "unofficial": "This site is not affiliated with Nintendo or Niantic. Pikmin Bloom names and assets belong to their rights holders.",
-    "made_by": "Remixed by ZT"
+    "made_by": "Unofficial fan-made tracker",
+    "original_repo": "Original project",
+    "project_repo": "Project repository"
   },
   "feedback": {
     "page_title": "Feedback",

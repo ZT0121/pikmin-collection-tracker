@@ -31,8 +31,8 @@
                 class="flex flex-col items-center gap-2 p-4 rounded-2xl border-2 transition-all duration-200"
                 :class="[
                   form.type === type.id 
-                    ? 'border-rose-400 bg-rose-50 text-rose-700' 
-                    : 'border-gray-200 bg-white/60 text-gray-600 hover:border-rose-200 hover:bg-rose-50/50'
+                    ? 'border-amber-400 bg-amber-50 text-amber-700' 
+                    : 'border-gray-200 bg-white/60 text-gray-600 hover:border-amber-200 hover:bg-amber-50/50'
                 ]"
               >
                 <span class="text-2xl">{{ type.icon }}</span>
@@ -139,7 +139,7 @@
             @click.self="showSuccess = false"
           >
             <div class="glass rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl">
-              <div class="w-20 h-20 mx-auto bg-gradient-to-br from-rose-400 to-cyan-500 rounded-full flex items-center justify-center mb-4 shadow-xl">
+              <div class="w-20 h-20 mx-auto bg-gradient-to-br from-amber-400 to-stone-500 rounded-full flex items-center justify-center mb-4 shadow-xl">
                 <span class="text-4xl">✅</span>
               </div>
               <h3 class="text-xl font-bold text-gray-800 mb-2">{{ $t('feedback.success.title') }}</h3>

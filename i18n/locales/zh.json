@@ -1,11 +1,11 @@
 {
   "app": {
-    "title": "ZT 的 Pikmin 收藏筆記",
-    "subtitle": "我的 Decor Pikmin 進度工作台",
-    "description": "一個個人化的 Pikmin Bloom Decor Pikmin 收藏追蹤工具，可記錄幼苗、已拔起與完成飾品狀態，並透過 Supabase 同步進度。",
-    "keywords": "Pikmin Bloom, Decor Pikmin, 收藏追蹤, 進度管理",
-    "og_title": "ZT 的 Pikmin 收藏筆記",
-    "og_desc": "用自己的節奏整理 Pikmin Bloom Decor Pikmin 收藏進度。"
+    "title": "Pikmin Decor ????",
+    "subtitle": "?? Decor Pikmin ???????",
+    "description": "?????? Pikmin Bloom Decor Pikmin ??????????????????? Decor ????????????",
+    "keywords": "Pikmin Bloom, Decor Pikmin, ????, ????",
+    "og_title": "Pikmin Decor ????",
+    "og_desc": "?????????? Pikmin Bloom Decor Pikmin ?????"
   },
   "nav": {
     "home": "總覽",
@@ -53,21 +53,21 @@
     },
     "tips": {
       "title": "今日整理重點",
-      "subtitle": "把收藏變成可執行的清單",
+      "subtitle": "?????????????????",
       "tip1": "點擊卡片可依序切換：無進度、幼苗、已拔起、完成飾品。",
       "tip2": "用分類、顏色與關鍵字縮小範圍，比從頭滑到尾快很多。",
       "tip3": "登入後會同步到你的 Supabase，換裝置也能接續整理。"
     }
   },
   "hero": {
-    "badge": "Personal Tracker",
+    "badge": "??????",
     "title": {
-      "prefix": "把收藏整理成",
-      "suffix": "自己的步行筆記"
+      "prefix": "????? Decor Pikmin",
+      "suffix": "??????????"
     },
     "subtitle": {
-      "line1": "保留原本好用的追蹤核心，改成適合你使用的版本。",
-      "line2": "缺口、限定、快完成的分類，都集中在這裡。"
+      "line1": "????????????????? Decor ????",
+      "line2": "???????????Pikmin ??????????"
     },
     "tooltip": "開始整理",
     "collected": "已完成"
@@ -180,9 +180,11 @@
     "feedback": "回饋",
     "contact_me": "有問題歡迎到 GitHub 回報。",
     "takedown_help": "若有版權疑慮，會配合處理。",
-    "copyright": "© 2026 ZT 的 Pikmin 收藏筆記",
+    "copyright": "? 2026 Pikmin Decor ????",
     "unofficial": "本網站與 Nintendo 或 Niantic 無官方關聯。Pikmin Bloom 相關名稱與素材屬其權利人所有。",
-    "made_by": "Remixed by ZT"
+    "made_by": "?????????",
+    "original_repo": "????",
+    "project_repo": "?????"
   },
   "feedback": {
     "page_title": "回饋",

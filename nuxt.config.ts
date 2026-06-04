@@ -151,7 +151,7 @@ export default defineNuxtConfig({
         // PWA iOS Support
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
-        { name: 'apple-mobile-web-app-title', content: "ZT's Pikmin Notes" },
+        { name: 'apple-mobile-web-app-title', content: "Pikmin Decor Tracker" },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: withBase('/favicon.ico') },
@@ -167,8 +167,8 @@ export default defineNuxtConfig({
           innerHTML: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebSite',
-            name: "ZT's Pikmin Collection Notes",
-            alternateName: 'Personal Pikmin Bloom Collection Tracker',
+            name: "Pikmin Decor Collection Tracker",
+            alternateName: 'Pikmin Bloom Decor Tracker',
             url: siteURL,
           }),
         }

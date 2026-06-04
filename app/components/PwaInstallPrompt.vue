@@ -12,11 +12,11 @@
       class="fixed bottom-24 left-4 right-4 md:left-auto md:right-8 md:bottom-8 md:w-96 z-50 bg-white/90 backdrop-blur-xl border border-white p-5 rounded-3xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.15)] overflow-hidden"
     >
       <!-- Background elements -->
-      <div class="absolute -top-10 -right-10 w-32 h-32 bg-rose-200/40 rounded-full blur-2xl pointer-events-none"></div>
+      <div class="absolute -top-10 -right-10 w-32 h-32 bg-amber-200/40 rounded-full blur-2xl pointer-events-none"></div>
       
       <div class="relative z-10 flex gap-4 items-start">
         <!-- Icon -->
-        <div class="w-14 h-14 shrink-0 bg-gradient-to-br from-rose-100 to-cyan-100 rounded-2xl flex items-center justify-center border border-rose-50 shadow-inner overflow-hidden">
+        <div class="w-14 h-14 shrink-0 bg-gradient-to-br from-amber-100 to-stone-100 rounded-2xl flex items-center justify-center border border-amber-50 shadow-inner overflow-hidden">
           <img :src="iconSrc" alt="App Icon" class="w-full h-full object-cover" />
         </div>
         
@@ -61,7 +61,7 @@
           </div>
           <p class="text-sm text-gray-700 font-medium leading-relaxed mb-4">
             點擊下方工具列的 <strong class="text-blue-600">分享</strong> 按鈕<br>
-            然後選擇 <strong class="text-gray-900 border-b-2 border-rose-400">加入主畫面</strong> 即可！
+            然後選擇 <strong class="text-gray-900 border-b-2 border-amber-400">加入主畫面</strong> 即可！
           </p>
           <button 
             @click="dismissPrompt" 

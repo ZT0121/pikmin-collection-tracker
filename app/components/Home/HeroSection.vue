@@ -2,14 +2,14 @@
   <section class="relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
     <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
       <div>
-        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-rose-200 bg-rose-50 px-3 py-1.5 text-xs font-black text-rose-700">
+        <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-1.5 text-xs font-black text-amber-700">
           <Icon name="lucide:check-check" class="h-3.5 w-3.5" />
           {{ $t('hero.badge') }}
         </div>
 
         <h1 class="max-w-3xl text-3xl font-black tracking-normal text-slate-950 sm:text-4xl md:text-5xl">
           {{ $t('hero.title.prefix') }}
-          <span class="block text-rose-600">{{ $t('hero.title.suffix') }}</span>
+          <span class="block text-amber-600">{{ $t('hero.title.suffix') }}</span>
         </h1>
 
         <p class="mt-4 max-w-2xl text-sm font-semibold leading-7 text-slate-600 sm:text-base">
@@ -42,13 +42,13 @@
             <p class="text-xs font-black uppercase tracking-wider text-slate-500">Progress</p>
             <p class="mt-2 text-5xl font-black tabular-nums text-slate-950">{{ stats.percentage }}%</p>
           </div>
-          <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-rose-600 shadow-sm">
+          <div class="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-amber-600 shadow-sm">
             <Icon name="lucide:sprout" class="h-8 w-8" />
           </div>
         </div>
 
         <div class="mt-5 h-3 overflow-hidden rounded-full bg-white">
-          <div class="h-full rounded-full bg-rose-500 transition-all duration-700" :style="{ width: `${stats.percentage}%` }"></div>
+          <div class="h-full rounded-full bg-amber-500 transition-all duration-700" :style="{ width: `${stats.percentage}%` }"></div>
         </div>
 
         <div class="mt-5 grid grid-cols-2 gap-3">

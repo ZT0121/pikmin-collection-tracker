@@ -1,27 +1,27 @@
 <template>
-  <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/88 backdrop-blur-xl">
+  <header class="sticky top-0 z-50 border-b border-stone-200/80 bg-[#fffaf3]/90 backdrop-blur-xl">
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3">
       <NuxtLink to="/" class="flex min-w-0 items-center gap-3">
-        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-slate-950 text-white shadow-sm">
+        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-stone-900 text-white shadow-sm">
           <Icon name="lucide:sprout" class="h-5 w-5" />
         </div>
         <div class="min-w-0">
-          <h1 class="truncate text-base font-extrabold tracking-normal text-slate-950 sm:text-lg">
+          <h1 class="truncate text-base font-extrabold tracking-normal text-stone-950 sm:text-lg">
             {{ $t('app.title') }}
           </h1>
-          <p class="hidden truncate text-xs font-medium text-slate-500 sm:block">
+          <p class="hidden truncate text-xs font-medium text-stone-500 sm:block">
             {{ $t('app.subtitle') }}
           </p>
         </div>
       </NuxtLink>
 
-      <nav class="hidden items-center rounded-xl border border-slate-200 bg-slate-50 p-1 md:flex">
+      <nav class="hidden items-center rounded-xl border border-stone-200 bg-stone-50 p-1 md:flex">
         <NuxtLink
           v-for="link in navLinks"
           :key="link.to"
           :to="link.to"
           class="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-bold transition"
-          :class="$route.path === link.to ? 'bg-white text-slate-950 shadow-sm' : 'text-slate-500 hover:text-slate-900'"
+          :class="$route.path === link.to ? 'bg-white text-stone-950 shadow-sm' : 'text-stone-500 hover:text-stone-900'"
         >
           <Icon :name="link.icon" class="h-4 w-4" />
           <span>{{ link.name }}</span>
@@ -31,42 +31,42 @@
       <div class="flex items-center gap-2">
         <button
           @click="showSearch = !showSearch"
-          class="hidden h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition hover:border-slate-300 hover:text-slate-950 md:flex"
+          class="hidden h-10 w-10 items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-600 transition hover:border-stone-300 hover:text-stone-950 md:flex"
           :title="$t('header.search')"
         >
           <Icon name="lucide:search" class="h-4 w-4" />
         </button>
 
-        <div class="hidden items-center gap-3 rounded-xl border border-slate-200 bg-white px-3 py-2 sm:flex">
-          <div class="h-2 w-20 overflow-hidden rounded-full bg-slate-100">
-            <div class="h-full rounded-full bg-rose-500 transition-all" :style="{ width: `${stats.percentage}%` }"></div>
+        <div class="hidden items-center gap-3 rounded-xl border border-stone-200 bg-white px-3 py-2 sm:flex">
+          <div class="h-2 w-20 overflow-hidden rounded-full bg-stone-100">
+            <div class="h-full rounded-full bg-amber-500 transition-all" :style="{ width: `${stats.percentage}%` }"></div>
           </div>
-          <span class="text-xs font-black text-slate-700">{{ stats.percentage }}%</span>
+          <span class="text-xs font-black text-stone-700">{{ stats.percentage }}%</span>
         </div>
 
         <LanguageSwitcher class="hidden md:flex" />
 
         <template v-if="user">
           <div
-            class="hidden h-10 w-10 items-center justify-center rounded-xl bg-rose-600 text-sm font-black text-white sm:flex"
+            class="hidden h-10 w-10 items-center justify-center rounded-xl bg-amber-600 text-sm font-black text-white sm:flex"
             :title="user.email || ''"
           >
             {{ userInitial }}
           </div>
           <button
             @click="handleLogout"
-            class="hidden rounded-xl px-3 py-2 text-sm font-bold text-slate-500 transition hover:text-red-600 sm:block"
+            class="hidden rounded-xl px-3 py-2 text-sm font-bold text-stone-500 transition hover:text-red-600 sm:block"
           >
             {{ $t('auth.logout') }}
           </button>
         </template>
-        <NuxtLink v-else to="/auth" class="hidden rounded-xl bg-slate-950 px-4 py-2 text-sm font-bold text-white transition hover:bg-slate-800 sm:block">
+        <NuxtLink v-else to="/auth" class="hidden rounded-xl bg-stone-900 px-4 py-2 text-sm font-bold text-white transition hover:bg-stone-800 sm:block">
           {{ $t('auth.login') }}
         </NuxtLink>
 
         <button
           @click="toggleMobileMenu"
-          class="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 md:hidden"
+          class="flex h-10 w-10 items-center justify-center rounded-xl border border-stone-200 bg-white text-stone-700 md:hidden"
           aria-label="Toggle navigation"
         >
           <Icon :name="showMobileMenu ? 'lucide:x' : 'lucide:menu'" class="h-5 w-5" />
@@ -91,7 +91,7 @@
               @keyup.enter="handleSearch"
               type="text"
               :placeholder="$t('header.search')"
-              class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 pl-10 pr-4 text-sm font-semibold outline-none transition focus:border-rose-500 focus:bg-white"
+              class="h-11 w-full rounded-xl border border-slate-200 bg-slate-50 pl-10 pr-4 text-sm font-semibold outline-none transition focus:border-amber-500 focus:bg-white"
               autofocus
             />
           </div>
@@ -128,7 +128,7 @@
             <span class="font-black text-slate-950">{{ $t('header.mobile_progress_count', { collected: stats.collected, total: stats.total }) }}</span>
           </div>
           <div class="h-2 overflow-hidden rounded-full bg-white">
-            <div class="h-full rounded-full bg-rose-500" :style="{ width: `${stats.percentage}%` }"></div>
+            <div class="h-full rounded-full bg-amber-500" :style="{ width: `${stats.percentage}%` }"></div>
           </div>
         </div>
 

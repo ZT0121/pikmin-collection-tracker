@@ -3,17 +3,17 @@
     <!-- Header: Simple & Clean (Pikmin Bloom Style) -->
     <div class="flex items-center justify-between mb-4 px-2">
       <div class="flex items-center gap-2">
-         <Icon name="lucide:footprints" class="text-rose-500 transform -rotate-45" />
+         <Icon name="lucide:footprints" class="text-amber-500 transform -rotate-45" />
          <h2 class="text-on-glass text-white-halo text-lg font-black tracking-tight">{{ $t('home.near_complete.title') }}</h2>
       </div>
-      <button v-if="categories.length > 3" class="glass-control text-xs font-bold text-rose-700 px-3 py-1.5 rounded-full transition-all">
+      <button v-if="categories.length > 3" class="glass-control text-xs font-bold text-amber-700 px-3 py-1.5 rounded-full transition-all">
         {{ $t('home.near_complete.view_all') }}
       </button>
     </div>
 
     <!-- Empty State -->
     <div v-if="categories.length === 0" class="flex-1 flex flex-col items-center justify-center text-center opacity-60">
-        <Icon name="lucide:flower-2" class="text-4xl text-rose-300 mb-2 animate-pulse" />
+        <Icon name="lucide:flower-2" class="text-4xl text-amber-300 mb-2 animate-pulse" />
         <p class="text-sm font-bold text-gray-600">{{ $t('home.near_complete.empty') }}</p>
     </div>
 
@@ -82,7 +82,7 @@ const isImageIcon = (icon: string) => /^(https?:|data:|blob:|\/)/.test(icon);
 
 const pikminColors = [
     'bg-red-500', 'bg-yellow-400', 'bg-blue-500', 'bg-purple-600', 
-    'bg-slate-100', 'bg-pink-400', 'bg-slate-600', 'bg-cyan-300'
+    'bg-slate-100', 'bg-pink-400', 'bg-slate-600', 'bg-stone-300'
 ];
 
 const getPikminColorClass = (index: number) => {
@@ -98,20 +98,20 @@ const getPikminColorClass = (index: number) => {
   background: transparent;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(225, 29, 72, 0.2);
+  background-color: rgba(180, 83, 9, 0.2);
   border-radius: 20px;
 }
 
 .near-badge {
   flex-shrink: 0;
   max-width: 86px;
-  color: rgb(190, 18, 60);
+  color: rgb(146, 64, 14);
   line-height: 1.15;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.78);
-  background: rgba(255, 228, 230, 0.62);
+  background: rgba(245, 234, 220, 0.62);
   box-shadow:
-    0 6px 16px rgba(225, 29, 72, 0.16),
+    0 6px 16px rgba(180, 83, 9, 0.16),
     0 1px 0 rgba(255, 255, 255, 0.82) inset;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
 }
@@ -125,9 +125,9 @@ const getPikminColorClass = (index: number) => {
 }
 
 .near-progress-fill {
-  background: linear-gradient(90deg, rgba(225, 29, 72, 0.95), rgba(251, 113, 133, 0.98));
+  background: linear-gradient(90deg, rgba(180, 83, 9, 0.95), rgba(245, 158, 11, 0.98));
   box-shadow:
-    0 0 10px rgba(225, 29, 72, 0.36),
+    0 0 10px rgba(180, 83, 9, 0.36),
     0 1px 0 rgba(255, 255, 255, 0.58) inset;
 }
 </style>

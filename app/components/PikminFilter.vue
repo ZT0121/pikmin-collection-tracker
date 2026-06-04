@@ -4,7 +4,7 @@
     <button
       @click="$emit('select', null)"
       class="pikmin-filter-btn"
-      :class="[selected === null ? 'ring-2 ring-rose-400 ring-offset-2' : '']"
+      :class="[selected === null ? 'ring-2 ring-amber-400 ring-offset-2' : '']"
     >
       <div class="w-8 h-8 rounded-full bg-gradient-to-br from-red-400 via-blue-400 to-purple-400 shadow-md"></div>
       <span class="text-xs font-semibold">{{ $t('components.pikmin_filter.all') }}</span>
@@ -47,18 +47,18 @@ const getRingColor = (type: PikminType): string => {
     white: 'ring-gray-400',
     rock: 'ring-gray-500',
     winged: 'ring-pink-400',
-    ice: 'ring-cyan-400',
+    ice: 'ring-stone-400',
   };
-  return colors[type] || 'ring-rose-400';
+  return colors[type] || 'ring-amber-400';
 };
 </script>
 
 <style scoped>
 .pikmin-filter-btn {
-  @apply flex flex-col items-center gap-1.5 p-2.5 rounded-xl transition-all duration-200 cursor-pointer min-w-[56px] border border-white/70 hover:border-rose-300/80 text-gray-800;
+  @apply flex flex-col items-center gap-1.5 p-2.5 rounded-xl transition-all duration-200 cursor-pointer min-w-[56px] border border-white/70 hover:border-amber-300/80 text-gray-800;
   background: rgba(255, 255, 255, 0.54);
   box-shadow:
-    0 8px 18px rgba(225, 29, 72, 0.08),
+    0 8px 18px rgba(180, 83, 9, 0.08),
     0 1px 8px rgba(255, 255, 255, 0.68) inset;
   backdrop-filter: blur(16px) saturate(1.35);
   -webkit-backdrop-filter: blur(16px) saturate(1.35);

@@ -2,11 +2,11 @@
   <div>
     <div class="flex items-center justify-between mb-1" v-if="label">
       <span class="text-sm font-medium text-gray-600">{{ label }}</span>
-      <span class="text-sm font-bold text-rose-600">{{ percentage }}%</span>
+      <span class="text-sm font-bold text-amber-600">{{ percentage }}%</span>
     </div>
     <div class="h-2.5 bg-gray-200 rounded-full overflow-hidden">
       <div 
-        class="h-full bg-gradient-to-r from-rose-400 to-cyan-400 transition-all duration-700 ease-out rounded-full"
+        class="h-full bg-gradient-to-r from-amber-400 to-stone-400 transition-all duration-700 ease-out rounded-full"
         :style="{ width: `${percentage}%` }"
       ></div>
     </div>

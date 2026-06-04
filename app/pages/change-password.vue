@@ -2,20 +2,20 @@
   <div class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
     <!-- Background Decorations -->
     <div class="fixed inset-0 pointer-events-none -z-10">
-      <div class="absolute inset-0 bg-gradient-to-br from-rose-50 via-white to-cyan-50"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-amber-50 via-white to-stone-50"></div>
       <div class="absolute top-20 left-10 text-8xl opacity-10 animate-float">🌸</div>
       <div class="absolute bottom-20 right-10 text-7xl opacity-10 animate-float" style="animation-delay: 1s;">🍃</div>
       <div class="absolute top-1/2 left-1/4 text-6xl opacity-5 animate-float" style="animation-delay: 2s;">🌱</div>
       
       <!-- Gradient Orbs -->
-      <div class="absolute top-0 right-0 w-96 h-96 bg-rose-200 rounded-full blur-3xl opacity-30"></div>
-      <div class="absolute bottom-0 left-0 w-80 h-80 bg-cyan-200 rounded-full blur-3xl opacity-30"></div>
+      <div class="absolute top-0 right-0 w-96 h-96 bg-amber-200 rounded-full blur-3xl opacity-30"></div>
+      <div class="absolute bottom-0 left-0 w-80 h-80 bg-stone-200 rounded-full blur-3xl opacity-30"></div>
     </div>
 
     <div class="w-full max-w-md animate-slide-up">
       <!-- Logo -->
       <div class="text-center mb-8">
-        <div class="w-24 h-24 mx-auto bg-gradient-to-br from-rose-400 to-cyan-500 rounded-3xl flex items-center justify-center shadow-2xl shadow-rose-200 mb-6 animate-float">
+        <div class="w-24 h-24 mx-auto bg-gradient-to-br from-amber-400 to-stone-500 rounded-3xl flex items-center justify-center shadow-2xl shadow-amber-200 mb-6 animate-float">
           <span class="text-5xl">🔑</span>
         </div>
         <h1 class="text-3xl font-extrabold gradient-text mb-2">更改密碼</h1>
@@ -48,7 +48,7 @@
           leave-from-class="opacity-100 translate-y-0"
           leave-to-class="opacity-0 -translate-y-2"
         >
-          <div v-if="success" class="mb-6 p-4 bg-rose-50 border border-rose-200 rounded-2xl text-rose-600 text-sm flex items-start gap-3">
+          <div v-if="success" class="mb-6 p-4 bg-amber-50 border border-amber-200 rounded-2xl text-amber-600 text-sm flex items-start gap-3">
             <span class="text-lg">✅</span>
             <span>{{ success }}</span>
           </div>
@@ -130,7 +130,7 @@
 
         <!-- Back Link -->
         <div v-if="!success" class="mt-6 text-center">
-          <NuxtLink to="/" class="text-sm text-gray-500 hover:text-rose-600 transition-colors">
+          <NuxtLink to="/" class="text-sm text-gray-500 hover:text-amber-600 transition-colors">
             ← 返回首頁
           </NuxtLink>
         </div>

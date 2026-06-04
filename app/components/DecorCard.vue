@@ -19,7 +19,7 @@
                 ? 'border-amber-300/80 shadow-[0_10px_24px_rgba(245,158,11,0.18)]'
                 : 'border-slate-300/50 shadow-[0_6px_16px_rgba(15,23,42,0.1)]')
           : (isDecorCompleted
-              ? 'border-rose-300/90 shadow-[0_12px_30px_rgba(225,29,72,0.22)]'
+              ? 'border-amber-300/90 shadow-[0_12px_30px_rgba(225,29,72,0.22)]'
               : hasProgress
                 ? 'border-amber-300/80 shadow-[0_10px_24px_rgba(245,158,11,0.18)]'
                 : 'border-slate-300/50 shadow-[0_6px_16px_rgba(15,23,42,0.1)]')
@@ -35,9 +35,9 @@
                 ? 'bg-gradient-to-br from-amber-50/90 via-orange-50/82 to-yellow-50/78'
               : 'bg-gradient-to-br from-slate-100/88 via-gray-50/82 to-slate-50/78')
           : (isDecorCompleted
-              ? 'bg-gradient-to-br from-white/92 via-rose-50/84 to-cyan-50/80'
+              ? 'bg-gradient-to-br from-white/92 via-amber-50/84 to-stone-50/80'
               : hasProgress
-                ? 'bg-gradient-to-br from-white/92 via-amber-50/84 to-sky-50/78'
+                ? 'bg-gradient-to-br from-white/92 via-amber-50/84 to-orange-50/78'
               : 'bg-gradient-to-br from-slate-100/88 via-gray-50/82 to-slate-50/78')"
       >
         <!-- Background pattern -->
@@ -47,7 +47,7 @@
             :style="isDecorCompleted
               ? (isRareVariant
                   ? 'background-image: radial-gradient(circle, #fbbf24 1px, transparent 1px); background-size: 16px 16px;'
-                  : 'background-image: radial-gradient(circle, #e11d48 1px, transparent 1px); background-size: 20px 20px;')
+                  : 'background-image: radial-gradient(circle, #b45309 1px, transparent 1px); background-size: 20px 20px;')
               : hasProgress
                 ? 'background-image: radial-gradient(circle, #f59e0b 1px, transparent 1px); background-size: 18px 18px;'
               : 'background-image: radial-gradient(circle, #94a3b8 1px, transparent 1px); background-size: 20px 20px;'"
@@ -62,7 +62,7 @@
             v-for="particle in unlockParticles"
             :key="particle.id"
             class="unlock-particle"
-            :class="isRareVariant ? 'unlock-particle-gold' : 'unlock-particle-rose'"
+            :class="isRareVariant ? 'unlock-particle-gold' : 'unlock-particle-amber'"
             :style="{
               '--particle-x': particle.x,
               '--particle-y': particle.y,
@@ -139,7 +139,7 @@
         >
           <div
             v-if="isDecorCompleted"
-            class="absolute bottom-2 right-2 w-8 h-8 bg-rose-500 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white/80"
+            class="absolute bottom-2 right-2 w-8 h-8 bg-amber-500 rounded-xl flex items-center justify-center shadow-lg ring-2 ring-white/80"
           >
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
@@ -150,7 +150,7 @@
         <!-- Hover overlay -->
         <div
           class="absolute inset-0 transition-colors duration-300 rounded-lg pointer-events-none"
-          :class="isDecorCompleted ? 'bg-rose-500/0 group-hover:bg-rose-500/8' : hasProgress ? 'bg-amber-500/0 group-hover:bg-amber-500/8' : 'bg-slate-900/0 group-hover:bg-slate-900/6'"
+          :class="isDecorCompleted ? 'bg-amber-500/0 group-hover:bg-amber-500/8' : hasProgress ? 'bg-amber-500/0 group-hover:bg-amber-500/8' : 'bg-slate-900/0 group-hover:bg-slate-900/6'"
         ></div>
       </div>
 
@@ -232,7 +232,7 @@
       <div
         v-if="showRipple"
         class="absolute inset-0 rounded-2xl pointer-events-none"
-        :class="isRemoving ? 'bg-slate-400/24' : isDecorCompleted ? 'bg-rose-400/30' : 'bg-amber-400/28'"
+        :class="isRemoving ? 'bg-slate-400/24' : isDecorCompleted ? 'bg-amber-400/30' : 'bg-amber-400/28'"
       ></div>
     </Transition>
   </div>
@@ -313,9 +313,9 @@ const statusMeta = computed(() => {
       label: t('collection.status.seedling'),
       short: t('collection.status_short.seedling'),
       icon: 'lucide:sprout',
-      panelClass: 'ring-sky-200',
-      softClass: 'bg-sky-100 text-sky-800 ring-1 ring-sky-200',
-      stepActiveClass: 'bg-sky-500 text-white ring-sky-500',
+      panelClass: 'ring-orange-200',
+      softClass: 'bg-orange-100 text-orange-800 ring-1 ring-orange-200',
+      stepActiveClass: 'bg-orange-500 text-white ring-orange-500',
     },
     plucked: {
       label: t('collection.status.plucked'),
@@ -329,9 +329,9 @@ const statusMeta = computed(() => {
       label: t('collection.status.decor'),
       short: t('collection.status_short.decor'),
       icon: 'lucide:check',
-      panelClass: 'ring-rose-200',
-      softClass: 'bg-rose-100 text-rose-800 ring-1 ring-rose-200',
-      stepActiveClass: 'bg-rose-500 text-white ring-rose-500',
+      panelClass: 'ring-amber-200',
+      softClass: 'bg-amber-100 text-amber-800 ring-1 ring-amber-200',
+      stepActiveClass: 'bg-amber-500 text-white ring-amber-500',
     },
   };
 
@@ -526,8 +526,8 @@ onBeforeUnmount(() => {
   opacity: 0.58;
 }
 
-.unlock-particle-rose {
-  background: radial-gradient(circle, #ffffff 0 22%, #fda4af 34%, #e11d48 68%, transparent 70%);
+.unlock-particle-amber {
+  background: radial-gradient(circle, #ffffff 0 22%, #f5c78e 34%, #b45309 68%, transparent 70%);
   box-shadow: 0 0 12px rgb(225 29 72 / 0.38);
 }
 

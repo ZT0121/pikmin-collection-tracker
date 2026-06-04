@@ -2,20 +2,20 @@
   <div class="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
     <!-- Background Decorations -->
     <div class="fixed inset-0 pointer-events-none -z-10">
-      <div class="absolute inset-0 bg-gradient-to-br from-rose-50 via-white to-cyan-50"></div>
+      <div class="absolute inset-0 bg-gradient-to-br from-amber-50 via-white to-stone-50"></div>
       <div class="absolute top-20 left-10 text-8xl opacity-10 animate-float">🌸</div>
       <div class="absolute bottom-20 right-10 text-7xl opacity-10 animate-float" style="animation-delay: 1s;">🍃</div>
       <div class="absolute top-1/2 left-1/4 text-6xl opacity-5 animate-float" style="animation-delay: 2s;">🌱</div>
       
       <!-- Gradient Orbs -->
-      <div class="absolute top-0 right-0 w-96 h-96 bg-rose-200 rounded-full blur-3xl opacity-30"></div>
-      <div class="absolute bottom-0 left-0 w-80 h-80 bg-cyan-200 rounded-full blur-3xl opacity-30"></div>
+      <div class="absolute top-0 right-0 w-96 h-96 bg-amber-200 rounded-full blur-3xl opacity-30"></div>
+      <div class="absolute bottom-0 left-0 w-80 h-80 bg-stone-200 rounded-full blur-3xl opacity-30"></div>
     </div>
 
     <div class="w-full max-w-md animate-slide-up">
       <!-- Logo -->
       <div class="text-center mb-8">
-        <div class="w-24 h-24 mx-auto bg-gradient-to-br from-rose-400 to-cyan-500 rounded-3xl flex items-center justify-center shadow-2xl shadow-rose-200 mb-6 animate-float">
+        <div class="w-24 h-24 mx-auto bg-gradient-to-br from-amber-400 to-stone-500 rounded-3xl flex items-center justify-center shadow-2xl shadow-amber-200 mb-6 animate-float">
           <span class="text-5xl">🔐</span>
         </div>
         <h1 class="text-3xl font-extrabold gradient-text mb-2">設定新密碼</h1>
@@ -27,9 +27,9 @@
         <!-- Loading State (驗證中) -->
         <div v-if="pageState === 'loading'" class="text-center py-8">
           <div class="flex items-center justify-center gap-2 mb-4">
-            <div class="w-3 h-3 bg-rose-500 rounded-full animate-bounce" style="animation-delay: 0ms"></div>
-            <div class="w-3 h-3 bg-rose-500 rounded-full animate-bounce" style="animation-delay: 150ms"></div>
-            <div class="w-3 h-3 bg-rose-500 rounded-full animate-bounce" style="animation-delay: 300ms"></div>
+            <div class="w-3 h-3 bg-amber-500 rounded-full animate-bounce" style="animation-delay: 0ms"></div>
+            <div class="w-3 h-3 bg-amber-500 rounded-full animate-bounce" style="animation-delay: 150ms"></div>
+            <div class="w-3 h-3 bg-amber-500 rounded-full animate-bounce" style="animation-delay: 300ms"></div>
           </div>
           <p class="text-gray-600">正在驗證重置連結...</p>
         </div>
@@ -115,7 +115,7 @@
 
         <!-- Success State -->
         <div v-else-if="pageState === 'success'" class="text-center py-4">
-          <div class="w-20 h-20 mx-auto bg-rose-100 rounded-full flex items-center justify-center mb-4">
+          <div class="w-20 h-20 mx-auto bg-amber-100 rounded-full flex items-center justify-center mb-4">
             <span class="text-4xl">✅</span>
           </div>
           <h2 class="text-xl font-bold text-gray-800 mb-2">密碼已更新！</h2>

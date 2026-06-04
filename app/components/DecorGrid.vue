@@ -2,7 +2,7 @@
   <div ref="gridRoot">
     <div
       v-if="!groupByVariant"
-      class="grid gap-4 px-1 sm:px-2 [grid-template-columns:repeat(auto-fill,minmax(220px,1fr))]"
+      class="decor-card-grid grid gap-4 px-1 sm:px-2"
     >
       <DecorCard
         v-for="(item, index) in items"
@@ -12,7 +12,7 @@
         :variant-id="item.variantId"
         :pikmin-type="item.pikminType"
         :animation-delay="Math.min(index * 24, 240)"
-        class="min-w-[220px]"
+        class="w-full"
         @toggle="$emit('toggle', $event)"
       />
     </div>
@@ -28,7 +28,7 @@
         <!-- Pikmin Row for this Variant -->
         <div
           v-if="isGroupVisible(group.key)"
-          class="grid gap-4 px-1 sm:px-2 [grid-template-columns:repeat(auto-fill,minmax(220px,1fr))]"
+          class="decor-card-grid grid gap-4 px-1 sm:px-2"
         >
           <DecorCard
             v-for="(item, index) in group.items"
@@ -38,7 +38,7 @@
             :variant-id="item.variantId"
             :pikmin-type="item.pikminType"
             :animation-delay="Math.min((groupIndex * 8 + index) * 30, 300)"
-            class="min-w-[220px]"
+            class="w-full"
             @toggle="$emit('toggle', $event)"
           />
         </div>
@@ -139,7 +139,8 @@ const setGroupVisibility = (key: string, isVisible: boolean) => {
 
 const getGroupPlaceholderHeight = (itemCount: number) => {
   const gap = 16;
-  const cardsPerRow = Math.max(1, Math.floor((viewportWidth.value - 32) / (220 + gap)));
+  const cardWidth = viewportWidth.value < 640 ? Math.min(320, Math.max(240, viewportWidth.value - 40)) : 320;
+  const cardsPerRow = Math.max(1, Math.floor((viewportWidth.value - 32) / (cardWidth + gap)));
   const rows = Math.max(1, Math.ceil(itemCount / cardsPerRow));
   return `${Math.ceil(rows * 264 + Math.max(0, rows - 1) * gap)}px`;
 };
@@ -205,6 +206,17 @@ onUnmounted(() => {
   content-visibility: auto;
   contain-intrinsic-size: auto 198px;
   overflow: visible;
+}
+
+.decor-card-grid {
+  grid-template-columns: repeat(auto-fill, minmax(320px, 320px));
+  justify-content: start;
+}
+
+@media (max-width: 640px) {
+  .decor-card-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .decor-grid-placeholder {

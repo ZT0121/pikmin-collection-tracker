@@ -54,7 +54,7 @@
     "tips": {
       "title": "今日重點",
       "subtitle": "把每日收藏進度整理成舒服好讀的清單",
-      "tip1": "點擊卡片即可切換：未取得、花盆、已孵化、Decor完成。",
+      "tip1": "點擊卡片即可切換：未取得、花盆、已孵化、Decor 完成。",
       "tip2": "使用分類、Pikmin 類型與關鍵字，快速縮小清單範圍。",
       "tip3": "登入後可將進度同步到雲端，跨裝置也能接著記錄。"
     }
@@ -74,7 +74,7 @@
   },
   "collection": {
     "title": "Decor 收藏圖鑑",
-    "subtitle": "點擊項目切換狀態：未取得、花盆、已孵化、Decor完成。",
+    "subtitle": "點擊項目切換狀態：未取得、花盆、已孵化、Decor 完成。",
     "stats": {
       "showing": "目前顯示",
       "items": "個項目",
@@ -100,13 +100,13 @@
       "none": "未取得",
       "seedling": "花盆",
       "plucked": "已孵化",
-      "decor": "Decor完成"
+      "decor": "Decor 完成"
     },
     "status_short": {
-      "none": "未取",
+      "none": "未取得",
       "seedling": "花盆",
-      "plucked": "孵化",
-      "decor": "Decor"
+      "plucked": "已孵化",
+      "decor": "Decor 完成"
     },
     "card_status": {
       "current": "目前：{status}",

@@ -194,18 +194,18 @@
             </span>
           </div>
           <div
-            class="mt-2 grid grid-cols-4 gap-1"
+            class="mt-2 grid grid-cols-4 gap-1.5"
             :aria-label="statusMeta.label"
           >
             <span
               v-for="step in statusSteps"
               :key="step.value"
-              class="flex h-7 items-center justify-center rounded-md px-1 text-[10px] font-extrabold leading-none ring-1 transition-colors"
+              class="flex h-7 items-center justify-center rounded-md px-1 text-[9px] font-extrabold leading-none ring-1 transition-colors"
               :class="step.isActive
-                ? statusMeta.stepActiveClass
+                ? step.activeClass
                 : step.isPassed
-                  ? 'bg-slate-100 text-slate-500 ring-slate-200'
-                  : 'bg-white text-slate-300 ring-slate-200/70'"
+                  ? 'bg-[#f4eee5] text-[#746450] ring-[#e3d7c6]'
+                  : 'bg-white text-stone-400 ring-[#e8ded0]'"
               :title="step.label"
             >
               <span class="whitespace-nowrap">{{ step.short }}</span>
@@ -298,15 +298,24 @@ const pikminBadgeClass = computed(() => {
 
 const statusOrder: CollectionItemStatus[] = ['none', 'seedling', 'plucked', 'decor'];
 
-const statusMeta = computed(() => {
-  const meta: Record<CollectionItemStatus, { label: string; short: string; icon: string; panelClass: string; softClass: string; stepActiveClass: string }> = {
+type StatusMeta = {
+  label: string;
+  short: string;
+  icon: string;
+  panelClass: string;
+  softClass: string;
+  stepActiveClass: string;
+};
+
+const getStatusMetaMap = (): Record<CollectionItemStatus, StatusMeta> => {
+  return {
     none: {
       label: t('collection.status.none'),
       short: t('collection.status_short.none'),
       icon: 'lucide:minus',
-      panelClass: 'ring-slate-200',
-      softClass: 'bg-slate-100 text-slate-600 ring-1 ring-slate-200',
-      stepActiveClass: 'bg-slate-600 text-white ring-slate-600',
+      panelClass: 'ring-[#e3d7c6]',
+      softClass: 'bg-[#f4eee5] text-[#5f5142] ring-1 ring-[#e3d7c6]',
+      stepActiveClass: 'bg-[#e8ded0] text-[#4f463a] ring-[#cdbda6]',
     },
     seedling: {
       label: t('collection.status.seedling'),
@@ -314,7 +323,7 @@ const statusMeta = computed(() => {
       icon: 'lucide:sprout',
       panelClass: 'ring-[#ddd1bf]',
       softClass: 'bg-[#f1e7d8] text-stone-700 ring-1 ring-[#ddd1bf]',
-      stepActiveClass: 'bg-[#b9aa92] text-white ring-[#b9aa92]',
+      stepActiveClass: 'bg-[#efe5d7] text-[#4f463a] ring-[#d6c6ae]',
     },
     plucked: {
       label: t('collection.status.plucked'),
@@ -322,7 +331,7 @@ const statusMeta = computed(() => {
       icon: 'lucide:leaf',
       panelClass: 'ring-[#ddd1bf]',
       softClass: 'bg-[#f1e7d8] text-stone-700 ring-1 ring-[#ddd1bf]',
-      stepActiveClass: 'bg-[#aeb8aa] text-white ring-[#aeb8aa]',
+      stepActiveClass: 'bg-[#e5eadf] text-[#4f5a48] ring-[#c7d0bd]',
     },
     decor: {
       label: t('collection.status.decor'),
@@ -330,11 +339,13 @@ const statusMeta = computed(() => {
       icon: 'lucide:check',
       panelClass: 'ring-[#ddd1bf]',
       softClass: 'bg-[#f1e7d8] text-stone-700 ring-1 ring-[#ddd1bf]',
-      stepActiveClass: 'bg-[#9d9588] text-white ring-[#9d9588]',
+      stepActiveClass: 'bg-[#ddd2c0] text-[#4f463a] ring-[#c6b69d]',
     },
   };
+};
 
-  return meta[itemStatus.value];
+const statusMeta = computed(() => {
+  return getStatusMetaMap()[itemStatus.value];
 });
 
 const statusSteps = computed(() => {
@@ -349,6 +360,7 @@ const statusSteps = computed(() => {
   return statusOrder.map((value, index) => ({
     ...meta[value],
     short: t(`collection.status_short.${value}`),
+    activeClass: getStatusMetaMap()[value].stepActiveClass,
     isActive: value === itemStatus.value,
     isPassed: index < currentIndex,
   }));

@@ -152,7 +152,7 @@ const handleForceSync = async () => {
 
 .sync-bar-success {
   background: rgba(237, 255, 242, 0.92);
-  border-color: rgba(0, 185, 47, 0.2);
+  border-color: rgba(225, 29, 72, 0.2);
 }
 
 .sync-bar-error {

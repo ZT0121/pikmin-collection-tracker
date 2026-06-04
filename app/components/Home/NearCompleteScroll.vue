@@ -98,20 +98,20 @@ const getPikminColorClass = (index: number) => {
   background: transparent;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 185, 47, 0.2);
+  background-color: rgba(225, 29, 72, 0.2);
   border-radius: 20px;
 }
 
 .near-badge {
   flex-shrink: 0;
   max-width: 86px;
-  color: rgb(0, 133, 35);
+  color: rgb(190, 18, 60);
   line-height: 1.15;
   text-align: center;
   border: 1px solid rgba(255, 255, 255, 0.78);
-  background: rgba(214, 255, 224, 0.62);
+  background: rgba(255, 228, 230, 0.62);
   box-shadow:
-    0 6px 16px rgba(0, 133, 35, 0.16),
+    0 6px 16px rgba(225, 29, 72, 0.16),
     0 1px 0 rgba(255, 255, 255, 0.82) inset;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
 }
@@ -125,9 +125,9 @@ const getPikminColorClass = (index: number) => {
 }
 
 .near-progress-fill {
-  background: linear-gradient(90deg, rgba(0, 185, 47, 0.95), rgba(43, 234, 93, 0.98));
+  background: linear-gradient(90deg, rgba(225, 29, 72, 0.95), rgba(251, 113, 133, 0.98));
   box-shadow:
-    0 0 10px rgba(0, 185, 47, 0.36),
+    0 0 10px rgba(225, 29, 72, 0.36),
     0 1px 0 rgba(255, 255, 255, 0.58) inset;
 }
 </style>

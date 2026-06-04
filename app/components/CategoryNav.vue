@@ -202,14 +202,14 @@ const selectedInfo = computed(() => {
 
 .filter-chip-active {
   @apply text-white border-white/60 shadow-lg shadow-rose-900/10;
-  background: linear-gradient(135deg, rgba(0, 185, 47, 0.96), rgba(0, 133, 35, 0.88));
+  background: linear-gradient(135deg, rgba(225, 29, 72, 0.96), rgba(225, 29, 72, 0.88));
 }
 
 .filter-chip-inactive {
   @apply text-gray-700 border-white/75 hover:border-rose-300/80 hover:text-rose-800;
   background: rgba(255, 255, 255, 0.54);
   box-shadow:
-    0 8px 18px rgba(0, 133, 35, 0.08),
+    0 8px 18px rgba(225, 29, 72, 0.08),
     0 1px 8px rgba(255, 255, 255, 0.68) inset;
   backdrop-filter: blur(16px) saturate(1.35);
   -webkit-backdrop-filter: blur(16px) saturate(1.35);

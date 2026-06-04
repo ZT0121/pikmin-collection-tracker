@@ -792,7 +792,11 @@
 
       <!-- Flat Grid View (when filters active) -->
       <template v-else>
-        <DecorGrid :items="filteredItems" @clear-filters="clearAllFilters" />
+        <DecorGrid
+          :items="filteredItems"
+          :group-by-variant="false"
+          @clear-filters="clearAllFilters"
+        />
       </template>
     </div>
 

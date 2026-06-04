@@ -1,13 +1,31 @@
 <template>
   <div ref="gridRoot">
-    <!-- Grouped by Variant -->
-    <div 
-      v-for="(group, groupIndex) in groupedItems" 
-      :key="group.key"
-      class="mb-6 decor-grid-group"
-      :data-group-key="group.key"
+    <div
+      v-if="!groupByVariant"
+      class="grid grid-cols-2 gap-3 px-1 sm:grid-cols-3 sm:px-2 lg:grid-cols-4 xl:grid-cols-6"
     >
-      <!-- Pikmin Row for this Variant -->
+      <DecorCard
+        v-for="(item, index) in items"
+        :key="item.id"
+        :item-id="item.id"
+        :category-id="item.categoryId"
+        :variant-id="item.variantId"
+        :pikmin-type="item.pikminType"
+        :animation-delay="Math.min(index * 24, 240)"
+        class="min-w-0"
+        @toggle="$emit('toggle', $event)"
+      />
+    </div>
+
+    <template v-else>
+      <!-- Grouped by Variant -->
+      <div
+        v-for="(group, groupIndex) in groupedItems"
+        :key="group.key"
+        class="mb-6 decor-grid-group"
+        :data-group-key="group.key"
+      >
+        <!-- Pikmin Row for this Variant -->
         <div
           v-if="isGroupVisible(group.key)"
           class="grid grid-cols-2 gap-3 px-1 sm:grid-cols-3 sm:px-2 lg:grid-cols-4 xl:grid-cols-6"
@@ -15,21 +33,22 @@
           <DecorCard
             v-for="(item, index) in group.items"
             :key="item.id"
-          :item-id="item.id"
-          :category-id="item.categoryId"
-          :variant-id="item.variantId"
-          :pikmin-type="item.pikminType"
-          :animation-delay="Math.min((groupIndex * 8 + index) * 30, 300)"
+            :item-id="item.id"
+            :category-id="item.categoryId"
+            :variant-id="item.variantId"
+            :pikmin-type="item.pikminType"
+            :animation-delay="Math.min((groupIndex * 8 + index) * 30, 300)"
             class="min-w-0"
             @toggle="$emit('toggle', $event)"
           />
         </div>
-      <div
-        v-else
-        class="decor-grid-placeholder rounded-2xl"
-        :style="{ minHeight: getGroupPlaceholderHeight(group.items.length) }"
-      ></div>
-    </div>
+        <div
+          v-else
+          class="decor-grid-placeholder rounded-2xl"
+          :style="{ minHeight: getGroupPlaceholderHeight(group.items.length) }"
+        ></div>
+      </div>
+    </template>
     
     <!-- Empty State -->
     <Transition
@@ -64,7 +83,10 @@ import type { DecorItem } from '~/types/decor';
 
 const props = defineProps<{
   items: DecorItem[];
+  groupByVariant?: boolean;
 }>();
+
+const groupByVariant = computed(() => props.groupByVariant !== false);
 
 defineEmits<{
   toggle: [itemId: string];
@@ -133,6 +155,8 @@ const syncObservedGroups = async () => {
   const root = gridRoot.value;
   if (!root) return;
 
+  if (!groupByVariant.value) return;
+
   if (!('IntersectionObserver' in window)) {
     visibleGroupKeys.value = new Set(groupedItems.value.map(group => group.key));
     return;
@@ -169,6 +193,7 @@ onMounted(() => {
 });
 
 watch(() => groupedItems.value.map(group => group.key).join('|'), () => {
+  if (!groupByVariant.value) return;
   const validKeys = new Set(groupedItems.value.map(group => group.key));
   visibleGroupKeys.value = new Set([...visibleGroupKeys.value].filter(key => validKeys.has(key)));
   syncObservedGroups();

@@ -127,7 +127,6 @@ export default defineNuxtConfig({
     '/collection': withSecurityHeaders({ 'cache-control': 'no-cache' }),
     '/img/**': withSecurityHeaders({ 'cache-control': 'public, max-age=604800, stale-while-revalidate=2592000' }),
     '/icon.png': withSecurityHeaders({ 'cache-control': 'public, max-age=604800, stale-while-revalidate=2592000' }),
-    '/favicon.ico': withSecurityHeaders({ 'cache-control': 'public, max-age=604800, stale-while-revalidate=2592000' }),
     '/manifest.webmanifest': withSecurityHeaders({ 'cache-control': 'public, max-age=86400, stale-while-revalidate=604800' }),
     // Cache images for 1 day
     '/og-image.png': withSecurityHeaders({ 'cache-control': 'public, max-age=86400' }),
@@ -154,9 +153,7 @@ export default defineNuxtConfig({
         { name: 'apple-mobile-web-app-title', content: "Pikmin Decor Tracker" },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: withBase('/favicon.ico') },
         { rel: 'manifest', href: withBase('/manifest.webmanifest') },
-        { rel: 'apple-touch-icon', href: withBase('/icon.png') },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700&display=swap' },

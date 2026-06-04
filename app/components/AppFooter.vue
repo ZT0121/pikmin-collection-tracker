@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-7xl px-4 py-6">
       <div class="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
         <div>
-          <p class="text-sm font-black text-stone-950">{{ $t('footer.copyright') }}</p>
+          <p class="text-sm font-black text-stone-950">{{ $t('footer.project_note') }}</p>
           <p class="mt-1 max-w-3xl text-xs leading-relaxed text-stone-500">
             {{ $t('footer.unofficial') }}
           </p>

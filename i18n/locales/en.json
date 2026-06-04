@@ -178,8 +178,9 @@
     "feedback": "Feedback",
     "contact_me": "Report issues on GitHub.",
     "takedown_help": "Copyright concerns will be handled cooperatively.",
-    "copyright": "? 2026 Pikmin Decor Collection Tracker",
-    "unofficial": "This site is not affiliated with Nintendo or Niantic. Pikmin Bloom names and assets belong to their rights holders.",
+    "copyright": "",
+    "project_note": "This tool is modified from scott0127/pik_tool, with links to the original project and data sources preserved.",
+    "unofficial": "This is an unofficial fan-made tool and is not affiliated with Nintendo, Niantic, or Pikmin Bloom. Pikmin Bloom names, images, and related assets belong to their respective rights holders.",
     "made_by": "Unofficial fan-made tracker",
     "original_repo": "Original project",
     "project_repo": "Project repository"

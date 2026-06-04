@@ -178,8 +178,9 @@
     "feedback": "回饋",
     "contact_me": "聯絡我們",
     "takedown_help": "資料或圖片如需移除，歡迎回報。",
-    "copyright": "© 2026 Pikmin Decor 收藏圖鑑",
-    "unofficial": "這是非官方粉絲製作工具，與 Nintendo 或 Niantic 無關。",
+    "copyright": "",
+    "project_note": "本工具以 scott0127/pik_tool 為基礎改作，並保留原作者專案連結與資料來源。",
+    "unofficial": "這是非官方粉絲製作工具，與 Nintendo、Niantic 或 Pikmin Bloom 官方無關。Pikmin Bloom 相關名稱、圖片與素材權利屬於各自權利人。",
     "made_by": "非官方粉絲製作工具",
     "original_repo": "原始專案",
     "project_repo": "專案原始碼"

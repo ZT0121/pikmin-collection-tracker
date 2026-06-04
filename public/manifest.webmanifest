@@ -1,25 +1,11 @@
 {
-  "name": "Pikmin Decor ????",
-  "short_name": "Decor ??",
-  "description": "??? Pikmin Bloom Decor Pikmin ???????",
+  "name": "Pikmin Decor 收藏圖鑑",
+  "short_name": "Decor 圖鑑",
+  "description": "非官方 Pikmin Bloom Decor Pikmin 收藏追蹤工具。",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#f8fafc",
-  "theme_color": "#0f172a",
-  "icons": [
-    {
-      "src": "icon.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any"
-    },
-    {
-      "src": "icon.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    }
-  ],
+  "background_color": "#fff8ed",
+  "theme_color": "#b45309",
   "orientation": "portrait",
   "categories": [
     "utilities",

@@ -119,22 +119,13 @@
           {{ pikminTypeShort }}
         </div>
 
-        <!-- Rare Sparkle -->
+        <!-- Rare Badge -->
         <div
           v-if="variant?.isRare"
-          class="rare-sparkle absolute top-2 left-2 text-yellow-400 sparkle"
+          class="rare-sparkle absolute top-2 left-2 inline-flex items-center gap-1 rounded-lg bg-amber-400 px-2 py-1 text-[11px] font-extrabold text-amber-950 shadow-lg ring-1 ring-white/80 sparkle"
         >
-          <Icon name="lucide:sparkles" class="w-5 h-5 drop-shadow-sm" />
-        </div>
-
-        <!-- Collection Status Badge -->
-        <div
-          class="absolute bottom-2 left-2 min-w-8 h-8 px-2 rounded-xl flex items-center justify-center gap-1 text-xs font-extrabold shadow-lg ring-2 ring-white/80"
-          :class="statusMeta.class"
-          :title="statusMeta.label"
-        >
-          <Icon :name="statusMeta.icon" class="w-4 h-4" />
-          <span class="hidden sm:inline">{{ statusMeta.short }}</span>
+          <Icon name="lucide:sparkles" class="h-3.5 w-3.5 drop-shadow-sm" />
+          <span>{{ t('collection.card_status.rare') }}</span>
         </div>
 
         <!-- Decor Completed Checkmark -->
@@ -188,21 +179,45 @@
         >
           {{ (locale === 'en' ? variant?.name : variant?.nameEn) || '' }}
         </p>
-        <div class="mt-2 grid grid-cols-[1fr_auto] items-center gap-2 text-left">
-          <div
-            class="status-current inline-flex min-w-0 items-center gap-1.5 rounded-lg px-2 py-1 text-[11px] font-extrabold"
-            :class="statusMeta.softClass"
-          >
-            <Icon :name="statusMeta.icon" class="h-3.5 w-3.5 shrink-0" />
-            <span class="truncate">{{ t('collection.card_status.current', { status: statusMeta.label }) }}</span>
+        <div
+          class="mt-2 rounded-xl bg-white/86 p-2 text-left shadow-inner ring-1"
+          :class="statusMeta.panelClass"
+        >
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-[10px] font-bold text-slate-500">{{ t('collection.card_status.current_label') }}</span>
+            <span
+              class="inline-flex min-w-0 items-center gap-1.5 rounded-lg px-2 py-1 text-[11px] font-extrabold"
+              :class="statusMeta.softClass"
+            >
+              <Icon :name="statusMeta.icon" class="h-3.5 w-3.5 shrink-0" />
+              <span class="truncate">{{ statusMeta.label }}</span>
+            </span>
           </div>
           <div
-            class="status-next inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[10px] font-bold text-slate-500 bg-white/72 ring-1 ring-slate-200/80"
-            :title="t('collection.card_status.next_title', { status: nextStatusMeta.label })"
+            class="mt-1.5 grid grid-cols-4 gap-1"
+            :aria-label="statusMeta.label"
           >
-            <Icon name="lucide:mouse-pointer-click" class="h-3 w-3 shrink-0" />
-            <span>{{ nextStatusMeta.short }}</span>
+            <span
+              v-for="step in statusSteps"
+              :key="step.value"
+              class="flex h-6 items-center justify-center rounded-md ring-1 transition-colors"
+              :class="step.isActive
+                ? statusMeta.stepActiveClass
+                : step.isPassed
+                  ? 'bg-slate-100 text-slate-500 ring-slate-200'
+                  : 'bg-white text-slate-300 ring-slate-200/70'"
+              :title="step.label"
+            >
+              <Icon :name="step.icon" class="h-3.5 w-3.5" />
+            </span>
           </div>
+        </div>
+        <div
+          class="mt-1.5 inline-flex max-w-full items-center gap-1 rounded-lg bg-slate-50 px-2 py-1 text-[10px] font-bold text-slate-500 ring-1 ring-slate-200/80"
+          :title="t('collection.card_status.next_title', { status: nextStatusMeta.label })"
+        >
+          <Icon name="lucide:mouse-pointer-click" class="h-3 w-3 shrink-0" />
+          <span class="truncate">{{ t('collection.card_status.next_label') }}: {{ nextStatusMeta.label }}</span>
         </div>
       </div>
     </div>
@@ -282,35 +297,41 @@ const pikminBadgeClass = computed(() => {
   return `${baseClass} ${textClass}`;
 });
 
+const statusOrder: CollectionItemStatus[] = ['none', 'seedling', 'plucked', 'decor'];
+
 const statusMeta = computed(() => {
-  const meta: Record<CollectionItemStatus, { label: string; short: string; icon: string; class: string; softClass: string }> = {
+  const meta: Record<CollectionItemStatus, { label: string; short: string; icon: string; panelClass: string; softClass: string; stepActiveClass: string }> = {
     none: {
       label: t('collection.status.none'),
       short: t('collection.status_short.none'),
       icon: 'lucide:minus',
-      class: 'bg-slate-500 text-white',
+      panelClass: 'ring-slate-200',
       softClass: 'bg-slate-100 text-slate-600 ring-1 ring-slate-200',
+      stepActiveClass: 'bg-slate-600 text-white ring-slate-600',
     },
     seedling: {
       label: t('collection.status.seedling'),
       short: t('collection.status_short.seedling'),
       icon: 'lucide:sprout',
-      class: 'bg-lime-500 text-white',
+      panelClass: 'ring-lime-200',
       softClass: 'bg-lime-100 text-lime-800 ring-1 ring-lime-200',
+      stepActiveClass: 'bg-lime-500 text-white ring-lime-500',
     },
     plucked: {
       label: t('collection.status.plucked'),
       short: t('collection.status_short.plucked'),
       icon: 'lucide:leaf',
-      class: 'bg-amber-500 text-white',
+      panelClass: 'ring-amber-200',
       softClass: 'bg-amber-100 text-amber-800 ring-1 ring-amber-200',
+      stepActiveClass: 'bg-amber-500 text-white ring-amber-500',
     },
     decor: {
       label: t('collection.status.decor'),
       short: t('collection.status_short.decor'),
       icon: 'lucide:check',
-      class: 'bg-emerald-500 text-white',
+      panelClass: 'ring-emerald-200',
       softClass: 'bg-emerald-100 text-emerald-800 ring-1 ring-emerald-200',
+      stepActiveClass: 'bg-emerald-500 text-white ring-emerald-500',
     },
   };
 
@@ -318,32 +339,51 @@ const statusMeta = computed(() => {
 });
 
 const nextStatus = computed<CollectionItemStatus>(() => {
-  const order: CollectionItemStatus[] = ['none', 'seedling', 'plucked', 'decor'];
-  const nextIndex = (order.indexOf(itemStatus.value) + 1) % order.length;
-  return order[nextIndex] ?? 'none';
+  const nextIndex = (statusOrder.indexOf(itemStatus.value) + 1) % statusOrder.length;
+  return statusOrder[nextIndex] ?? 'none';
 });
 
 const nextStatusMeta = computed(() => {
-  const meta: Record<CollectionItemStatus, { label: string; short: string }> = {
+  const meta: Record<CollectionItemStatus, { label: string; short: string; icon: string }> = {
     none: {
       label: t('collection.status.none'),
       short: t('collection.status_short.none'),
+      icon: 'lucide:minus',
     },
     seedling: {
       label: t('collection.status.seedling'),
       short: t('collection.status_short.seedling'),
+      icon: 'lucide:sprout',
     },
     plucked: {
       label: t('collection.status.plucked'),
       short: t('collection.status_short.plucked'),
+      icon: 'lucide:leaf',
     },
     decor: {
       label: t('collection.status.decor'),
       short: t('collection.status_short.decor'),
+      icon: 'lucide:check',
     },
   };
 
   return meta[nextStatus.value];
+});
+
+const statusSteps = computed(() => {
+  const currentIndex = statusOrder.indexOf(itemStatus.value);
+  const meta: Record<CollectionItemStatus, { label: string; icon: string; value: CollectionItemStatus }> = {
+    none: { value: 'none', label: t('collection.status.none'), icon: 'lucide:minus' },
+    seedling: { value: 'seedling', label: t('collection.status.seedling'), icon: 'lucide:sprout' },
+    plucked: { value: 'plucked', label: t('collection.status.plucked'), icon: 'lucide:leaf' },
+    decor: { value: 'decor', label: t('collection.status.decor'), icon: 'lucide:check' },
+  };
+
+  return statusOrder.map((value, index) => ({
+    ...meta[value],
+    isActive: value === itemStatus.value,
+    isPassed: index < currentIndex,
+  }));
 });
 
 const clearFeedbackTimers = () => {

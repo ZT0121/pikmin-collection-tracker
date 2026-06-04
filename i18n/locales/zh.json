@@ -110,6 +110,9 @@
     },
     "card_status": {
       "current": "目前：{status}",
+      "current_label": "目前",
+      "next_label": "下個",
+      "rare": "稀有",
       "next_title": "下一次點擊：{status}"
     },
     "sections": {

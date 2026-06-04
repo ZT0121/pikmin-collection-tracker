@@ -110,6 +110,9 @@
     },
     "card_status": {
       "current": "Current: {status}",
+      "current_label": "Current",
+      "next_label": "Next",
+      "rare": "Rare",
       "next_title": "Next click: {status}"
     },
     "sections": {

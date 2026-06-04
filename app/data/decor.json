@@ -1530,6 +1530,21 @@
           }
         },
         {
+          "id": "fortune_lucky",
+          "name": "籤-吉",
+          "nameEn": "Fortune - Lucky",
+          "imageUrl": "https://pikmin.wiki.gallery/images/thumb/8/87/Decor_Red_Fortune_2.png/100px-Decor_Red_Fortune_2.png",
+          "imageUrls": {
+            "red": "https://pikmin.wiki.gallery/images/thumb/8/87/Decor_Red_Fortune_2.png/100px-Decor_Red_Fortune_2.png",
+            "yellow": "https://pikmin.wiki.gallery/images/thumb/f/f1/Decor_Yellow_Fortune_2.png/100px-Decor_Yellow_Fortune_2.png",
+            "blue": "https://pikmin.wiki.gallery/images/thumb/7/71/Decor_Blue_Fortune_2.png/98px-Decor_Blue_Fortune_2.png",
+            "white": "https://pikmin.wiki.gallery/images/thumb/0/09/Decor_White_Fortune_2.png/100px-Decor_White_Fortune_2.png",
+            "purple": "https://pikmin.wiki.gallery/images/thumb/3/31/Decor_Purple_Fortune_2.png/90px-Decor_Purple_Fortune_2.png",
+            "rock": "https://pikmin.wiki.gallery/images/thumb/1/15/Decor_Rock_Fortune_2.png/100px-Decor_Rock_Fortune_2.png",
+            "winged": "https://pikmin.wiki.gallery/images/thumb/1/1c/Decor_Winged_Fortune_2.png/97px-Decor_Winged_Fortune_2.png"
+          }
+        },
+        {
           "id": "fortune_2",
           "name": "籤-中吉",
           "nameEn": "Fortune 2",

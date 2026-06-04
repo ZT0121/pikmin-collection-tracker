@@ -1,7 +1,16 @@
 import { computed, type Ref } from "vue";
-import type { DecorCategoryType, DecorItem, PikminType } from "~/types/decor";
+import type {
+  CollectionItemStatus,
+  DecorCategoryType,
+  DecorItem,
+  PikminType,
+} from "~/types/decor";
 
-export type CollectionStatusFilter = "all" | "collected" | "uncollected";
+export type CollectionStatusFilter =
+  | "all"
+  | "collected"
+  | "uncollected"
+  | CollectionItemStatus;
 export type CollectionCategoryFilter =
   | DecorCategoryType
   | "uncollected-regular"
@@ -15,6 +24,7 @@ interface UseCollectionFiltersOptions {
   isLimitedMode: Ref<boolean>;
   selectedCategoryId: Ref<string | null>;
   isCollected: (itemId: string) => boolean;
+  getItemStatus: (itemId: string) => CollectionItemStatus;
   getAllDecorItems: () => DecorItem[];
   getItemsByCategoryType: (type: DecorCategoryType) => DecorItem[];
   searchItems: (query: string) => DecorItem[];
@@ -36,6 +46,7 @@ export const useCollectionFilters = ({
   isLimitedMode,
   selectedCategoryId,
   isCollected,
+  getItemStatus,
   getAllDecorItems,
   getItemsByCategoryType,
   searchItems,
@@ -99,6 +110,8 @@ export const useCollectionFilters = ({
       items = items.filter((item) => isCollected(item.id));
     } else if (collectionFilter.value === "uncollected") {
       items = items.filter((item) => !isCollected(item.id));
+    } else if (collectionFilter.value !== "all") {
+      items = items.filter((item) => getItemStatus(item.id) === collectionFilter.value);
     }
 
     return items;

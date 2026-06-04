@@ -2,7 +2,7 @@
   <div ref="gridRoot">
     <div
       v-if="!groupByVariant"
-      class="grid grid-cols-2 gap-3 px-1 sm:grid-cols-3 sm:px-2 lg:grid-cols-4 xl:grid-cols-6"
+      class="grid gap-4 px-1 sm:px-2 [grid-template-columns:repeat(auto-fill,minmax(220px,1fr))]"
     >
       <DecorCard
         v-for="(item, index) in items"
@@ -12,7 +12,7 @@
         :variant-id="item.variantId"
         :pikmin-type="item.pikminType"
         :animation-delay="Math.min(index * 24, 240)"
-        class="min-w-0"
+        class="min-w-[220px]"
         @toggle="$emit('toggle', $event)"
       />
     </div>
@@ -28,7 +28,7 @@
         <!-- Pikmin Row for this Variant -->
         <div
           v-if="isGroupVisible(group.key)"
-          class="grid grid-cols-2 gap-3 px-1 sm:grid-cols-3 sm:px-2 lg:grid-cols-4 xl:grid-cols-6"
+          class="grid gap-4 px-1 sm:px-2 [grid-template-columns:repeat(auto-fill,minmax(220px,1fr))]"
         >
           <DecorCard
             v-for="(item, index) in group.items"
@@ -38,7 +38,7 @@
             :variant-id="item.variantId"
             :pikmin-type="item.pikminType"
             :animation-delay="Math.min((groupIndex * 8 + index) * 30, 300)"
-            class="min-w-0"
+            class="min-w-[220px]"
             @toggle="$emit('toggle', $event)"
           />
         </div>
@@ -138,14 +138,8 @@ const setGroupVisibility = (key: string, isVisible: boolean) => {
 };
 
 const getGroupPlaceholderHeight = (itemCount: number) => {
-  const gap = 12;
-  const cardsPerRow = viewportWidth.value >= 1280
-    ? 6
-    : viewportWidth.value >= 1024
-      ? 4
-      : viewportWidth.value >= 640
-        ? 3
-        : 2;
+  const gap = 16;
+  const cardsPerRow = Math.max(1, Math.floor((viewportWidth.value - 32) / (220 + gap)));
   const rows = Math.max(1, Math.ceil(itemCount / cardsPerRow));
   return `${Math.ceil(rows * 264 + Math.max(0, rows - 1) * gap)}px`;
 };

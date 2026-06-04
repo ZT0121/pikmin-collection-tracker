@@ -186,11 +186,11 @@
           <div class="flex items-center justify-between gap-1.5">
             <span class="shrink-0 text-[10px] font-bold text-slate-500">{{ t('collection.card_status.current_label') }}</span>
             <span
-              class="inline-flex min-w-0 items-center gap-1.5 rounded-lg px-2 py-1 text-[11px] font-extrabold"
+              class="inline-flex shrink-0 items-center gap-1 rounded-lg px-2 py-1 text-[10px] font-extrabold"
               :class="statusMeta.softClass"
             >
-              <Icon :name="statusMeta.icon" class="h-3.5 w-3.5 shrink-0" />
-              <span class="truncate">{{ statusMeta.label }}</span>
+              <Icon :name="statusMeta.icon" class="h-3 w-3 shrink-0" />
+              <span class="whitespace-nowrap">{{ statusMeta.label }}</span>
             </span>
           </div>
           <div
@@ -208,7 +208,7 @@
                   : 'bg-white text-slate-300 ring-slate-200/70'"
               :title="step.label"
             >
-              <span class="truncate">{{ step.short }}</span>
+              <span class="whitespace-nowrap">{{ step.short }}</span>
             </span>
           </div>
         </div>

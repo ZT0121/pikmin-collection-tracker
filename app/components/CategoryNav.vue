@@ -59,7 +59,7 @@
         <button
           @click="$emit('select', 'anniversary')"
           class="filter-chip"
-          :class="[selected === 'anniversary' ? 'filter-chip-active bg-purple-500 border-purple-500' : 'filter-chip-inactive']"
+          :class="[selected === 'anniversary' ? 'filter-chip-active' : 'filter-chip-inactive']"
         >
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
             <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
@@ -201,17 +201,28 @@ const selectedInfo = computed(() => {
 }
 
 .filter-chip-active {
-  @apply text-white border-white/60 shadow-lg shadow-amber-900/10;
-  background: linear-gradient(135deg, rgba(116, 100, 80, 0.96), rgba(116, 100, 80, 0.88));
+  color: #4f463a;
+  border-color: rgba(213, 200, 181, 0.92);
+  background:
+    linear-gradient(135deg, rgba(255, 252, 247, 0.98), rgba(238, 229, 216, 0.94));
+  box-shadow:
+    0 7px 16px rgba(116, 100, 80, 0.08),
+    0 1px 8px rgba(255, 255, 255, 0.9) inset;
 }
 
 .filter-chip-inactive {
-  @apply text-gray-700 border-white/75 hover:border-amber-300/80 hover:text-amber-800;
+  @apply text-gray-700 border-white/75;
   background: rgba(255, 255, 255, 0.54);
   box-shadow:
     0 8px 18px rgba(116, 100, 80, 0.08),
     0 1px 8px rgba(255, 255, 255, 0.68) inset;
   backdrop-filter: blur(16px) saturate(1.35);
   -webkit-backdrop-filter: blur(16px) saturate(1.35);
+}
+
+.filter-chip-inactive:hover {
+  color: #5f5142;
+  border-color: rgba(213, 200, 181, 0.92);
+  background: rgba(255, 252, 247, 0.78);
 }
 </style>

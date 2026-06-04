@@ -1,447 +1,331 @@
 {
-    "app": {
-        "title": "Pikmin Collection Tracker",
-        "subtitle": "個人 Pikmin Bloom 收藏進度",
-        "description": "個人 Pikmin Bloom 飾品收藏追蹤器。使用 Google 登入後即可同步每隻 Decor Pikmin 的花苗、已拔起與飾品完成狀態。",
-        "keywords": "皮克敏, Pikmin Bloom, 飾品圖鑑, 收藏追蹤, Decor Pikmin, Nintendo, Niantic",
-        "og_title": "Pikmin Collection Tracker",
-        "og_desc": "用四階段狀態追蹤你的 Pikmin Bloom Decor Pikmin 個人收藏進度。"
+  "app": {
+    "title": "ZT 的 Pikmin 收藏筆記",
+    "subtitle": "我的 Decor Pikmin 進度工作台",
+    "description": "一個個人化的 Pikmin Bloom Decor Pikmin 收藏追蹤工具，可記錄幼苗、已拔起與完成飾品狀態，並透過 Supabase 同步進度。",
+    "keywords": "Pikmin Bloom, Decor Pikmin, 收藏追蹤, 進度管理",
+    "og_title": "ZT 的 Pikmin 收藏筆記",
+    "og_desc": "用自己的節奏整理 Pikmin Bloom Decor Pikmin 收藏進度。"
+  },
+  "nav": {
+    "home": "總覽",
+    "collection": "收藏"
+  },
+  "header": {
+    "coffee": "支持",
+    "coffee_mobile": "支持本站",
+    "star": "Star",
+    "star_mobile": "GitHub Star",
+    "feedback": "回報與建議",
+    "search": "搜尋飾品、分類或顏色...",
+    "mobile_progress": "目前進度",
+    "mobile_progress_count": "{collected} / {total} 個"
+  },
+  "auth": {
+    "login": "登入",
+    "logout": "登出"
+  },
+  "home": {
+    "missing": {
+      "title": "還缺哪些？",
+      "desc": "直接查看尚未完成的項目",
+      "count_suffix": "個待補"
     },
-    "nav": {
-        "home": "首頁",
-        "collection": "圖鑑",
-        "map": "地圖",
-        "friends": "好友"
-    },
-    "header": {
-        "coffee": "支持",
-        "coffee_mobile": "請我喝杯咖啡",
-        "star": "Star",
-        "star_mobile": "github幫我按星星",
-        "feedback": "BUG、建議回報/合作諮詢",
-        "search": "搜尋飾品名稱、分類...",
-        "mobile_progress": "蒐集進度",
-        "mobile_progress_count": "{collected} / {total} 件"
-    },
-    "auth": {
-        "login": "登入",
-        "logout": "登出"
-    },
-    "home": {
-        "missing": {
-            "title": "我還缺什麼？",
-            "desc": "快速找到未蒐集飾品",
-            "count_suffix": "件未蒐集"
-        },
-        "limited": {
-            "title": "無法取得？",
-            "desc": "地區/活動限定飾品",
-            "count_suffix": "件限定飾品"
-        },
-        "map": {
-            "title": "飾品地圖",
-            "desc": "幫你精準使用掃描器"
-        },
-        "actions": {
-            "browse_collection": "瀏覽完整圖鑑",
-            "open_map": "飾品地點地圖",
-            "review_missing": "查看尚未完成"
-        },
-        "near_complete": {
-            "title": "培育清單",
-            "view_all": "全部",
-            "empty": "都蒐集完囉！",
-            "remaining": "差 {n} 個蒐集完成"
-        },
-        "tips": {
-            "title": "使用小提示",
-            "subtitle": "讓你更快完成收藏",
-            "tip1": "點擊飾品卡片會依序切換：無、花苗、已拔起、飾品完成。",
-            "tip2": "支援中文搜尋與顏色關鍵字（紅／黃／藍），也可搭配篩選更精準。",
-            "tip3": "登入即可雲端同步收藏，換裝置也不會遺失進度。"
-        }
-    },
-    "coffee": {
-        "title": "感謝你的支持！",
-        "redirect": "即將前往 Buy Me a Coffee 贊助頁面",
-        "notice": {
-            "title": "重要聲明",
-            "point1": "你的贊助是支持「開發者」而非購買遊戲內容",
-            "point2": "本工具是非官方粉絲專案，完全免費使用",
-            "point3": "所有遊戲素材版權歸任天堂所有",
-            "point4": "贊助是對開發工作的支持，不涉及遊戲內容買賣"
-        },
-        "footer": "你的每一杯咖啡都是我繼續改進這個工具的最大動力！💪",
-        "cancel": "取消",
-        "confirm": "前往贊助 ☕"
-    },
-    "hero": {
-        "badge": "Garden Tracker",
-        "title": {
-            "prefix": "蒐集你的",
-            "suffix": "Pikmin 飾品"
-        },
-        "subtitle": {
-            "line1": "讓每一個步伐都開出花朵。",
-            "line2": "打造屬於你的獨特圖鑑花園。"
-        },
-        "tooltip": "Catch them all!",
-        "collected": "已蒐集"
-    },
-    "collection": {
-        "title": "飾品圖鑑",
-        "subtitle": "點擊飾品循環切換：無、花苗、已拔起、飾品完成",
-        "stats": {
-            "showing": "顯示中",
-            "items": "個飾品",
-            "collected": "已蒐集"
-        },
-        "filters": {
-            "search_label": "搜尋",
-            "search_placeholder": "搜尋飾品名稱...",
-            "category_type": "入手方式",
-            "pikmin_type": "皮克敏種類",
-            "status": "狀態",
-            "status_all": "全部",
-            "status_collected": "已蒐集",
-            "status_uncollected": "未蒐集",
-            "active_label": "篩選條件：",
-            "limited": "僅顯示限定",
-            "clear": "清除全部",
-            "title": "篩選條件",
-            "expand": "展開篩選器",
-            "collapse": "收合"
-        },
-        "status": {
-            "none": "無進度",
-            "seedling": "花苗",
-            "plucked": "已拔起",
-            "decor": "飾品完成"
-        },
-        "status_short": {
-            "none": "無",
-            "seedling": "苗",
-            "plucked": "拔",
-            "decor": "完成"
-        },
-        "card_status": {
-            "current": "現在：{status}",
-            "next_title": "再點一次會變成：{status}"
-        },
-        "sections": {
-            "regular": {
-                "title": "一般飾品",
-                "desc": "在特定地點（餐廳、公園、車站等）獲得"
-            },
-            "special": {
-                "title": "特殊飾品",
-                "desc": "期間限定活動、節日、特殊任務"
-            },
-            "count_suffix": " 個分類"
-        },
-        "info": {
-            "regular": {
-                "title": "如何獲得一般飾品？",
-                "desc": "造訪特定地點類型，撿取花苗，並將皮克敏好感度提升至 4 顆心。"
-            },
-            "special": {
-                "title": "如何獲得特殊飾品？",
-                "desc": "參加期間限定活動、週年紀念或特殊任務。這些通常有時間限制。"
-            }
-        },
-        "actions": {
-            "collect_all": "全部標記為已蒐集",
-            "collect_all_tooltip": "將此分類的所有皮克敏標記為已蒐集",
-            "expand_all": "全部展開",
-            "collapse_all": "全部收合"
-        },
-        "scroll": {
-            "special": "跳至特殊飾品",
-            "top": "回到頂端",
-            "bottom": "跳到最底",
-            "categories": "所有分類"
-        },
-        "types": {
-            "uncollected_regular": "待收集（一般）",
-            "anniversary": "週年紀念"
-        },
-        "alerts": {
-            "collected_all": "「{category}」已經全部蒐集完成了！",
-            "confirm_collect_all": "確定要將「{category}」的 {count} 隻皮克敏全部標記為已蒐集嗎？\n（其中有 {uncollected} 隻尚未蒐集）"
-        },
-        "sync": {
-            "countdown": "{n} 秒後自動上傳",
-            "syncing": "上傳中...",
-            "retrying": "重試中 ({k}/{n})",
-            "success": "上傳成功 ✓",
-            "error": "上傳失敗",
-            "force_upload": "立即上傳",
-            "retry": "重試",
-            "unsaved_warning": "您有未儲存的變更，確定要離開嗎？"
-        }
-    },
-    "time": {
-        "just_now": "剛剛",
-        "min_ago": "{n} 分鐘前",
-        "hour_ago": "{n} 小時前",
-        "day_ago": "{n} 天前"
-    },
-    "friends": {
-        "title": "好友交流區",
-        "subtitle": "分享您的 Pikmin Bloom 好友代碼，結交新朋友！",
-        "tips": {
-            "title": "使用提示",
-            "row1": "好友代碼可在 Pikmin Bloom App 的個人頁面找到",
-            "row2": "請勿發布不當內容，違規者將被封鎖",
-            "row3": "每人每日最多發布 3 則留言"
-        },
-        "form": {
-            "title": "發布您的好友代碼",
-            "label_name": "顯示名稱",
-            "placeholder_name": "您的暱稱",
-            "label_code": "好友代碼",
-            "label_message": "自我介紹（選填）",
-            "placeholder_message": "例如：每天上線，歡迎一起散步！",
-            "submit": "發布",
-            "submitting": "發布中..."
-        },
-        "login_prompt": "登入後即可發布您的好友代碼",
-        "rec_title": "推薦好友",
-        "rec_update": "每 10 秒更新",
-        "copy_tooltip": "點擊複製",
-        "copy_btn": "複製",
-        "all_players": "所有玩家",
-        "refresh": "重新整理",
-        "error": "載入失敗",
-        "retry": "重試",
-        "loading": "載入中...",
-        "empty_title": "還沒有人發布好友代碼",
-        "empty_desc": "成為第一個吧！",
-        "copy_code": "複製代碼",
-        "delete": "刪除我的留言",
-        "toast_copied": "好友代碼已複製！",
-        "alerts": {
-            "login_first": "請先登入",
-            "invalid_code": "好友代碼必須是 12 位數字",
-            "enter_name": "請輸入顯示名稱",
-            "post_failed": "發布失敗：{msg}",
-            "confirm_delete": "確定要刪除這則留言?"
-        },
-        "modal": {
-            "select_type": "選擇皮克敏類型"
-        }
-    },
-    "footer": {
-        "total_views": "總瀏覽次數",
-        "source": "資料來源：Pikipedia",
-        "disclaimer": "版權免責聲明",
-        "feedback": "問題回饋",
-        "contact_me": "如有任何問題請聯絡：",
-        "takedown_help": "可協助處理下架要求或其他相關需求",
-        "copyright": "© 2026 Pikmin Bloom 飾品圖鑑收藏家",
-        "unofficial": "非官方粉絲工具 • Pikmin Bloom 版權歸任天堂所有",
-        "made_by": "Made with 💚 by LKB"
+    "limited": {
+      "title": "期間與地區",
+      "desc": "整理活動、限定與地區類別",
+      "count_suffix": "個限定"
     },
     "map": {
-        "user_location": "📍 你的位置",
-        "panel": {
-            "title": "飾品地點篩選",
-            "subtitle": "選擇要顯示的飾品類型",
-            "close": "關閉",
-            "hide": "隱藏面板",
-            "show": "顯示篩選面板"
-        },
-        "stats": {
-            "selected": "已選擇",
-            "found": "找到",
-            "places": "個地點",
-            "warning": "在非台灣的地方查詢超過10種會卡死喔!",
-            "select_all": "全選",
-            "clear": "清除"
-        },
-        "loading": "查詢中...",
-        "report": {
-            "title": "回報缺漏飾品",
-            "subtitle": "請選擇此地點實際存在的飾品類型",
-            "extra_title": "回報多餘飾品",
-            "extra_subtitle": "請選擇此網格實際不會出現的飾品類型",
-            "reported": "已回報",
-            "footer": "點擊圖示即可送出回報。您的貢獻能讓地圖更準確！",
-            "error_pure": "回報錯誤 (非純種)",
-            "missing": "回報缺漏飾品",
-            "extra": "回報多餘飾品",
-            "no_missing_options": "這個網格目前沒有可回報缺漏的飾品。",
-            "no_extra_options": "這個網格目前沒有可回報多餘的飾品。",
-            "pure_zone": "純種區",
-            "impure_warning": "有人回報這格不純！"
-        },
-        "modes": {
-            "grid": "網格",
-            "pin": "標記",
-            "pure": "純種區"
-        },
-        "cell_info": {
-            "decor_types": "飾品類型",
-            "types_unit": "種",
-            "mixed_types": "種飾品",
-            "pure": "純種",
-            "medium": "混合",
-            "mixed": "雜亂",
-            "user_reported": "玩家回報",
-            "user_reported_extra": "玩家回報多餘"
-        },
-        "search": {
-            "placeholder": "搜尋地點",
-            "clear": "清除",
-            "search_area": "搜尋此區域",
-            "loading": "讀取中..."
-        },
-        "zoom_in": "放大"
+      "title": "Decor 地圖",
+      "desc": "用地點資料輔助尋找"
     },
-    "feedback": {
-        "page_title": "意見回饋",
-        "page_subtitle": "您的意見對我們非常重要！",
-        "title": "BUG、建議回報/合作諮詢",
-        "subtitle": "您的意見對我們非常重要！",
-        "types": {
-            "suggestion": "功能建議",
-            "bug": "問題回報",
-            "dev": "開發合作",
-            "data": "資料問題",
-            "other": "其他"
-        },
-        "form": {
-            "email_label": "Email（選填）",
-            "message_label": "詳細內容",
-            "email_placeholder": "如需回覆請留下您的 Email",
-            "message_placeholder": "請詳細描述您的建議、問題或發現的錯誤...",
-            "device_info": "📱 裝置資訊（自動收集，用於問題診斷）",
-            "submit": "送出回饋",
-            "submitting": "提交中..."
-        },
-        "email_label": "Email（選填）",
-        "message_label": "詳細內容",
-        "placeholders": {
-            "email": "如需回覆請留下您的 Email",
-            "suggestion": "請描述您希望新增的功能或改進建議...",
-            "bug": "請描述您遇到的問題，包括操作步驟和錯誤訊息...",
-            "dev": "【重要聲明】\n此諮詢與 Pikmin 遊戲及任天堂 (Nintendo) 完全無關。\n\n本網頁為非營利粉絲專案，與任天堂 (Nintendo) 無任何關聯、隸屬、贊助或背書關係。網站內出現的所有遊戲截圖、官方美術圖、遊戲角色名稱與商標，其版權均歸 Nintendo 所有。(CC BY-SA 4.0)\n\n---\n此為開發者個人接案服務，如有網頁、APP 或程式開發需求，歡迎留下您的聯絡方式與需求描述！",
-            "default": "請輸入您的意見..."
-        },
-        "buttons": {
-            "suggestion": "送出建議 💡",
-            "bug": "送出回報 🐛",
-            "dev": "送出諮詢 💼",
-            "default": "送出",
-            "cancel": "取消",
-            "submitting": "提交中..."
-        },
-        "success": {
-            "title": "感謝您的回饋！",
-            "desc": "我們已收到您的意見，將會認真參考。",
-            "ok": "好的"
-        },
-        "other_contact": "其他聯繫方式",
-        "github_desc": "回報 Bug 或提出功能建議",
-        "alerts": {
-            "submit_failed": "提交失敗，請稍後再試"
-        }
+    "actions": {
+      "browse_collection": "打開收藏清單",
+      "open_map": "開啟地圖",
+      "review_missing": "檢查缺口"
     },
-    "components": {
-        "category_nav": {
-            "all": "全部",
-            "regular": "一般飾品",
-            "special": "特殊飾品",
-            "uncollected_regular": "待收集（一般）",
-            "uncollected_desc": "尚未收集的一般飾品，幫助你補齊收藏",
-            "anniversary": "週年紀念",
-            "anniversary_desc": "Pikmin Bloom 週年紀念活動限定飾品",
-            "event_ended": "（可能已結束活動）"
-        },
-        "pikmin_filter": {
-            "all": "全部"
-        },
-        "toast": {
-            "saved": "已儲存 ✓",
-            "removed": "已移除"
-        },
-        "decor_grid": {
-            "empty_title": "找不到符合條件的飾品",
-            "empty_desc": "請嘗試調整篩選條件或搜尋關鍵字",
-            "clear_filters": "清除所有篩選"
-        }
+    "near_complete": {
+      "title": "快完成了",
+      "view_all": "全部",
+      "empty": "目前沒有接近完成的分類",
+      "remaining": "剩 {n} 個"
     },
-    "pikmin_types": {
-        "red": "紅皮克敏",
-        "yellow": "黃皮克敏",
-        "blue": "藍皮克敏",
-        "purple": "紫皮克敏",
-        "white": "白皮克敏",
-        "rock": "岩皮克敏",
-        "winged": "翼皮克敏",
-        "ice": "冰皮克敏"
-    },
-    "pikmin_types_short": {
-        "red": "紅",
-        "yellow": "黃",
-        "blue": "藍",
-        "purple": "紫",
-        "white": "白",
-        "rock": "岩",
-        "winged": "翼",
-        "ice": "冰"
-    },
-    "decor_types": {
-        "restaurant": "餐廳",
-        "cafe": "咖啡廳",
-        "sweetshop": "甜點店",
-        "bakery": "麵包店",
-        "burger": "漢堡店",
-        "italian": "義式餐廳",
-        "ramen": "拉麵店",
-        "sushi": "壽司店",
-        "curry": "咖哩餐廳",
-        "korean": "韓式餐廳",
-        "taco": "墨西哥餐廳",
-        "convenience": "便利商店",
-        "supermarket": "超市",
-        "cosmetics": "化妝品商店",
-        "clothing": "服飾店",
-        "electronics": "電器行",
-        "hardware": "五金行",
-        "library": "圖書館／書店",
-        "pharmacy": "藥局",
-        "hair_salon": "美髮院",
-        "laundry": "自主洗衣店&乾洗店",
-        "post_office": "郵局",
-        "hotel": "飯店",
-        "university": "大學&學院",
-        "station": "車站",
-        "bus_stop": "公車站",
-        "airport": "機場",
-        "bridge": "橋樑",
-        "park": "公園",
-        "forest": "森林",
-        "waterside": "水邊",
-        "beach": "海邊",
-        "mountain": "山丘",
-        "zoo": "動物園",
-        "theme_park": "主題樂園",
-        "art_gallery": "美術館",
-        "stadium": "體育館",
-        "movie_theater": "電影院",
-        "shrine": "神社",
-        "regular": "地點飾品",
-        "regular_desc": "在特定地點種植苗獲得",
-        "special": "活動限定",
-        "special_desc": "限時活動才能取得",
-        "roadside": "路邊",
-        "roadside_desc": "在路邊種植苗獲得",
-        "weather": "天氣相關",
-        "weather_desc": "特定天氣條件下獲得",
-        "regional": "地區限定",
-        "regional_desc": "特定國家/地區限定",
-        "rare": "稀有版本",
-        "rare_desc": "一般飾品的稀有變體"
+    "tips": {
+      "title": "今日整理重點",
+      "subtitle": "把收藏變成可執行的清單",
+      "tip1": "點擊卡片可依序切換：無進度、幼苗、已拔起、完成飾品。",
+      "tip2": "用分類、顏色與關鍵字縮小範圍，比從頭滑到尾快很多。",
+      "tip3": "登入後會同步到你的 Supabase，換裝置也能接續整理。"
     }
+  },
+  "hero": {
+    "badge": "Personal Tracker",
+    "title": {
+      "prefix": "把收藏整理成",
+      "suffix": "自己的步行筆記"
+    },
+    "subtitle": {
+      "line1": "保留原本好用的追蹤核心，改成適合你使用的版本。",
+      "line2": "缺口、限定、快完成的分類，都集中在這裡。"
+    },
+    "tooltip": "開始整理",
+    "collected": "已完成"
+  },
+  "collection": {
+    "title": "Decor 收藏",
+    "subtitle": "點擊卡片切換收藏狀態：無進度、幼苗、已拔起、完成飾品",
+    "stats": {
+      "showing": "目前顯示",
+      "items": "個項目",
+      "collected": "已完成"
+    },
+    "filters": {
+      "search_label": "搜尋",
+      "search_placeholder": "搜尋飾品名稱或分類...",
+      "category_type": "取得類型",
+      "pikmin_type": "Pikmin 類型",
+      "status": "狀態",
+      "status_all": "全部",
+      "status_collected": "已完成",
+      "status_uncollected": "未完成",
+      "active_label": "已套用篩選：",
+      "limited": "只看限定",
+      "clear": "清除全部",
+      "title": "篩選",
+      "expand": "展開篩選",
+      "collapse": "收合"
+    },
+    "status": {
+      "none": "無進度",
+      "seedling": "幼苗",
+      "plucked": "已拔起",
+      "decor": "完成飾品"
+    },
+    "status_short": {
+      "none": "無",
+      "seedling": "苗",
+      "plucked": "拔",
+      "decor": "完成"
+    },
+    "card_status": {
+      "current": "目前：{status}",
+      "next_title": "下一次點擊：{status}"
+    },
+    "sections": {
+      "regular": {
+        "title": "一般分類",
+        "desc": "餐廳、公園、車站等地點型 Decor"
+      },
+      "special": {
+        "title": "特殊分類",
+        "desc": "活動、節日、週年與限定任務"
+      },
+      "count_suffix": " 個分類"
+    },
+    "info": {
+      "regular": {
+        "title": "一般 Decor 怎麼取得？",
+        "desc": "在對應地點取得幼苗，培養到足夠親密度後完成 Decor。"
+      },
+      "special": {
+        "title": "特殊 Decor 怎麼取得？",
+        "desc": "多半來自期間活動、週年任務或特殊挑戰，可能有時間限制。"
+      }
+    },
+    "actions": {
+      "collect_all": "全部標記完成",
+      "collect_all_tooltip": "把此分類的所有 Pikmin 標記為完成",
+      "expand_all": "全部展開",
+      "collapse_all": "全部收合"
+    },
+    "scroll": {
+      "special": "跳到特殊分類",
+      "top": "回到頂端",
+      "bottom": "前往底部",
+      "categories": "所有分類"
+    },
+    "types": {
+      "uncollected_regular": "未完成的一般分類",
+      "anniversary": "週年"
+    },
+    "alerts": {
+      "collected_all": "「{category}」已經全部完成！",
+      "confirm_collect_all": "確定要將「{category}」的 {count} 個項目全部標記完成嗎？\n其中還有 {uncollected} 個尚未完成。"
+    },
+    "sync": {
+      "countdown": "{n} 秒後自動同步",
+      "syncing": "同步中...",
+      "retrying": "重試中 ({k}/{n})",
+      "success": "同步完成",
+      "error": "同步失敗",
+      "force_upload": "立即同步",
+      "retry": "重試",
+      "unsaved_warning": "你有尚未同步的變更，確定要離開嗎？"
+    }
+  },
+  "time": {
+    "just_now": "剛剛",
+    "min_ago": "{n} 分前",
+    "hour_ago": "{n} 小時前",
+    "day_ago": "{n} 天前"
+  },
+  "footer": {
+    "total_views": "累積瀏覽",
+    "source": "資料來源：Pikipedia",
+    "disclaimer": "非官方粉絲工具",
+    "feedback": "回饋",
+    "contact_me": "有問題歡迎到 GitHub 回報。",
+    "takedown_help": "若有版權疑慮，會配合處理。",
+    "copyright": "© 2026 ZT 的 Pikmin 收藏筆記",
+    "unofficial": "本網站與 Nintendo 或 Niantic 無官方關聯。Pikmin Bloom 相關名稱與素材屬其權利人所有。",
+    "made_by": "Remixed by ZT"
+  },
+  "feedback": {
+    "page_title": "回饋",
+    "page_subtitle": "你的建議可以讓這個工具更好用。",
+    "title": "問題回報 / 功能建議",
+    "subtitle": "留下你遇到的問題或想要的功能。",
+    "types": {
+      "suggestion": "功能建議",
+      "bug": "問題回報",
+      "dev": "合作",
+      "data": "資料問題",
+      "other": "其他"
+    },
+    "form": {
+      "email_label": "Email，可不填",
+      "message_label": "內容",
+      "email_placeholder": "若需要回覆可留下 Email",
+      "message_placeholder": "請描述你的建議、問題或看到的錯誤...",
+      "device_info": "裝置資訊會自動附上以利除錯",
+      "submit": "送出回饋",
+      "submitting": "送出中..."
+    },
+    "email_label": "Email，可不填",
+    "message_label": "內容",
+    "placeholders": {
+      "email": "若需要回覆可留下 Email",
+      "suggestion": "描述你希望增加的功能或調整...",
+      "bug": "描述問題與重現步驟...",
+      "dev": "留下合作或開發需求...",
+      "default": "輸入你的回饋..."
+    },
+    "buttons": {
+      "suggestion": "送出建議",
+      "bug": "送出回報",
+      "dev": "送出詢問",
+      "default": "送出",
+      "cancel": "取消",
+      "submitting": "送出中..."
+    },
+    "success": {
+      "title": "謝謝你的回饋！",
+      "desc": "已收到你的訊息。",
+      "ok": "完成"
+    },
+    "other_contact": "其他聯絡方式",
+    "github_desc": "回報 Bug 或提出功能建議",
+    "alerts": {
+      "submit_failed": "送出失敗，請稍後再試"
+    }
+  },
+  "components": {
+    "category_nav": {
+      "all": "全部",
+      "regular": "一般 Decor",
+      "special": "特殊 Decor",
+      "uncollected_regular": "未完成的一般分類",
+      "uncollected_desc": "集中檢查尚未完成的一般 Decor",
+      "anniversary": "週年",
+      "anniversary_desc": "Pikmin Bloom 週年活動限定 Decor",
+      "event_ended": "活動可能已結束"
+    },
+    "pikmin_filter": {
+      "all": "全部"
+    },
+    "toast": {
+      "saved": "已儲存",
+      "removed": "已移除"
+    },
+    "decor_grid": {
+      "empty_title": "找不到符合條件的項目",
+      "empty_desc": "試著調整篩選或搜尋關鍵字。",
+      "clear_filters": "清除所有篩選"
+    },
+    "ambient_tip": "可切換沉浸背景"
+  },
+  "pikmin_types": {
+    "red": "紅色 Pikmin",
+    "yellow": "黃色 Pikmin",
+    "blue": "藍色 Pikmin",
+    "purple": "紫色 Pikmin",
+    "white": "白色 Pikmin",
+    "rock": "岩石 Pikmin",
+    "winged": "羽翅 Pikmin",
+    "ice": "冰凍 Pikmin"
+  },
+  "pikmin_types_short": {
+    "red": "紅",
+    "yellow": "黃",
+    "blue": "藍",
+    "purple": "紫",
+    "white": "白",
+    "rock": "岩",
+    "winged": "羽",
+    "ice": "冰"
+  },
+  "decor_types": {
+    "restaurant": "餐廳",
+    "cafe": "咖啡廳",
+    "sweetshop": "甜點店",
+    "bakery": "麵包店",
+    "burger": "漢堡店",
+    "italian": "義式餐廳",
+    "ramen": "拉麵店",
+    "sushi": "壽司店",
+    "curry": "咖哩店",
+    "korean": "韓式餐廳",
+    "taco": "墨西哥餐廳",
+    "convenience": "便利商店",
+    "supermarket": "超市",
+    "cosmetics": "美妝店",
+    "clothing": "服飾店",
+    "electronics": "電器行",
+    "hardware": "五金行",
+    "library": "圖書館 / 書店",
+    "pharmacy": "藥局",
+    "hair_salon": "髮廊",
+    "laundry": "洗衣店",
+    "post_office": "郵局",
+    "hotel": "旅館",
+    "university": "大學",
+    "station": "車站",
+    "bus_stop": "公車站",
+    "airport": "機場",
+    "bridge": "橋",
+    "park": "公園",
+    "forest": "森林",
+    "waterside": "水邊",
+    "beach": "海灘",
+    "mountain": "山",
+    "zoo": "動物園",
+    "theme_park": "遊樂園",
+    "art_gallery": "美術館",
+    "stadium": "體育場",
+    "movie_theater": "電影院",
+    "shrine": "神社",
+    "regular": "地點 Decor",
+    "regular_desc": "在特定地點取得的 Decor",
+    "special": "活動限定",
+    "special_desc": "期間活動或特殊任務取得",
+    "roadside": "路邊",
+    "roadside_desc": "路邊幼苗取得",
+    "weather": "天氣",
+    "weather_desc": "特定天氣條件取得",
+    "regional": "地區限定",
+    "regional_desc": "特定國家或地區限定",
+    "rare": "稀有款",
+    "rare_desc": "一般 Decor 的稀有變體"
+  }
 }

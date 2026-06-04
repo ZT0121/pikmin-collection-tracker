@@ -9,7 +9,6 @@
 CREATE TABLE IF NOT EXISTS user_profiles (
   id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
   username TEXT UNIQUE,
-  friend_code TEXT,
   avatar_url TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
@@ -63,37 +62,7 @@ CREATE POLICY "Users can insert own collection"
   ON user_collections FOR INSERT 
   WITH CHECK (auth.uid() = user_id);
 
--- 3. Friend Posts Table (Message Board)
--- Stores friend code posts for the community
-CREATE TABLE IF NOT EXISTS friend_posts (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
-  username TEXT NOT NULL,
-  friend_code TEXT NOT NULL,
-  message TEXT,
-  created_at TIMESTAMPTZ DEFAULT NOW()
-);
-
--- Enable RLS
-ALTER TABLE friend_posts ENABLE ROW LEVEL SECURITY;
-
--- Policies for friend_posts
-DROP POLICY IF EXISTS "Anyone can view friend posts" ON friend_posts;
-CREATE POLICY "Anyone can view friend posts" 
-  ON friend_posts FOR SELECT 
-  USING (true);
-
-DROP POLICY IF EXISTS "Authenticated users can create posts" ON friend_posts;
-CREATE POLICY "Authenticated users can create posts" 
-  ON friend_posts FOR INSERT 
-  WITH CHECK (auth.uid() IS NOT NULL);
-
-DROP POLICY IF EXISTS "Users can delete own posts" ON friend_posts;
-CREATE POLICY "Users can delete own posts" 
-  ON friend_posts FOR DELETE 
-  USING (auth.uid() = user_id);
-
--- 4. Function to auto-create profile on signup
+-- 3. Function to auto-create profile on signup
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN

@@ -342,7 +342,7 @@
       </div>
     </div>
 
-    <!-- ===== Mobile Navigation Drawer (Bottom Sheet with Three.js) ===== -->
+    <!-- ===== Mobile Navigation Drawer ===== -->
     <ClientOnly>
       <Teleport to="body">
         <Transition
@@ -357,13 +357,10 @@
             v-if="isFilterExpanded"
             class="md:hidden fixed inset-0 z-[100] flex flex-col justify-end pointer-events-none"
           >
-            <!-- Backdrop with Three.js -->
             <div
               class="absolute inset-0 bg-gray-900/60 pointer-events-auto transition-opacity"
               @click="isFilterExpanded = false"
-            >
-              <ThreeSporeBackdrop class="opacity-80" />
-            </div>
+            />
 
             <!-- Bottom Sheet Content -->
             <div

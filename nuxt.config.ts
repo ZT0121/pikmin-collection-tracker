@@ -13,8 +13,8 @@ const securityHeaders = {
     "script-src 'self' 'unsafe-inline'",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "font-src 'self' data: https://fonts.gstatic.com",
-    "img-src 'self' data: blob: https://pikmin.wiki.gallery https://*.tile.openstreetmap.org",
-    "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com https://nominatim.openstreetmap.org https://overpass-api.de https://overpass.kumi.systems https://maps.mail.ru",
+    "img-src 'self' data: blob: https://pikmin.wiki.gallery",
+    "connect-src 'self' https://*.supabase.co wss://*.supabase.co https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com",
     "worker-src 'self' blob:",
     "manifest-src 'self'",
     'upgrade-insecure-requests',
@@ -68,7 +68,7 @@ export default defineNuxtConfig({
       modulePreload: {
         polyfill: false,
       },
-      // Nuxt/Vue plus the map/auth runtime sits a little above Vite's generic
+      // Nuxt/Vue plus the auth runtime sits a little above Vite's generic
       // 500 kB browser-app default. Keep this explicit so real growth still
       // shows up without forcing circular manual chunks.
       chunkSizeWarningLimit: 1400,
@@ -86,7 +86,7 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/auth',
       callback: '/auth/callback',
-      exclude: ['/', '/collection', '/progress', '/friends', '/map', '/auth', '/auth/callback', '/auth/reset-password', '/auth/update-password'],
+      exclude: ['/', '/collection', '/progress', '/auth', '/auth/callback', '/auth/reset-password', '/auth/update-password'],
     },
     // 使用 implicit flow 避免 PKCE code_verifier 問題
     clientOptions: {
@@ -116,14 +116,6 @@ export default defineNuxtConfig({
     '/**': withSecurityHeaders({ 'cache-control': 'no-cache' }),
     // HTML should revalidate frequently so users pick up new hashed bundles.
     '/': withSecurityHeaders({ 'cache-control': 'no-cache' }),
-    '/map': {
-      ...withSecurityHeaders({ 'cache-control': 'no-cache' }),
-      redirect: withBase('/collection'),
-    },
-    '/friends': {
-      ...withSecurityHeaders({ 'cache-control': 'no-cache' }),
-      redirect: withBase('/collection'),
-    },
     '/feedback': {
       ...withSecurityHeaders({ 'cache-control': 'no-cache' }),
       redirect: withBase('/collection'),
@@ -133,9 +125,6 @@ export default defineNuxtConfig({
       redirect: withBase('/collection'),
     },
     '/collection': withSecurityHeaders({ 'cache-control': 'no-cache' }),
-    // Large static data files are content-like assets. Avoid revalidating the
-    // multi-MB map JSON on every map visit.
-    '/data/**': withSecurityHeaders({ 'cache-control': 'public, max-age=86400, stale-while-revalidate=604800' }),
     '/img/**': withSecurityHeaders({ 'cache-control': 'public, max-age=604800, stale-while-revalidate=2592000' }),
     '/icon.png': withSecurityHeaders({ 'cache-control': 'public, max-age=604800, stale-while-revalidate=2592000' }),
     '/favicon.ico': withSecurityHeaders({ 'cache-control': 'public, max-age=604800, stale-while-revalidate=2592000' }),
@@ -152,7 +141,7 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'theme-color', content: '#059669' },
+        { name: 'theme-color', content: '#0f172a' },
         
         // Open Graph Image is static so keeping it here as fallback, though dynamic also handles it
         { property: 'og:image', content: withBase('/og-image.png') },
@@ -162,7 +151,7 @@ export default defineNuxtConfig({
         // PWA iOS Support
         { name: 'apple-mobile-web-app-capable', content: 'yes' },
         { name: 'apple-mobile-web-app-status-bar-style', content: 'black-translucent' },
-        { name: 'apple-mobile-web-app-title', content: 'Pikmin Collection Tracker' },
+        { name: 'apple-mobile-web-app-title', content: "ZT's Pikmin Notes" },
       ],
       link: [
         { rel: 'icon', type: 'image/x-icon', href: withBase('/favicon.ico') },
@@ -178,8 +167,8 @@ export default defineNuxtConfig({
           innerHTML: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebSite',
-            name: 'Pikmin Collection Tracker',
-            alternateName: 'Pikmin Bloom Collection Tracker',
+            name: "ZT's Pikmin Collection Notes",
+            alternateName: 'Personal Pikmin Bloom Collection Tracker',
             url: siteURL,
           }),
         }

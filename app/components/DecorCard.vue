@@ -352,7 +352,7 @@ const statusMeta = computed(() => {
 const statusSteps = computed(() => {
   const currentIndex = statusOrder.indexOf(itemStatus.value);
   const meta: Record<CollectionItemStatus, { label: string; icon: string; value: CollectionItemStatus; emoji: string }> = {
-    none: { value: 'none', label: t('collection.status.none'), icon: 'lucide:minus', emoji: '❔' },
+    none: { value: 'none', label: t('collection.status.none'), icon: 'lucide:minus', emoji: '❓' },
     seedling: { value: 'seedling', label: t('collection.status.seedling'), icon: 'lucide:sprout', emoji: '🌱' },
     plucked: { value: 'plucked', label: t('collection.status.plucked'), icon: 'lucide:leaf', emoji: '🐣' },
     decor: { value: 'decor', label: t('collection.status.decor'), icon: 'lucide:check', emoji: '🎁' },
